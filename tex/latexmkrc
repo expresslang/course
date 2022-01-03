@@ -11,4 +11,4 @@ sub mpost {
     popd();
     return $return;
 }
-@default_files = ( 'advexpv', 'advexpvtn', 'answers', 'egcarsg', 'egcarsx', 'egspec', 'exercises', 'expv', 'expvtn', 'grexpv', 'grexpvtn', 'mpxerr', 'principlesv', 'rulesv', 'rulesvtn' )
+@default_files = ( 'advexpv', 'advexpvtn', 'answers', 'egcarsg', 'egcarsx', 'egspec', 'exercises', 'expv', 'expvtn', 'grexpv', 'grexpvtn', 'principlesv', 'rulesv', 'rulesvtn' )
