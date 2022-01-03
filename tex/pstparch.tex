@@ -1,0 +1,54 @@
+%  pstparch.tex  fig:steparch        STEP Architecture with APs & MAPPING  
+%\begin{figure}[htp]
+\setlength{\unitlength}{0.2in}
+%\center
+\begin{picture}(32,25)
+%  draw AP boxes
+\thicklines
+\put(5,22){\framebox(4,2){AP 1}}
+\put(11,22){\framebox(4,2){AP 2}}
+\put(17,22){\dashbox{0.5}(4,2){}}
+\put(23,22){\framebox(4,2){AP n}}
+%   draw Mapping boxes
+\put(5,18){\framebox(4,2){Mapping}}
+\put(11,18){\framebox(4,2){Mapping}}
+\put(17,18){\dashbox{0.5}(4,2){}}
+\put(23,18){\framebox(4,2){Mapping}}
+%     draw vectors AP/IPIM
+\put(7,20){\vector(0,1){2}}
+\put(13,20){\vector(0,1){2}}
+\put(19,20){\vector(0,1){2}}
+\put(25,20){\vector(0,1){2}}
+\put(7,18){\vector(0,-1){2}}
+\put(13,18){\vector(0,-1){2}}
+\put(19,18){\vector(0,-1){2}}
+\put(25,18){\vector(0,-1){2}}
+%          IPIM Box
+\put(5,14){\framebox(22,2){{\bf Integrated Resource Models}}}
+\put(5.05,14.05){\framebox(21.9,1.9){}}
+\put(5.1,14.1){\framebox(21.8,1.8){}}
+%          Mapping boxes
+\multiput(8,10)(5,0){4}{\framebox(4,2){Mapping}}
+%          IPIM/Mapping lines
+\multiput(10,14)(5,0){4}{\line(0,-1){2}}
+%          Implementation Levels
+\put(8,3){\framebox(4,2){Level 1}}
+\put(7,2){\dashbox{0.5}(10,4)[r]{Level 2\,}} 
+\put(6,1){\dashbox{1.0}(16,6)[r]{Level 3\,}}
+\put(5,0){\dashbox{2.0}(22,8)[r]{Level 4\,}}
+%          Mapping/Level vectors
+\put(10,10){\vector(0,-1){5}}
+\put(15,10){\vector(0,-1){4}}
+\put(20,10){\vector(0,-1){3}}
+\put(25,10){\vector(0,-1){2}}
+
+\end{picture}
+%%\caption{STEP Architecture showing Multiple Appplication Protocols and 
+%%           Exchange Implementations.}
+%%\label{fig:steparch}
+\setlength{\unitlength}{1pt}
+%%\end{figure}
+
+\endinput
+
+

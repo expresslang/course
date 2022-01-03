@@ -1,0 +1,85 @@
+% pstphist.tex  Standards history on mm grid  fig:shist
+%%%\begin{figure}[htbp]
+\setlength{\unitlength}{1mm}
+%\centering
+%%%\begin{picture}(150,200) \input{/rdrc/design/pwilson/Pbooks/Ebook/Bkfigs/gridmml}
+\begin{picture}(136,150)
+\thicklines
+
+\put(0,0){\framebox(135,7.5){{\bf ISO STEP Standard}}}
+\put(75,15){\framebox(15,7.5){IGES-n}}
+\put(75,30){\framebox(15,7.5){IGES-3}}
+\put(45,45){\framebox(15,7.5){CAD*I}}
+\put(60,60){\framebox(15,7.5){PDES}}
+\put(90,60){\framebox(15,7.5){ESP}}
+\put(30,75){\framebox(15,7.5){PDDI}}
+\put(75,75){\framebox(15,7.5){IGES-2}}
+\put(15,90){\framebox(15,7.5){VDAFS}}
+\put(90,90){\framebox(15,7.5){XBF}}
+\put(0,105){\framebox(15,7.5){SET}}
+\put(75,105){\framebox(15,7.5){IGES-1}}
+\put(105,105){\framebox(30,7.5){ANSI Y14.26M}}
+\put(87.5,120){\framebox(20,7.5){McAuto}}
+\put(87.5,135){\framebox(20,7.5){ANSI draft}}
+
+%  connecting lines
+% draft/McAuto
+\put(97.5,135){\vector(0,-1){7.5}}
+% McAuto/XBF
+\put(97.5,120){\vector(0,-1){11.25}}
+\put(97.5,108.75){\vector(0,-1){11.25}}
+% IGES/Y14
+\put(90,108.75){\vector(1,0){15}}
+% Y14/STEP
+\put(120,105){\vector(0,-1){97.5}}
+% IGES/SET
+\put(75,108.75){\vector(-1,0){60}}
+% SET/STEP
+\put(7.5,105){\vector(0,-1){97.5}}
+% IGES1/IGES2
+\put(82.5,105){\vector(0,-1){22.5}}
+% IGES/VDAFS
+\put(82.5,93.75){\vector(-1,0){52.5}}
+% VDAFS/STEP
+\put(22.5,90){\vector(0,-1){82.5}}
+% IGES2/PDDI
+\put(75,78.75){\vector(-1,0){30}}
+% PDDI/STEP
+\put(37.5,75){\vector(0,-1){67.5}}
+% XBF/ESP
+\put(97.5,90){\vector(0,-1){22.5}}
+% IGES2/ESP
+\put(90,78.75){\vector(1,0){7.5}}
+% IGES2/IGES3
+\put(82.5,75){\vector(0,-1){37.5}}
+% IGES2/PDES
+\put(82.5,63.75){\vector(-1,0){7.5}}
+% PDDI/PDES
+\put(37.5,63.75){\vector(1,0){22.5}}
+% CAD*I/STEP
+\put(52.5,45){\vector(0,-1){37.5}}
+% PDES/STEP
+\put(67.5,60){\vector(0,-1){52.5}}
+% CAD*I/PDES
+\put(60,18.75){\vector(1,0){7.5}}
+\put(60,18.75){\vector(-1,0){7.5}}
+% ESP/IGES/PDES
+\put(97.5,26.25){\line(0,1){33.75}}
+\put(97.5,26.25){\vector(-1,0){15}}
+\put(82.5,26.25){\vector(-1,0){15}}
+% IGES3/IGESn
+\put(82.5,30){\vector(0,-1){7.5}}
+% IGESn/STEP
+\put(82.5,15){\vector(0,-1){7.5}}
+% IGESn/Y14
+\put(90,18.75){\vector(1,0){30}}
+
+\end{picture}
+%%\caption{The genealogy of the STEP product data transfer standard.}
+%%\label{fig:shist}
+\setlength{\unitlength}{1pt}
+%%\end{figure}
+
+\endinput
+
+

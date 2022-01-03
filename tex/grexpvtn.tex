@@ -1,0 +1,685 @@
+% grexpvtn.tex               EXPRESS-G VIEWGRAPHS and Notes
+\documentclass[11pt]{article} 
+\usepackage{vgraph}
+\usepackage{headfoot}
+\usepackage{ifpdf}
+\ifpdf
+  \pdfoutput=1
+  \usepackage[pdftex,final]{graphicx}
+  \DeclareGraphicsRule{*}{mps}{*}{}
+\else
+  \usepackage[final]{graphicx}
+\fi
+
+\notestrue
+%%%%\notesfalse
+
+\begin{document}
+
+\input{grexp}
+
+\end{document}
+
+\pagestyle{empty}
+\bodsiz
+
+\vspace*{\beftit}
+\begin{center}
+{\titsiz \textbf{THE EXPRESS-G LANGUAGE}}
+\end{center}
+\vspace{\beftit}
+\vspace{\beftit}
+\begin{center}
+\textbf{Peter R. Wilson}
+\end{center}
+
+\clearpage
+
+\ifnotes
+  \pagestyle{plain}
+\else
+  \pagefooter{}{}{{\small Peter R. Wilson}}
+\fi
+
+\begin{remarks}
+\remintro
+NB. NOTES ARE ON EVEN NUMBERED (LEFT HAND) PAGES AND THE PRESENTATION ON
+ODD NUMBERED (RIGHT HAND) PAGES.
+
+\remtitle{EXPRESS-G}
+
+This part of the course covers the elements of EXPRESS-G:
+\begin{itemize}
+\item History
+\item Design goals
+\item Language elements and examples
+\end{itemize}
+
+    There were three main proposals for a graphical version of
+EXPRESS before the EXPRESS Committee started work in earnest. This meant
+that they had some user experiences to guide them.
+
+\remend
+\end{remarks}
+
+\vtitle{EXPRESS-G}
+
+    EXPRESS-G is a graphical subset of EXPRESS lexical language and 
+has evolved from a variety of sources.
+
+\begin{description}
+\item[10/88]: EXPRESSAM (Bruce Lownsbery, Lawrence Livermore Lab) 
+              based on NIAM.
+\item[2/89]: GREXP (Peter Wilson, GE) BLA  (boxes, lines, annotation) with
+             multiple levels of abstraction and any amount of text.
+\item[11/89]: ExpressGraph (Curt Parks, NIST \& John Zimmerman, Allied Bendix) 
+              simplified version of EXPRESSAM.
+\item[2/90]: EXPRESS-G (EXPRESS Committee) 
+\end{description}
+
+\begin{remarks}
+\remintro
+\remtitle{EXPRESS-G}
+
+    The final result is yet another member of the BLA (boxes,
+lines, and annotations) family. Unlike practically any other BLA
+language it was based on an existing lexical language --- the others
+were stand-alone.
+
+    EXPRESS-G is limited to the structural parts of EXPRESS --- no
+representation of constraints, no FUNCTIONs.
+
+\remend
+\end{remarks}
+
+
+\vtitle{EXPRESS-G}
+
+\begin{itemize}
+\item Drafted by EXPRESS Committee in January 1990
+\item A combination of ExpressGraph and GREXP.
+\item A \emph{subset} of EXPRESS.
+\item Modeling of Entity, Attribute, Cardinality, Supertype, Type and Schema.
+\item Limited levels of abstraction.
+\item No ISO ballot issues in mid 1990 (Informative Annex).
+\item February 1991 --- Normative Annex to EXPRESS document and
+extended.
+\item Same standardization status as EXPRESS.
+\end{itemize}
+
+\begin{remarks}
+\remintro
+\remtitle{EXPRESS-G design Goals}
+
+    As there was a full lexical language available EXPRESS-G was limited
+to those things that could be easily represented graphically.
+
+    It was hoped that the diagrams could be understood with (practically)
+no training. (Hopefully even non-technical managers would feel comfortable).
+
+    Different levels of abstraction (detail) would be available.
+
+    Importantly, it was known that EXPRESS-G models would be published
+in reports on normal sized paper, so there had to be a means of splitting 
+a large diagram across a number of pages.
+
+    The icons had to be simple so simple drawing programs could be used
+(at one time diagrams were drawn using ASCII art on lineprinters).
+
+    It would be useful to be able to develop software to go between
+EXPRESS and EXPRESS-G modeling.
+    
+
+\remend
+\end{remarks}
+
+\vtitle{EXPRESS-G Design Goals}
+
+\begin{itemize}
+\item Subset of EXPRESS.
+\item Intuitive understanding of diagrams.
+\item Support different levels of abstraction.
+\item Mechanism for multi-page models.
+\item Minimal graphic capabilities needed.
+\item Potential automatic EXPRESS-G display of EXPRESS models.
+\end{itemize}
+
+
+\begin{remarks}
+\remintro
+\remtitle{EXPRESS-G Example Model}
+
+This is meant to be understandable by the audience --- at least the general
+tenor of the model.
+
+    It is a `2 page' model even though it is shown on one sheet of paper.
+
+\normalsize
+\begin{verbatim}
+  TYPE date = ARAY [1:3] OF INTEGER; END_TYPE;
+
+  TYPE hair_type = ENUMERATION OF
+    (blonde, brown, black, red, white, bald);
+  END_TYPE;
+
+  ENTITY person;
+    first_name : STRING;
+    last_name : STRING;
+    nickname : STRING;
+    birth_date : date;
+    children : SET [0:?] OF person;
+    hair : hair_type;
+  DERIVE
+    age : INTEGER := years(birth_date);
+  INVERSE
+    parents : SET [0:2] OF person FOR children;
+  END_ENTITY;
+
+  SUBTYPE_CONSTRAINT sc_person FOR person;
+    ONEOF(male, female);
+  END_SUBTYPE_CONSTRAINT;
+
+  ENTITY female SUBTYPE OF (person);
+  INVERSE
+    husband : SET [0:1] OF male FOR wife;
+  END_ENTITY;
+
+  ENTITY male SUBTYPE OF (person);
+    wife : OPTIONAL female;
+  END_ENTITY;
+
+  FUNCTION years(past : date): INTEGER
+    (* returns number of years between past
+       and curent date *)
+  END_FUNCTION;
+\end{verbatim}
+
+\remend
+\end{remarks}
+
+\vtitle{EXPRESS-G Example Model}
+
+\begin{figure}[hp]
+\normalsize
+\centering
+\includegraphics{models.1}
+
+\vspace{\afttit}
+
+PAGE 1 OF 2
+
+\vspace{\afttit}
+\vspace{\afttit}
+
+\includegraphics{models.2}
+
+\vspace{\afttit}
+
+PAGE 2 OF 2
+\end{figure}
+
+\begin{remarks}
+\remintro
+\remtitle{Definition Symbols}
+
+These are the symbols for representing the structural elements of EXPRESS,
+principally TYPE, ENTITY and SCHEMA. 
+
+SUBTYPE\_CONSTRAINT is a late addition.
+
+\remend
+\end{remarks}
+
+%\normalsize
+%\bodsiz
+\ifnotes
+  \vspace*{-2\beftit}
+\fi
+\vtoptitle{Definition Symbols}
+
+
+\begin{figure}[hp]
+\centering
+\includegraphics{symbols.1}
+
+\ifnotes
+  \vspace{\baselineskip}
+\else
+  \vspace{\afttit}
+\fi
+
+BASE TYPES
+
+\ifnotes
+  \vspace{\baselineskip}
+\else
+  \vspace{\afttit}
+\fi
+
+\includegraphics{symbols.4}
+
+\ifnotes
+  \vspace{\baselineskip}
+\else
+  \vspace{\afttit}
+\fi
+
+\includegraphics{symbols.8}
+
+\ifnotes
+  \vspace{\baselineskip}
+\else
+  \vspace{\afttit}
+\fi
+
+DEFINED TYPES
+
+\ifnotes
+  \vspace{\baselineskip}
+\else
+  \vspace{\afttit}
+\fi
+
+\includegraphics{symbols.9}
+
+\ifnotes
+  \vspace{\baselineskip}
+\else
+  \vspace{\afttit}
+\fi
+
+ENTITY
+
+\ifnotes
+  \vspace{\baselineskip}
+\else
+  \vspace{\afttit}
+\fi
+
+\includegraphics{symbols.17}
+
+\ifnotes
+  \vspace{\baselineskip}
+\else
+  \vspace{\afttit}
+\fi
+
+SUBTYPE\_CONSTRAINT
+
+\ifnotes
+  \vspace{\baselineskip}
+\else
+  \vspace{\afttit}
+\fi
+
+\includegraphics{symbols.13}
+
+\ifnotes
+  \vspace{\baselineskip}
+\else
+  \vspace{\afttit}
+\fi
+
+SCHEMA
+\end{figure}
+
+
+\begin{remarks}
+\remintro
+\remtitle{Relationship Symbols}
+
+    Lines are used to indicate relationships between definitions. 
+
+    The thickness of the line is meant to be indicative of the strength
+of the relationship.
+
+\begin{itemize}
+\item Thick lines for supertype/subtype relationship
+\item Dashed line for an optional attribute of an ENTITY.
+\end{itemize}
+
+\remend
+\end{remarks}
+
+\vtitle{Relationship Symbols}
+
+\begin{figure}[hp]
+\centering
+\includegraphics{symbols.14}
+
+\vspace{\afttit}
+LINE STYLES
+
+\end{figure}
+
+
+\begin{remarks}
+\remintro
+\remtitle{Composition Symbols}
+
+There are 2 kinds of compostion symbol
+\begin{itemize}
+\item Page connectors, where a relationship line crosses to or from
+another page.
+\item Inter-schema references where something is defined in some other
+schema than the current one.
+\end{itemize}
+
+\remend
+\end{remarks}
+
+\vtitle{Composition Symbols}
+
+\begin{figure}[hp]
+\centering
+\includegraphics{symbols.15}
+
+\vspace{\afttit}
+
+PAGE REFERENCES
+
+\vspace{\afttit}
+
+\includegraphics{symbols.16}
+
+\vspace{\afttit}
+
+INTER-SCHEMA REFERENCES
+
+\end{figure}
+
+
+\begin{remarks}
+\remintro
+\remtitle{A Supertype Tree}
+\begin{verbatim}
+SCHEMA simple_tree;
+
+ENTITY super; END_ENTITY;
+
+ENTITY sub1 SUBTYPE OF (super); END_ENTITY;
+
+ENTITY sub2 SUBTYPE OF (super); END_ENTITY;
+
+SUBTYPE_CONSTRAINT sc_sub2 FOR sub2;
+  ABSTRACT;
+  ONEOF(sub3, sub4);
+END_SUBTYPE_CONSTRAINT;
+
+ENTITY sub5 SUBTYPE OF (super); END_ENTITY;
+
+ENTITY sub3 SUBTYPE OF (sub2); END_ENTITY;
+
+ENTITY sub4 SUBTYPE OF (sub2); END_ENTITY;
+
+END_SCHEMA; -- simple_tree
+\end{verbatim}
+
+\remend
+\end{remarks}
+
+\vtitle{A Supertype Tree}
+
+\begin{figure}[hp]
+\centering
+\includegraphics{models.5}
+
+\vspace{\afttit}
+
+\end{figure}
+
+
+\begin{remarks}
+\remintro
+\remtitle{Retyping attributes}
+
+\begin{verbatim}
+ENTITY sup_a;
+  attr : sub_b;
+END_ENTITY;
+
+ENTITY sub_a SUBTYPE OF (sup_a);
+  SELF\sup_a.sub_b : sub_b;
+END_ENTITY;
+
+ENTITY sup_b;
+  num : OPTIONAL NUMBER;
+END_ENTIY;
+
+ENTITY sub_b SUBTYPE OF (sup_b);
+  SELF\sup_b.num : REAL;
+END_ENTIY;
+\end{verbatim}
+
+
+\remend
+\end{remarks}
+
+\vtitle{Retyping attributes}
+
+\begin{figure}[hp]
+\centering
+\includegraphics{models.6}
+
+\vspace{\afttit}
+
+\end{figure}
+
+
+
+\begin{remarks}
+\remintro
+\remtitle{Partial and Complete Entity Models}
+
+\begin{verbatim}
+ENTITY super; END_ENTITY;
+
+ENTITY sub_1 SUBTYPE OF (super);
+  attr : from_ent;
+END_ENTITY;
+
+ENTITY sub_2 SUBTYPE OF (super);
+  pick : choice;
+END_ENTITY;
+
+ENTITY an_ent;
+  int : INTEGER;
+END_ENTITY;
+
+ENTITY from_ent;
+  description : OPTIONAL to_ent;
+  values      : ARRAY [1:3] OF UNIQUE REAL;
+END_ENTITY;
+
+ENTITY to_net;
+  text : strings;
+END_ENTITY;
+
+TYPE choice = SELECT
+  (an_ent, name);
+END_TYPE;
+
+TYPE name = STRING; END_TYPE;
+
+TYPE strings  LIST [1:?] OF STRING; END_TYPE;
+\end{verbatim}
+
+\remend
+\end{remarks}
+
+\vmintitle{Partial and Complete Entity Models}
+
+\begingroup
+
+\normalsize
+\ifnotes
+%  \enlargethispage{1in}
+\fi
+
+%\begin{figure}[hp]
+\centering
+\includegraphics{models.3}
+
+\vspace{\afttit}
+
+PARTIAL ENTITY LEVEL MODEL
+
+\vspace{\afttit}
+
+%\end{figure}
+
+%\begin{figure}[hp]
+\centering
+\includegraphics{models.4}
+
+\vspace{\afttit}
+
+COMPLETE ENTITY LEVEL MODEL
+
+\endgroup
+
+%\end{figure}
+
+\begin{remarks}
+\remintro
+\remtitle{Schema and Entity Models}
+
+\normalsize
+\begin{verbatim}
+SCHEMA top;
+  USE FROM geom (curve, point AS node);
+  REFERENCE FROM geom (surface);
+
+  ENTITY face;
+    bounds : LIST [1:?] OF loop;
+    loc    : surface;
+  END_ENTITY;
+
+  ENTITY loop; END_ENTITY;
+
+  SUBTYPE_CONSTRAINT sc_loop FOR loop;
+    ABSTRACT;
+    ONEOF(eloop, vloop);
+  END_SUBTYPE_CONSTRAINT;
+
+  ENTITY eloop SUBTYPE OF (loop);
+    bound : LIST [1:?] OF edge;
+  END_ENTITY;
+
+  ENTITY vloop SUBTYPE OF (loop);
+    bound : vertex;
+  END_ENTITY;
+
+  ENTITY edge;
+    start, end : vertex;
+    loc   : curve;
+  END_ENTITY;
+
+  ENTITY vertex;
+    loc : node;
+  END_ENTITY;
+END_SCHEMA; -- top
+
+SCHEMA geom;
+  ENTITY lcs; END_ENTITY;
+  ENTITY surface; END_ENTITY;
+  ENTITY curve; END_ENTITY;
+  ENTITY point; END_ENTITY;
+END_SCHEMA; -- geom
+\end{verbatim}
+
+\remend
+\end{remarks}
+
+
+\vtoptitle{Schema and Entity Models}
+
+\begin{figure}[hp]
+\centering
+\includegraphics{models.8}
+
+\vspace{\afttit}
+
+SCHEMA LEVEL MODEL
+
+\vspace{\afttit}
+
+\includegraphics{models.7}
+
+\vspace{\afttit}
+
+ENTITY LEVEL MODEL
+
+\end{figure}
+
+\begin{remarks}
+\remintro
+\remtitle{Subtype Constraints}
+
+\begin{verbatim}
+ENTITY p; END_ENTTY;  -- person
+
+SUBTYPE_CONSTRAINT p_subs FOR p;
+  TOTAL_OVER(m, f);
+  ONEOF(m, f) AND ONEOF(c, a);
+END_SUBTYPE_CONSTRAINT;
+
+ENTITY m SUBTYPE OF (p); END_ENTITY; -- male
+
+ENTITY f SUBTYPE OF (p); END_ENTITY; -- female
+
+ENTITY c SUBTYPE OF (p); END_ENTITY; -- citizen
+
+ENTITY a SUBTYPE OF (p); END_ENTITY; -- alien
+
+SUBTYPE_CONSTRAINT no_li FOR a;
+  ABSTRACT SUPERTYPE;
+  ONEOF(l, i);
+END_SUBTYPE_CONSTRAINT;
+
+ENTITY l SUBTYPE OF (a); END_ENTITY; -- legal
+
+ENTITY i SUBTYPE OF (a); END_ENTITY; -- illegal
+\end{verbatim}
+
+\remend
+\end{remarks}
+
+
+\vtitle{Subtype constraints}
+
+\begin{figure}[hp]
+\centering
+\includegraphics{models.10}
+
+\vspace{\afttit}
+
+\end{figure}
+
+
+\begin{remarks}
+\remintro
+\remtitle{Usage}
+
+    May be used anywhere EXPRESS is used.
+
+    Can be used alone in its own right, but more usually employed with
+EXPRESS lexical to fill in any missing details.
+
+\remend
+\end{remarks}
+
+\vtitle{Usage}
+
+%\bodsiz
+\begin{itemize}
+\item Graphical display of EXPRESS models.
+\item Stand-alone information modeling iconic language.
+\item Model display at varying levels of abstraction.
+\item Model display at varying levels of granularity.
+\end{itemize}
+
+
+\end{document}
+
+

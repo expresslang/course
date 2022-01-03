@@ -1,0 +1,114 @@
+= EXPRESS course by Peter Wilson
+
+== Introduction
+
+This course will initiate any novice in EXPRESS modeling through a series of
+tutorials and exercises.
+
+Competance in EXPRESS comes with training -- learn it, use it, be fluent in it
+-- just like any other language!
+
+This course was originally developed in May 2004.
+
+
+== Course order
+
+Peter suggests the following course order:
+
+. "An Introduction" (expv & expvtn). The "Ambiguities" and "Simple models"
+  exercises can be used during this.
+
+. EXPRESS-G
+
+. Split the audience into groups to develop EXPRESS-G models for the
+  "Car Registration Authority" (`egspec.pdf` handout). Get each group to
+  present its model to the others. Present/handout `egcarsg.pdf` and
+  `egcarsx.pdf`. Allow about 1/2 day for all this.
+
+. "Advanced EXPRESS" (`advexpv` & `advexpvtn`)
+
+. "RULES" (`rulesv` & `rulesvtn`) (Can be skipped if the class is too bored)
+
+. "Principles" (`principlesv`)
+
+Overall about two days will be required.
+
+
+== Contents
+
+Document sources have been written using LaTeX, plus some
+MetaPost drawings borrowed from the EXPRESS Edition 2 FDIS.
+
+Teaching materials are in the form of PDF files. There is a single
+version of those that are intended as printed handouts. Materials intended
+to be shown on a screen to an audience come in two versions;
+
+. Filenames ending with `v` are for viewgraphs
+
+. Filenames ending with `vtn` are for the instructor and include notes
+  as well as the viewgraphs (the font sizes in these are smaller than
+  in the viewgraph only files).
+
+The files are:
+
+* `expv.tex`, `expvtn.tex` & `exp.tex`  Source files for:
+** `expv.pdf` & `expvtn.pdf`
+          "Information Modeling Using EXPRESS --- An Introduction"
+
+* `grexpv.tex`, `grexpvtn.tex` & `grexp.tex` Source files for:
+** `grexpv.pdf` & `grexpvtn.pdf`
+          "Information Modeling Using EXPRESS --- The EXPRESS-G Language"
+
+* `advexpv.tex`, `advexpvtn.tex` & `advexp.tex`  Source files for:
+** `advexpv.pdf` & `advexpvtn.pdf`
+          "Information Modeling Using EXPRESS --- Advanced Concepts"
+
+* `rulesv.tex`, `rulesvtn.tex` & `rules.tex`  Source files for:
+** `rulesv.pdf` & `rulesvtn.pdf`
+          "Information Modeling Using Express --- RULES"
+
+* `principlesv.tex` & `principles.tex`  Source files for:
+** `principlesv.pdf`
+          "Information Modeling Using EXPRESS --- Modeling Principles"
+
+* `exercises.tex`  Source file for:
+** `exercises.pdf` "Modeling exercises" handout
+
+* `answers.tex`  Source file for:
+** `answers.pdf` "Modeling Exercises: Some Answers" handout
+
+* `egspec.tex`  Source file for:
+** `egspec.pdf` "Example model statement: Car Registration Authority"
+
+* `egcarsg.tex`  Source file for:
+** `egcarsg.pdf` "EXPRESS-G example model: Registration Authority"
+
+* `egcarsx.tex`  Source file for:
+** `egcarsx.pdf` "EXPRESS example model: Registration Authority"
+
+
+Supporting files include:
+
+* Files `*.sty` are LaTeX package files
+
+* Files with numeric extensions are metapost generated EPS for diagrams,
+  files `*.mp` and `*.mpx` are also metapost related
+
+* Files `pl*.tex` and `ps*.tex` contain LaTeX diagrams
+
+To regenerate a `*.pdf` file, run pdfLaTeX on the corresponding `*.tex` file
+
+
+== About the author
+
+Peter Wilson, who created this course in his free time, is the creator of
+EXPRESS-G and EXPRESS-I, and editor for ISO 10303-11 Edition 2.
+
+Peter can be contacted at pandgwilson at earthlink dot net.
+
+== Copyright and license
+
+Copyright Peter Wilson.
+
+Openly licensed.
+

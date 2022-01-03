@@ -1,0 +1,81 @@
+% vgraph.sty  Viewgraphs
+\ProvidesPackage{vgraph}[2004/03/11 Poor mans viewgraphs (prw)]
+
+\RequirePackage{comment}
+
+%%% set page dimensions
+\setlength{\textheight}{8.0in}
+\setlength{\textwidth}{6.0in}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\evensidemargin}{0.25in}
+\setlength{\marginparwidth}{0.6in}
+\parskip=1ex
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+%        set spacing for before & after title text
+\newlength{\beftit}
+\newlength{\afttit}
+\setlength{\beftit}{0.25in}
+\setlength{\afttit}{0.25in}
+%        set sizes of title & body texts
+\newcommand{\titsiz}{\Huge}
+\newcommand{\bodsiz}{\huge} 
+
+%       title command
+\newcommand{\vtitle}[1]{\clearpage
+                        \vspace*{\beftit}
+                        \begin{center}
+                        {\titsiz \textbf{#1}}
+                        \end{center}
+                        \vspace*{\afttit}}
+
+%      title, but higher on the page
+\newcommand{\vtoptitle}[1]{\clearpage
+                        \begin{center}
+                        {\titsiz \textbf{#1}}
+                        \end{center}
+                        \vspace*{\afttit}}
+%      title, but higher on the page and less space afterwards
+\newcommand{\vmintitle}[1]{\clearpage
+                        \begin{center}
+                        {\titsiz \textbf{#1}}
+                        \end{center}}
+
+%      title, but highest on the page and less space afterwards
+\newcommand{\vuptitle}[1]{\clearpage
+                           \vspace*{-6\beftit}
+                        \begin{center}
+                        {\titsiz \textbf{#1}}
+                        \end{center}}
+
+
+%%%%%% notes setup
+
+\newif\ifnotes
+\notesfalse
+
+\newcommand{\remintro}{\clearpage\begingroup
+%  \vspace*{\beftit}%
+  \Large\itshape}
+\newcommand{\remend}{\endgroup\bodsiz}
+\newcommand{\remtitle}[1]{\centerline{\LARGE\textbf{#1}}}
+
+\AtBeginDocument{%
+\ifnotes
+  \setlength{\beftit}{2\baselineskip}
+  \setlength{\afttit}{2\baselineskip}
+%%%%%%% make presentation align with notes
+  \renewcommand{\titsiz}{\LARGE}
+  \renewcommand{\bodsiz}{\Large}
+  \let\vtoptitle\vmintitle
+  \let\vtitle\vmintitle
+  \let\vuptitle\vmintitle
+%%%%%%%%
+  \includecomment{remarks}
+\else
+  \excludecomment{remarks}
+\fi}
+
+\endinput
+

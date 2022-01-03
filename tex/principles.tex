@@ -1,0 +1,348 @@
+% principles.tex   EXPRESS Course Modeling Principles
+% Created by Peter R Wilson, 1992 -- 2004
+%\documentclass[11pt]{article}
+%\usepackage{vgraph}
+%\usepackage{headfoot}
+
+%%%%\notestrue
+%%%%\notesfalse
+
+%\begin{document}
+
+\pagestyle{empty}
+\bodsiz
+
+\vspace*{\beftit}
+\begin{center}
+{\titsiz\bfseries Information Modeling Using EXPRESS --- \\ Modeling Principles }
+\end{center}
+\vspace{\beftit}
+\vspace{\beftit}
+\begin{center}
+%%%\textbf{Peter R. Wilson}
+\end{center}
+
+\clearpage
+
+\ifnotes
+  \pagestyle{plain}
+\else
+  \pagestyle{empty}
+%%%  \pagefooter{}{}{{\small Peter R. Wilson}}
+\fi
+
+\vtitle{SUMMARY}
+
+\begin{itemize}
+\item Organize the team who will
+\item Develop the model while
+\item Applying the principles.
+\end{itemize}
+
+\vtitle{THE TEAM}
+
+    The modeling team consists of three groups:
+\begin{enumerate}
+\item Technical experts who know the model domain.
+\item Modeling experts who help the technical experts develop the model.
+\item Reviewers, who are domain experts, to `keep the developers honest'
+\end{enumerate}
+
+\vtitle{Remember ---}
+
+    `A theory has only the alternative of being right or wrong. A model has
+a third possibility: it may be right but irrelevant.'
+
+\begin{normalsize}
+Manfred Eigen in \textit{The Physicists Conception of Nature}
+(ed. Jagdish Mehra) Reidel, 1973
+\end{normalsize}
+
+\vtitle{PROCESS}
+
+\begin{itemize}
+\item Define the scope
+\item `Find the objects'
+\item `Sketch' the structure
+\item Generalisation and specialisation
+\item Refine the structure
+\item Eliminate synonyms and homonyms
+\item Cardinality constraints
+\item Local constraints
+\item Global constraints
+\item Partition
+\end{itemize}
+
+\vtitle{PRINCIPLES}
+
+\begin{itemize}
+\item Scoping
+\item Readability
+\item Simple Types
+\item Implementation Independence
+\item Partitioning
+\item Schema Independence
+\item Nym Principle
+\item Context Independence
+\item Constraints
+\item Invariance
+\item Redundancy
+\item Inheritance
+\end{itemize}
+
+\vtitle{Readability}
+
+    An information model, although if defined via EXPRESS is computer
+interpretable, should primarily be human understandable.
+
+    Modeling constructs should be chosen to aid the reader rather
+than obfuscate understanding by using complex, intertwined or
+opaque definitional relationships.
+
+\vtitle{Scoping}
+
+    A model must have a well defined scope (otherwise how do you know
+when you are finished?).
+
+    Before modeling:
+\begin{itemize}
+\item Define the intended model scope.
+\item Document the assumptions.
+\end{itemize}
+
+\vtitle{Simple Types}
+
+    The EXPRESS simple types (i.e Integer, String, etc) carry virtually no
+semantics.
+
+    As far as possible, avoid the use of simple types as entity attributes.
+Instead, use Types to provide the semantics.
+\begin{verbatim}
+ENTITY antique_object;
+  produced : date;
+  maker    : name;
+DERIVE
+  years_old : age := elapsed(produced);
+END_ENTITY;
+
+TYPE name = STRING; END_TYPE;
+TYPE age = INTEGER; END_TYPE;
+\end{verbatim}
+
+
+\vtitle{Implementation Independence}
+
+    An information model defines the \textbf{information} necessary for some
+purpose; \emph{it does not define the data structuring}.
+
+\begin{itemize}
+\item Model objects, not syntax.
+\item Model the `real world' not a technology-based representation.
+\item Do not define `precision' of data types.
+\item Do not define `default' data.
+\end{itemize}
+
+\vtitle{Partitioning}
+
+\begin{itemize}
+\item A \verb?SCHEMA? defines a scope and a context.
+\item A model is often partitioned into a set of schemas (e.g to increase
+readability, to partition the development work, etc.)
+\item Minimise the interaction between schemas.
+\item Within a schema, minimise the constraints on the objects in question (to
+      promote re-usability).
+\end{itemize}
+
+
+\vtitle{Schema Independence}
+
+    In EXPRESS, each Schema defines a scope; definition names need only be
+unique within a Schema.
+
+    Attempt to maintain name uniqueness across all schemas in a model (see the
+Nym Principle). This will assist when restructuring a model, if necessary,
+by modifying the schema boundaries.
+
+\vtitle{Nym Principle}
+
+    `If things are the same, then they should have the same name.'
+
+    `If things are not the same, then they are different.'
+
+    `Different things should have different names.'
+
+    In general, `one name, one meaning, one definition'. Synonyms and homonyms
+in a model are a fruitful and never-ending source of confusion.
+
+\vtitle{Context Independence}
+
+    Each entity exists in a context in which it may be used. This may vary from
+extremely broad to highly specific. An entity definition should be as context
+independent as possible, yet as context specific as required.
+
+\begin{itemize}
+\item Only apply the minimum necessary number of constraints.
+\item Use Subtyping to get more specificity.
+\end{itemize}
+
+
+\vtitle{Invariance}
+
+    The meaning of an entity should not be dependent on the values of its
+attributes. Do not use `flags' to change meanings.
+\begin{verbatim}
+ENTITY poor_person_model;
+  sex : enumeration_of_male_female;
+  ... -- gender related attributes
+  ... -- non-gender attributes
+END_ENTITY;
+
+ENTITY good_person_model
+  SUPERTYPE OF (ONEOF(male, female));
+  ... -- non-gender attributes
+END_ENTITY;
+  -- gender related attributes put into
+  -- the relevant subtypes
+\end{verbatim}
+
+\vtitle{Constraints}
+
+    An EXPRESS information model is \emph{permissive}
+(i.e what is not explicitly prohibited is permissable).
+
+    Add all necessary constraints --- a model is as much about the limitations
+of objects as it is about the objects themselves.
+
+\begin{verbatim}
+TYPE age = INTEGER;
+WHERE
+  non_negative : SELF >= 0;
+END_TYPE;
+\end{verbatim}
+
+\vtitle{Constraint ordering}
+
+    Specify constraints by the following ordered preferences:
+
+\begin{enumerate}
+\item Model structure
+\item Local constraints
+\item Global rules
+\end{enumerate}
+
+\vtitle{Constraint (global rule)}
+
+\begin{verbatim}
+ENTITY male SUBTYPE OF (person);
+  wife : OPTIONAL female;
+  -- other attributes
+END_ENTITY;
+
+ENTITY female SUBTYPE OF (person);
+  husband : OPTIONAL male;
+  -- other attributes
+END_ENTITY;
+
+RULE married FOR (male, female);
+  -- check declared husbands
+  -- and wives match each other
+END_RULE;
+\end{verbatim}
+
+\vtitle{Constraint (local)}
+
+
+\begin{verbatim}
+ENTITY male SUBTYPE OF (person);
+  wife : OPTIONAL female;
+  -- other attributes
+WHERE
+  -- check wife says she is
+  -- married to me
+END_ENTITY;
+
+ENTITY female SUBTYPE OF (person);
+  husband : OPTIONAL male;
+  -- other attributes
+WHERE
+  -- check husband says he is
+  -- married to me
+END_ENTITY;
+\end{verbatim}
+
+\vtitle{Constraint (structural)}
+
+
+\begin{verbatim}
+ENTITY male SUBTYPE OF (person);
+  -- other attributes
+END_ENTITY;
+
+ENTITY female SUBTYPE OF (person);
+  -- other attributes
+END_ENTITY;
+
+ENTITY married;
+  husband : male;
+  wife    : female;
+UNIQUE
+  no_bigamy    : husband;
+  no_polyandry : wife;
+END_ENTITY;
+\end{verbatim}
+
+\vtitle{Redundancy}
+
+    A model should not contain redundant information; redundancy leads to
+the possibility of data inconsistencies.
+
+\begin{verbatim}
+ENTITY circle;
+  center : point;
+  radius : REAL;
+DERIVE
+  perimeter : REAL := 2.0*PI*radius;
+  diameter : REAL := 2.0*radius;
+END_ENTITY;
+\end{verbatim}
+
+\vtitle{Inheritance}
+
+    A Subtype inherits all the properties of its Supertype.
+
+    For readability it may appear desirable to migrate the common properties
+down to the leaves of the supertype tree. This, however, implies that the
+common properties are semantically different.
+
+    All common properties should be moved as close to the root of the Supertype
+tree as possible. This demonstrates that they ARE common.
+
+\vmintitle{SCHEMA INTERFACING}
+
+\begin{verbatim}
+SCHEMA first;
+  ENTITY aaa;
+    -- attributes
+  END_ENTITY;
+
+  ENTITY original;
+    attr : NUMBER;
+  END_ENTITY;
+END_SCHEMA; -- first
+
+SCHEMA second;
+  USE FROM first (aaa AS bbb);
+  REFERENCE FROM first (original);
+
+  ENTITY constrained
+    SUBTYPE OF (original);
+    attr : INTEGER(7);
+    WHERE
+      positive : attr > 0;
+    END_ENTITY;
+END_SCHEMA; -- second
+\end{verbatim}
+
+\endinput
+
+

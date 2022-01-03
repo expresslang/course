@@ -1,0 +1,1848 @@
+% egcarsx.tex   % Example EXPRESS(-G) car registration model
+%               % based on Ebook/Text/acarsx.tex
+% Created by Peter R Wilson, 1992 -- 2004
+
+%\documentclass[article]{memoir}
+\documentclass{article}
+\usepackage{ifpdf}
+
+\ifpdf
+  \pdfoutput=1
+\fi
+
+\usepackage{egs}
+
+%\maxsecnumdepth{subsubsection}
+%\maxtocdepth{subsubsection}
+
+\title{EXPRESS example model \\ Car Registration Authority}
+\author{Peter Wilson}
+\date{}
+
+%\renewcommand{\thesection}{\arabic{section}}
+\providecommand*{\fref}[1]{Figure~\ref{#1}}
+
+\raggedbottom
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\listoffigures
+\clearpage
+
+
+%\section{EXPRESS example model}  \label{anx:emodel}
+
+\makeatletter \@topnum\z@ \makeatother
+\section{Introduction}
+
+ This document contains a complete and documented \Express\ model for the
+Car Registration Authority example; an \ExpressG\ version of the model is also 
+included. 
+
+\section{Scope}
+
+The model has to do with the registration of cars and is limited to the scope
+of interest of the Registration Authority. This Authority exists for the
+purpose of:
+
+\begin{itemize}
+
+\item Knowing who is or was the registered owner of a car at any time from
+construction to destruction of the car;
+
+\item To monitor laws regarding the transfer of ownership of cars;
+
+\item To monitor laws regarding the fuel consumption of cars;
+
+\item To monitor laws regarding manufacturers of cars.
+
+\end{itemize}
+
+\section{Model overview}
+
+    The model is described using both \Express\ and \ExpressG. The \Express\ 
+definitions are primary and the \ExpressG\ diagrams are to assist in 
+understanding the primary model. If there is any conflict between the 
+\Express\ and \ExpressG, then the \Express\ takes precedence.
+
+%\input{/rdrc/design/pwilson/Pbooks/Ebook/Bkfigs/cargschema}
+%%%%%%%%%%%%
+% cargschema.tex  BOOK  EXPRESS-G car schemas  fig:cargschema
+\begin{figure}[tbp]
+\center
+\setlength{\unitlength}{1mm}
+\begin{picture}(107,55)
+%\begin{picture}(110,160)\input{gridmm}
+\thicklines
+
+\put(40,40){\begin{picture}(40,12)
+  \put(0,0){\framebox(40,12){}}
+  \put(0,6){\framebox(40,6){authority}}
+  \end{picture}}
+
+\put(15,0){\begin{picture}(30,12)
+  \put(0,0){\framebox(30,12){}}
+  \put(0,6){\framebox(30,6){support}}
+  \end{picture}}
+
+\put(75,0){\begin{picture}(30,12)
+  \put(0,0){\framebox(30,12){}}
+  \put(0,6){\framebox(30,6){calender}}
+  \end{picture}}
+
+
+% auxiliary/registration
+\put(30,12){\begin{picture}(10,40)
+  \put(0,1){\circle{2}}
+  \multiput(0,2)(0,4){8}{\line(0,1){2}}
+  \multiput(0,32)(4,0){3}{\line(1,0){2}}
+  \end{picture}}
+\put(0,22){\begin{picture}(20,12)
+  \put(0,0){fuel\_consumption}
+  \put(0,3){manufacturer}
+  \put(0,6){transfer}
+  \put(0,9){car}
+  \end{picture}}
+\put(0,20){\vector(1,0){30}}
+
+% registration/calender
+\put(80,12){\begin{picture}(10,40)
+  \multiput(0,32)(4,0){3}{\line(1,0){2}}
+  \multiput(10,2)(0,4){8}{\line(0,1){2}}
+  \put(10,1){\circle{2}}
+  \end{picture}}
+
+% auxiliary/calender
+\put(45,6){\begin{picture}(30,10)
+  \multiput(0,0)(4,0){7}{\line(1,0){2}}
+  \put(29,0){\circle{2}}
+  \end{picture}}
+\put(55,20){\vector(0,-1){14}}
+\put(57,15){months}
+\put(57,18){date}
+
+\end{picture}
+\setlength{\unitlength}{1pt}
+\caption{Complete schema-level model for Registration Authority example
+         (Page 1 of 1).}
+\label{fig:cargschema}
+\end{figure}
+
+
+
+    The model consists of three schemas, as shown in \fref{fig:cargschema}. 
+The schema \nexp{authority} is the primary schema. It references items from 
+the two ancilliary schemas, namely \nexp{support} and \nexp{calendar}. 
+The \nexp{support} schema also references items from the \nexp{calendar} 
+schema.
+
+\section{Authority schema}
+
+\begin{Mnamedesc}{authority}
+
+\begin{Mdesctext}
+
+This schema is the primary one in the model and is principally concerned
+with the main functions of the Registration Authority.
+
+The schema imports definitions from two sources, namely the \nexp{support} 
+and the \nexp{calendar} schemas. 
+
+     Figure~\ref{fig:cargreg} is an \ExpressG\ complete entity-level model
+ for this schema.
+
+ \end{Mdesctext}
+
+ \begin{Mexp}
+ \begin{verbatim}
+ *)
+ SCHEMA authority;
+   REFERENCE FROM support (car,
+			   transfer,
+			   manufacturer,
+			   fuel_consumption,
+			   mnfg_average_consumption);
+   REFERENCE FROM calendar (current_date);
+ (*
+ \end{verbatim}
+ \end{Mexp}
+ \end{Mnamedesc}
+
+ \subsection{Entity definitions}
+
+% \subsubsection{Entity history}
+ \subsubsection{history}
+
+ \begin{Mnamedesc}{history}
+
+ \begin{Mdesctext}
+
+ A \nexp{history} records the transfers of ownership of a \nexp{car} over its
+ lifetime. A \nexp{history} must be kept for a certain period after the
+ \nexp{car} is destroyed, after which the ownership records may be destroyed.
+
+ \end{Mdesctext}
+
+
+%\input{/rdrc/design/pwilson/Pbooks/Ebook/Bkfigs/cargreg}
+%%%%%%%%%%%%%%%%%%%%%%%
+ % cargreg.tex  BOOK  EXPRESS-G of Reg_auth schema  fig:cargreg
+ \begin{figure}[tbp]
+ \center
+ \setlength{\unitlength}{1mm}
+ \begin{picture}(110,110)
+ %\begin{picture}(110,160)\input{gridmm}
+ \thicklines
+
+ %  history
+ \put(5,80){\begin{picture}(100,30)
+
+   \put(0,14){\begin{picture}(20,10)
+     \put(0,0){\framebox(20,10){*history}}
+     \end{picture}}
+
+   \put(70,20){\begin{picture}(30,8)
+     \put(0,0){\dashbox{2}(30,8){support.car}}
+     \put(15,4){\oval(30,4)}
+     \end{picture}}
+
+   \put(70,10){\begin{picture}(30,8)
+     \put(0,0){\dashbox{2}(30,8){support.transfer}}
+     \put(15,4){\oval(30,4)}
+     \end{picture}}
+
+   \put(76,0){\begin{picture}(24,4)
+     \put(0,0){\framebox(24,4){BOOLEAN}}
+     \put(22,0){\line(0,1){4}}
+     \end{picture}}
+
+   % history/car and transfer
+   \put(20,14){\begin{picture}(50,10)
+     \multiput(0,2.5)(0,5){2}{\line(1,0){48}}
+     \multiput(49,2.5)(0,5){2}{\circle{2}}
+     \put(25,8.5){\makebox(0,0)[b]{*item}}
+     \put(25,1.5){\makebox(0,0)[t]{*transfers L[0:?]}}
+     \end{picture}}
+
+   % history/boolean
+   \put(0,0){\begin{picture}(76,14)
+     \put(10,2){\line(0,1){12}}
+     \put(10,2){\line(1,0){64}}
+     \put(75,2){\circle{2}}
+     \put(48,3){\makebox(0,0)[b]{(DER) to\_be\_deleted}}
+     \end{picture}}
+
+   \end{picture}}  % end history
+
+ % send message
+ \put(0,0){\begin{picture}(110,100)
+
+   \put(0,19){\begin{picture}(30,10)
+     \put(0,0){\framebox(30,10){send\_message}}
+     \end{picture}}
+
+   \put(65,60){\begin{picture}(40,8)
+     \put(0,0){\dashbox{2}(40,8){support.manufacturer}}
+     \put(20,4){\oval(40,4)}
+     \end{picture}}
+
+   \put(60,40){\begin{picture}(50,10)
+     \put(0,0){\framebox(50,10){*authorized\_manufacturer}}
+     \end{picture}}
+
+   \put(86,22){\begin{picture}(24,4)
+     \put(0,0){\framebox(24,4){INTEGER}}
+     \put(22,0){\line(0,1){4}}
+     \end{picture}}
+
+   \put(60,0){\begin{picture}(50,8)
+     \put(0,0){\dashbox{2}(50,8){support.fuel\_consumption}}
+     \put(25,4){\oval(50,4)}
+     \end{picture}}
+
+   % message/integer
+   \put(30,19){\begin{picture}(56,10)
+     \put(0,5){\line(1,0){54}}
+     \put(55,5){\circle{2}}
+     \put(28,6){\makebox(0,0)[b]{year}}
+     \end{picture}}
+
+   % message/consumption
+   \put(0,0){\begin{picture}(60,19)
+     \put(15,4){\line(0,1){15}}
+     \put(15,4){\line(1,0){43}}
+     \put(59,4){\circle{2}}
+     \put(37.5,5){\makebox(0,0)[b]{max\_consumption}}
+     \end{picture}}
+
+   % message/manufacturer
+   \put(0,29){\begin{picture}(60,20)
+     \put(20,16){\line(0,-1){16}}
+     \put(20,16){\line(1,0){38}}
+     \put(59,16){\circle{2}}
+     \put(40,17){\makebox(0,0)[b]{makers S[0:?]}}
+     \end{picture}}
+
+   % mnfs/auth
+   \put(60,50){\begin{picture}(50,10)
+     \put(25,1){\circle{2}}
+     \multiput(24.75,2)(0.25,0){3}{\line(0,1){8}}
+     \end{picture}}
+
+   % message/mnfs
+   \put(0,29){\begin{picture}(60,40)
+     \put(10,35){\line(0,-1){35}}
+     \put(10,35){\line(1,0){53}}
+     \put(64,35){\circle{2}}
+     \put(37.5,36){\makebox(0,0)[b]{(DER) excessives S[0:?]}}
+     \end{picture}}
+
+   \end{picture}}  % end send message
+
+ \end{picture}
+ \setlength{\unitlength}{1pt}
+ \caption{Complete entity-level model of the Authority schema (Page 1 of 1).}
+ \label{fig:cargreg}
+ \end{figure}
+
+
+ \begin{Mexp}
+ \begin{verbatim}
+ *)
+ ENTITY history;
+   item : car;
+   transfers : LIST [0:?] OF UNIQUE transfer;
+ DERIVE
+   to_be_deleted : BOOLEAN := too_old(SELF);
+ UNIQUE
+   un1 : item;
+ WHERE
+   one_car  : single_car(SELF);
+   ordering : exchange_ok(transfers);
+ END_ENTITY;
+ (*
+ \end{verbatim}
+ \end{Mexp}
+
+ \begin{Matts}
+
+ \item[item:] The \nexp{car} whose ownership history is being tracked.
+
+ \item[transfers:] The ownership \nexp{transfer} records of the \nexp{item}.
+
+ \item[to\_be\_deleted:] A flag which indicates that this \nexp{history} record
+ may be deleted because the \nexp{item} has been destroyed (TRUE), or that the
+ record shall not be deleted (FALSE).
+
+ \end{Matts}
+
+ \begin{Mprops}
+
+ \item[un1:] The value of \nexp{item} shall be unique across all instances of
+ \nexp{history}.
+
+ \item[one\_car:] Each \nexp{transfer} collected in a \nexp{history} shall be
+ of the same \nexp{car}.
+
+ \item[ordering:] The list of \nexp{transfer} shall be in increasing historical
+ order.
+
+ \end{Mprops}
+
+ \end{Mnamedesc}
+
+% \subsubsection{Entity authorized\_manufacturer}
+ \subsubsection{authorized\_manufacturer}
+
+ \begin{Mnamedesc}{authorized_manufacturer}
+
+ \begin{Mdesctext}
+
+ An \nexp{authorized manufacturer} is a \nexp{manufacturer} who has been given
+ permission by the Registration Authority to make cars.
+
+ \end{Mdesctext}
+
+ %\Mexp
+ \begin{Mexp}
+ \begin{verbatim}
+ *)
+ ENTITY authorized_manufacturer
+   SUBTYPE OF (manufacturer);
+ END_ENTITY;
+ (*
+ \end{verbatim}
+ \end{Mexp}
+ \end{Mnamedesc}
+
+
+% \subsubsection{Entity send\_message}
+ \subsubsection{send\_message}
+
+ \begin{Mnamedesc}{send_message}
+
+ \begin{Mdesctext}
+
+ In January each year the Registration Authority shall send a message to each
+ \nexp{manufacturer} whose cars' average fuel consumption exceeds a certain
+ limit, which may vary from year to year.
+
+ \end{Mdesctext}
+
+ \begin{Mexp}
+ \begin{verbatim}
+ *)
+ ENTITY send_message;
+   max_consumption : fuel_consumption;
+   year            : INTEGER;
+   makers          : SET [0:?] OF authorized_manufacturer;
+ DERIVE
+   excessives : SET [0:?] OF manufacturer := guzzlers(SELF);
+ END_ENTITY;
+ (*
+ \end{verbatim}
+ \end{Mexp}
+
+ \begin{Matts}
+
+ \item[max\_consumption:] The legal maximum average fuel consumption.
+
+ \item[year:] The year for which the \nexp{max consumption} value applies.
+
+ \item[makers:] The \nexp{authorized manufacturers} operating during the
+ \nexp{year}.
+
+ \item[excessives:] The \nexp{manufacturers} whose cars exceed the consumption 
+ limit. 
+
+ \end{Matts}
+
+ \end{Mnamedesc}
+
+ \subsection{Rule definitions}
+
+% \subsubsection{Rule max\_number}
+ \subsubsection{max\_number}
+
+ \begin{Mnamedesc}{max_number}
+
+ \begin{Mdesctext}
+
+ No more than five \nexp{authorized manufacturers} are permitted at any one
+ time.
+
+ \end{Mdesctext}
+
+ \begin{Mexp}
+ \begin{verbatim}
+ *)
+ RULE max_number FOR (authorized_manufacturer);
+ WHERE
+   max_of_5 : SIZEOF(authorized_manufacturer) <= 5;
+ END_RULE;
+ (*
+ \end{verbatim}
+ \end{Mexp}
+
+ \begin{Mprops}
+
+ \item[max\_of\_5:] The rule is violated if there are more than five
+ \nexp{authorized manufacturers} at any time.
+
+ \end{Mprops}
+
+ \end{Mnamedesc}
+
+
+ \subsection{Function and procedure definitions}
+
+% \subsubsection{Function guzzlers}
+ \subsubsection{guzzlers}
+
+ \begin{Mnamedesc}{guzzlers}
+
+ \begin{Mdesctext}
+
+ This function returns the set of \nexp{manufacturers} whose cars exceed an
+ average fuel consumption limit.
+
+ \end{Mdesctext}
+
+ \begin{Ipars}
+
+ \item[par:] An instance of a \nexp{send message} entity.
+
+ \item[RESULT:] A set of instances of \nexp{manufacturer} whose cars' average
+ fuel consumption is excessive.
+
+ \end{Ipars}
+
+ \begin{Mexp}
+ \begin{verbatim}
+ *)
+ FUNCTION guzzlers(par : send_message) : SET OF manufacturer;
+ LOCAL
+   result : SET OF manufacturer := [];
+   mnfs   : SET OF manufacturer := par.makers;
+   limit  : fuel_consumption := par.max_consumption;
+   time   : INTEGER := par.year;
+ END_LOCAL;
+   REPEAT i := 1 TO SIZEOF(mnfs);
+     IF (mnfg_average_consumption(mnfs[i],time) > limit) THEN
+       result := result + mnfs[i];
+     END_IF;
+   END_REPEAT;
+ RETURN(result);
+ END_FUNCTION;
+ (*
+ \end{verbatim}
+ \end{Mexp}
+ \end{Mnamedesc}
+
+% \subsubsection{Function too\_old}
+ \subsubsection{too\_old}
+
+ \begin{Mnamedesc}{too_old}
+
+ \begin{Mdesctext}
+
+ This function calculates whether the \nexp{car} in a \nexp{history} was
+ destroyed more than two years ago.
+
+ \end{Mdesctext}
+
+ \begin{Ipars}
+
+ \item[par:] An instance of a \nexp{history}.
+
+ \item[RESULT:] A Boolean value. TRUE if the \nexp{car} in the input
+ \nexp{history} was destroyed two or more years ago; otherwise FALSE.
+
+ \end{Ipars}
+
+ \begin{Mexp}
+ \begin{verbatim}
+ *)
+ FUNCTION too_old(par : history) : BOOLEAN;
+   (* The function returns TRUE if the input history is 
+      outdated. That is, if it is of an item that was destroyed 
+      more than 2 years ago. *) 
+   IF ('SUPPORT.DESTROYED_CAR' IN par.item) THEN
+     IF (current_date.year-par.item.destroyed_on.year >= 2) THEN
+       RETURN(TRUE);
+     END_IF;
+   END_IF;
+   RETURN(FALSE);
+ END_FUNCTION;
+ (*
+ \end{verbatim}
+ \end{Mexp}
+ \end{Mnamedesc}
+
+% \subsubsection{Function exchange\_ok}
+ \subsubsection{exchange\_ok}
+
+ \begin{Mnamedesc}{exchange_ok}
+
+ \begin{Mdesctext}
+
+ This function checks whether or not the \nexp{transfers} in a list are
+ ordered.
+
+ \end{Mdesctext}
+
+ \begin{Ipars}
+
+ \item[par] A list of \nexp{transfer} instances.
+
+ \item[RESULT] A Boolean value. TRUE if the recipient in the $N^{th}$ transfer
+ is the same as the giver in the $(N+1)^{th}$ transfer.
+
+ \end{Ipars}
+
+ \begin{Mexp}
+ \begin{verbatim}
+ *)
+ FUNCTION exchange_ok(par : LIST OF transfer) : BOOLEAN;
+   (* returns TRUE if the "to owner" in the N'th transfer of a 
+      car is the "from owner" in the N+1'th transfer *) 
+   REPEAT i := 1 TO (SIZEOF(par) - 1);
+     IF (par[i].new :<>: par[i+1].prior) THEN
+       RETURN (FALSE);
+     END_IF;
+   END_REPEAT;
+   RETURN (TRUE);
+ END_FUNCTION;
+ (*
+ \end{verbatim}
+ \end{Mexp}
+ \end{Mnamedesc}
+
+% \subsubsection{Function single\_car}
+ \subsubsection{single\_car}
+
+ \begin{Mnamedesc}{single_car}
+ \begin{Mdesctext}
+     This function checks whether or not the \nexp{car} in a transfer
+ \nexp{history} is the same \nexp{car} specified in each individual
+ \nexp{transfer}.
+ \end{Mdesctext}
+
+ \begin{Ipars}
+
+ \item[par:] A \nexp{history} instance.
+
+ \item[RESULT:] A Boolean value. TRUE if the \nexp{history} and all its
+ \nexp{transfers} are of the same \nexp{car}, otherwise FALSE.
+ \end{Ipars}
+
+ \begin{Mexp}
+ \begin{verbatim}
+ *)
+ FUNCTION single_car(par : history) : BOOLEAN;
+   (* returns TRUE if a history is of a single car *) 
+   REPEAT i := 1 TO SIZEOF(par.transfers);
+     IF (par.item :<>: par.transfers[i].item) THEN
+       RETURN (FALSE);
+     END_IF;
+   END_REPEAT;
+   RETURN (TRUE);
+ END_FUNCTION;
+ (*
+ \end{verbatim}
+ \end{Mexp}
+ \end{Mnamedesc}
+
+ \subsection{Entity classification structure}
+
+ The following indented listing shows the entity classification structure.
+ Entities in upper case characters are defined in this schema. Entities in
+ lower case characters are defined in other schemas.
+
+ \begin{small} 
+ \begin{verbatim}
+ HISTORY
+ manufacturer (in schema support)
+   AUTHORIZED_MANUFACTURER
+ SEND_MESSAGE
+ \end{verbatim} 
+ \end{small}
+
+ \begin{small} 
+ \begin{verbatim}
+ *)
+ END_SCHEMA;  -- end of authority schema
+ (*
+ \end{verbatim} 
+ \end{small}
+
+ \section{Support schema}
+
+ \begin{Mnamedesc}{support}
+ \begin{Mdesctext}
+     This schema contains supporting definitions for the primary
+ \nexp{authority} schema.
+
+     An \ExpressG\ model of the contents of this schema is given in 
+ \fref{fig:cargaux1} and in \fref{fig:cargaux2}.
+
+
+    The schema imports definitions from the \nexp{calendar} schema.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+SCHEMA support;
+  REFERENCE FROM calendar (date, months, days_between);
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+\subsection{Type definitions}
+
+%\subsubsection{Type name}
+\subsubsection{name}
+
+\begin{Mnamedesc}{name}
+\begin{Mdesctext}
+
+The \Q{name} of something. A human interpretable name which may identify some
+object, thing or person, etc. For example, \nexp{Widget Company, Inc.}.
+
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+TYPE name = STRING;
+END_TYPE;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+%\subsubsection{Type identification\_no}
+\subsubsection{identification\_no}
+
+\begin{Mnamedesc}{identification_no}
+\begin{Mdesctext}
+A character string which may be used as the \Q{identification number} for a
+particular instance of some object. This is typically a mixture of
+alphanumeric characters and other symbols. For example, \nexp{D20-736597WP23}.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+TYPE identification_no = STRING;
+END_TYPE;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+ %\input{/rdrc/design/pwilson/Pbooks/Ebook/Bkfigs/cargaux1}
+ %\input{/rdrc/design/pwilson/Pbooks/Ebook/Bkfigs/cargaux2}
+ %%%%%%%%%%%%%%%%
+% cargaux1.tex  BOOK  EXPRESS-G of Auxiliary (1) schema  fig:cargaux1
+\begin{figure}[tbp]
+\center
+\setlength{\unitlength}{1mm}
+\begin{picture}(110,110)
+%\begin{picture}(110,160)\input{gridmm}
+\thicklines
+
+% ident #
+\put(10,0){\begin{picture}(90,4)
+
+  \put(0,0){\begin{picture}(15,4)
+    \put(7.5,2){\oval(15,4)}
+    \put(7.5,2){\makebox(0,0){1,3 (2)}}
+    \end{picture}}
+
+  \put(25,0){\dashbox{1}(30,4){identification\_no}}
+
+  \put(65,0){\begin{picture}(24,4)
+    \put(0,0){\framebox(24,4){STRING}}
+    \put(22,0){\line(0,1){4}}
+    \end{picture}}
+
+  % ref/id #
+  \put(15,2){\line(1,0){8}}
+  \put(24,2){\circle{2}}
+
+  % no/string
+  \put(55,2){\line(1,0){8}}
+  \put(64,2){\circle{2}}
+
+  \end{picture}} % end ident #
+
+%  car model
+\put(0,20){\begin{picture}(110,45)
+
+  \put(50,0){\begin{picture}(30,4)
+    \put(15,2){\oval(30,4)}
+    \put(15,2){\makebox(0,0){2,2 manufacturer}}
+    \end{picture}}
+
+  \put(0,10){\framebox(20,10){car\_model}}
+
+  \put(50,10){\dashbox{1}(30,4){*fuel\_consumption}}
+
+  \put(86,10){\begin{picture}(24,4)
+    \put(0,0){\framebox(24,4){REAL}}
+    \put(22,0){\line(0,1){4}}
+    \end{picture}}
+
+  \put(70,16){\dashbox{1}(10,4){name}}
+
+  \put(86,16){\begin{picture}(24,4)
+    \put(0,0){\framebox(24,4){STRING}}
+    \put(22,0){\line(0,1){4}}
+    \end{picture}}
+
+  % ref into model
+  \put(2.5,30){\begin{picture}(15,4)
+    \put(7.5,2){\oval(15,4)}
+    \put(7.5,2){\makebox(0,0){1,1 (2)}}
+    \put(7.5,0){\line(0,-1){8}}
+    \put(7.5,-9){\circle{2}}
+    \end{picture}}
+
+  % ref into name
+  \put(67.5,30){\begin{picture}(15,4)
+    \put(7.5,2){\oval(15,4)}
+    \put(7.5,2){\makebox(0,0){1,2 (2)}}
+    \put(7.5,0){\line(0,-1){8}}
+    \put(7.5,-9){\circle{2}}
+    \end{picture}}
+
+  % model/mnfr
+  \put(0,0){\begin{picture}(50,10)
+    \put(10,2){\line(0,1){8}}
+    \put(10,2){\line(1,0){40}}
+    \put(30,3){\makebox(0,0)[b]{made\_by}}
+    \end{picture}}
+
+  % model/fuel/real
+  \put(20,10){\begin{picture}(70,10)
+    \put(0,2){\line(1,0){28}}
+    \put(29,2){\circle{2}}
+    \put(15,1){\makebox(0,0)[t]{consumption}}
+    \put(60,2){\line(1,0){4}}
+    \put(65,2){\circle{2}}
+    \end{picture}}
+
+  % model/name/string
+  \put(20,10){\begin{picture}(70,10)
+    \put(0,8){\line(1,0){48}}
+    \put(49,8){\circle{2}}
+    \put(15,9){\makebox(0,0)[b]{*called}}
+    \put(60,8){\line(1,0){4}}
+    \put(65,8){\circle{2}}
+    \end{picture}}
+
+  \end{picture}} % end car model
+
+% transfer
+\put(5,80){\begin{picture}(100,30)
+
+  \put(70,0){\begin{picture}(30,8)
+    \put(0,0){\dashbox{2}(30,8){calendar.date}}
+    \put(15,4){\oval(30,4)}
+    \end{picture}}
+
+  \put(0,10){\framebox(20,10){transfer}}
+
+  \put(70,13){\begin{picture}(20,4)
+    \put(10,2){\oval(20,4)}
+    \put(10,2){\makebox(0,0){2,1 owner}}
+    \end{picture}}
+  
+  \put(70,23){\begin{picture}(20,4)
+    \put(10,2){\oval(20,4)}
+    \put(10,2){\makebox(0,0){2,3 car}}
+    \end{picture}}
+  
+  % transfer/date
+  \put(0,0){\begin{picture}(70,10)
+    \put(10,4){\line(0,1){6}}
+    \put(10,4){\line(1,0){60}}
+    \put(40,3){\makebox(0,0)[t]{on}}
+    \end{picture}}
+
+  % transfer/owner
+  \put(20,10){\begin{picture}(50,10)
+    \multiput(0,2)(0,6){2}{\line(1,0){40}}
+    \put(40,2){\line(0,1){6}}
+    \put(40,5){\line(1,0){10}}
+    \put(20,1){\makebox(0,0)[t]{*prior}}
+    \put(20,9){\makebox(0,0)[b]{*new}}
+    \end{picture}}
+
+  % transfer/car
+  \put(0,20){\begin{picture}(70,10)
+    \put(10,5){\line(0,-1){5}}
+    \put(10,5){\line(1,0){60}}
+    \put(40,6){\makebox(0,0)[b]{*item}}
+    \end{picture}}
+
+  \end{picture}}  % end transfer
+
+\end{picture}
+\setlength{\unitlength}{1pt}
+\caption{Complete entity-level model of the Support schema
+         (Page 1 of 2).}
+\label{fig:cargaux1}
+\end{figure}
+
+
+%\subsubsection{Type fuel\_consumption}
+\subsubsection{fuel\_consumption}
+
+\begin{Mnamedesc}{fuel_consumption}
+\begin{Mdesctext}
+    A measure of the fuel consumption of some powered device.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+TYPE fuel_consumption = REAL;
+WHERE
+  range : {4.0 <= SELF <= 25.0};
+END_TYPE;
+(*
+\end{verbatim}
+\end{Mexp}
+
+\begin{Mprops}
+
+\item[range:] The value is limited to lie in the range 4 to 25 inclusive.
+\end{Mprops}
+\end{Mnamedesc}
+
+
+% cargaux2.tex  BOOK  EXPRESS-G of Auxiliary (2) schema  fig:cargaux2
+\begin{figure}[tbp]
+\center
+\setlength{\unitlength}{1mm}
+\begin{picture}(110,160)
+%\begin{picture}(110,160)\input{gridmm}
+\thicklines
+
+
+% Owner tree
+\put(0,0){\begin{picture}(110,100)
+
+  % Integer/garage
+  \put(38,0){\begin{picture}(24,15)
+    \put(0,0){\framebox(24,4){INTEGER}}
+    \put(22,0){\line(0,1){4}}
+    \put(12,6){\line(0,1){9}}
+    \put(12,5){\circle{2}}
+    \put(13,11){(DER)}
+    \put(13,8){no\_of\_mnfs}
+    \end{picture}}
+
+  % ref into mnf
+  \put(7.5,0){\begin{picture}(15,15)
+    \put(7.5,2){\oval(15,4)}
+    \put(7.5,2){\makebox(0,0){2,2 (1)}}
+    \put(7.5,4){\line(0,1){11}}
+    \end{picture}}
+
+
+  \put(0,15){\framebox(30,10){manufacturer}}
+
+  \put(40,15){\framebox(20,10){garage}}
+
+  \put(70,15){\framebox(20,10){person}}
+
+  \put(25,40){\framebox(40,10){(ABS) named\_owner}}
+
+  \put(30,65){\framebox(30,10){(ABS) owner}}
+
+  \put(80,55){\framebox(20,10){group}}
+
+  % owner/name ref
+  \put(65,40){\begin{picture}(40,10)
+    \put(15,3){\begin{picture}(20,4)
+      \put(10,2){\oval(20,4)}
+      \put(10,2){\makebox(0,0){1,2 name}}
+      \end{picture}}
+    \put(0,5){\line(1,0){15}}
+    \put(7.5,6){\makebox(0,0)[b]{*called}}
+    \end{picture}}
+
+  % named subtypes connections
+  \put(20,25){\begin{picture}(70,15)
+    \multiput(0,0)(30,0){3}{\begin{picture}(1,10)
+      \put(0,1){\circle{2}}
+      \multiput(-0.25,2)(0.25,0){3}{\line(0,1){8}}
+      \end{picture}} 
+    \multiput(0,9.75)(0,0.25){3}{\line(1,0){60}}
+    \multiput(24.75,10)(0.25,0){3}{\line(0,1){5}}
+    \put(26,11){1}
+    \end{picture}}
+
+  % owner/named/group subtype connections
+  \put(45,50){\begin{picture}(40,15)
+    \put(0,1){\circle{2}}
+    \multiput(-0.25,2)(0.25,0){3}{\line(0,1){13}}
+    \multiput(0,9.75)(0,0.25){3}{\line(1,0){33}}
+    \put(34,10){\circle{2}}
+    \put(1,11){1}
+    \end{picture}}
+
+  % group/person connection
+  \put(90,15){\begin{picture}(15,50)
+    \put(1,5){\circle{2}}
+    \put(15,5){\line(-1,0){13}}
+    \put(15,5){\line(0,1){40}}
+    \put(15,45){\line(-1,0){5}}
+    \put(14,22){\makebox(0,0)[br]{members}}
+    \put(14,20){\makebox(0,0)[tr]{S[1:?]}}
+
+    \end{picture}}  
+
+%    \multiput(24.75,2)(0.25,0){3}{\line(0,1){8}}
+
+  \end{picture}} % end owner tree
+
+%  car tree
+  \put(0,90){\begin{picture}(70,110)
+
+    \put(0,10){\framebox(30,28){car}}
+
+    % destroyed car and sub
+    \put(0,60){\begin{picture}(30,10)
+      \put(0,0){\framebox(30,10){destroyed\_car}}
+      \multiput(19.75,-2)(0.25,0){3}{\line(0,-1){20}}
+      \put(20,-1){\circle{2}}
+      \end{picture}}
+
+    \put(70,61){\begin{picture}(30,8)
+      \put(0,0){\dashbox{2}(30,8){calendar.date}}
+      \put(15,4){\oval(30,4)}
+      \end{picture}}
+
+    \put(80,0){\begin{picture}(30,4)
+      \put(15,2){\oval(30,4)}
+      \put(15,2){\makebox(0,0){1,1 car\_model}}
+      \end{picture}}
+
+    \put(70,16){\begin{picture}(40,4)
+      \put(20,2){\oval(40,4)}
+      \put(20,2){\makebox(0,0){1,3 identification\_no}}
+      \end{picture}}
+
+    \put(86,28){\begin{picture}(24,4)
+      \put(0,0){\framebox(24,4){INTEGER}}
+      \put(22,0){\line(0,1){4}}
+      \end{picture}}
+
+    % ref into car
+    \put(0,38){\begin{picture}(15,15)
+      \put(7.5,12){\oval(15,4)}
+      \put(7.5,12){\makebox(0,0){2,3 (1)}}
+      \put(7.5,10){\line(0,-1){10}}
+      \end{picture}}
+
+    % car/model
+    \put(0,0){\begin{picture}(80,10)
+      \put(20,2){\line(0,1){8}}
+      \put(20,2){\line(1,0){60}}
+      \put(50,3){\makebox(0,0)[b]{model\_type}}
+      \end{picture}}
+
+    % car/id
+    \put(30,10){\begin{picture}(60,20)
+      \multiput(0,2)(0,12){2}{\line(1,0){60}}
+      \multiput(60,2)(0,8){2}{\line(0,1){4}}
+      \put(20,3){\makebox(0,0)[b]{*registration\_no}}
+      \put(20,13){\makebox(0,0)[t]{*mnfg\_no}}
+      \end{picture}}
+
+    % car/integer
+    \put(30,10){\begin{picture}(60,28)
+      \put(0,20){\line(1,0){54}}
+      \put(55,20){\circle{2}}
+      \put(20,21){\makebox(0,0)[b]{*production\_year}} 
+      \end{picture}}
+
+    % destroyed/date
+    \put(30,60){\begin{picture}(40,10)
+      \put(0,5){\line(1,0){40}}
+      \put(20,6){\makebox(0,0)[b]{*destroyed\_on}}
+      \end{picture}}
+
+    % car/date
+    \put(30,10){\begin{picture}(50,60)
+      \put(0,26){\line(1,0){50}}
+      \put(50,26){\line(0,1){25}}
+      \put(20,27){\makebox(0,0)[b]{*production\_date}}
+      \end{picture}}
+
+    \end{picture}} % end car tree
+
+  % car/manufacturer
+  \put(0,25){\begin{picture}(30,75)
+     \put(10,1){\circle{2}}
+     \put(10,2){\line(0,1){73}}
+     \put(11,60){(DER)}
+     \put(11,57){*made\_by}
+     \end{picture}}
+
+\end{picture}
+\setlength{\unitlength}{1pt}
+\caption{Complete entity-level model of the Support schema
+         (Page 2 of 2).}
+\label{fig:cargaux2}
+\end{figure}
+
+
+\subsection{Entity definitions}
+
+%\subsubsection{Entity transfer}
+\subsubsection{transfer}
+
+\begin{Mnamedesc}{transfer}
+\begin{Mdesctext}
+    A record of a transfer of a \nexp{car} from one owner to a new owner.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY transfer;
+  item  : car;
+  prior : owner;
+  new   : owner;
+  on    : date;
+WHERE
+  wr1 : NOT ('SUPPORT.MANUFACTURER' IN TYPEOF(new));
+  wr2 : (NOT ('SUPPORT.MANUFACTURER' IN TYPEOF(prior))) XOR
+     (('SUPPORT.MANUFACTURER' IN TYPEOF(prior)) AND
+     ('SUPPORT.GARAGE' IN TYPEOF (new)));
+  wr3 : (NOT ('SUPPORT.GARAGE' IN TYPEOF(prior))) XOR
+     (('SUPPORT.GARAGE' IN TYPEOF(prior)) AND
+     (('SUPPORT.PERSON' IN TYPEOF(new)) XOR
+     ('SUPPORT.GROUP' IN TYPEOF(new))));
+  wr4 : (NOT ('SUPPORT.DESTROYED_CAR' IN TYPEOF(item)) XOR
+     (('SUPPORT.DESTROYED_CAR' IN TYPEOF(item)) AND
+     (days_between(on, item\destroyed_car.destroyed_on) > 0)));
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+
+\begin{Matts}
+
+\item[item:] The \nexp{car} being transferred.
+
+\item[prior:] The prior owner of the \nexp{item}.
+
+\item[new:] The new owner of the \nexp{item}.
+
+\item[on:] The \nexp{date} of the \nexp{transfer}.
+\end{Matts}
+
+\begin{Mprops}
+
+\item[wr1:] A \nexp{car} cannot be transferred to a \nexp{manufacturer}.
+
+\item[wr2:] A \nexp{manufacturer} can only transfer a \nexp{car} to a
+\nexp{garage}.
+
+\item[wr3:] A \nexp{garage} can only transfer a \nexp{car} to either a
+\nexp{person} of a \nexp{group} of people.
+
+\item[wr4:] A \nexp{car} which has been destroyed cannot be
+transferred.
+\end{Mprops}
+\end{Mnamedesc}
+
+%\subsubsection{Entity car}
+\subsubsection{car}
+
+\begin{Mnamedesc}{car}
+\begin{Mdesctext}
+   A \nexp{car}.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY car;
+  model_type      : car_model;
+  mnfg_no         : identification_no;
+  registration_no : identification_no;
+  production_date : date;
+  production_year : INTEGER;
+DERIVE
+  made_by : manufacturer := model_type.made_by;
+UNIQUE
+  joint  : made_by, mnfg_no;
+  single : registration_no;
+WHERE
+  jan_prod : (production_year = production_date.year) XOR
+             ((production_date.month = months.January) AND
+              (production_year = production_date.year - 1));
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+
+\begin{Matts}
+
+\item[model\_type:] The \nexp{car model}.
+
+\item[mnfg\_no:] An identification number of the \nexp{car} assigned by the
+car's manufacturer.
+
+\item[registration\_no:] An identification number for the \nexp{car} assigned
+by the Registration Authority.
+
+\item[production\_date:] The date on which the car was produced.
+
+\item[production\_year:] The registered year of production of the \nexp{car}.
+
+\item[made\_by:] The \nexp{manufacturer} of the \nexp{car}.
+\end{Matts}
+
+\begin{Mprops}
+
+\item[joint:] The \nexp{mnfg no} given to a \nexp{car} is unique for the given
+car manufacturer.
+
+\item[single:] Each car is given a unique \nexp{registration no} by the
+Registration Authority.
+
+\item[jan\_prod:] The registered \nexp{production year} is the same as the year
+in which the car was produced, except that cars produced in January may be
+registered as having been produced in the previous year.
+\end{Mprops}
+\end{Mnamedesc}
+
+%\subsubsection{Entity destroyed\_car}
+\subsubsection{destroyed\_car}
+
+\begin{Mnamedesc}{destroyed_car}
+\begin{Mdesctext}
+    A \nexp{car} may be destroyed, in which case its date of destruction is
+recorded.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY destroyed_car
+  SUBTYPE OF (car);
+  destroyed_on : date;
+WHERE
+  dates_ok : days_between(production_date, destroyed_on) >= 0;
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+
+\begin{Matts}
+
+\item[destroyed\_on:] The date on which the \nexp{car} was destroyed.
+\end{Matts}
+
+\begin{Mprops}
+
+\item[dates\_ok:] A \nexp{car} cannot be destroyed before it has been made.
+\end{Mprops}
+\end{Mnamedesc}
+
+%\subsubsection{Entity car\_model}
+\subsubsection{car\_model}
+
+\begin{Mnamedesc}{car_model}
+\begin{Mdesctext}
+    A particular type of \nexp{car}.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY car_model;
+  called      : name;
+  made_by     : manufacturer;
+  consumption : fuel_consumption;
+UNIQUE
+  un1 : called;
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+
+\begin{Matts}
+
+\item[called:] The name of the model.
+
+\item[made\_by:] The \nexp{manufacturer} of the model.
+
+\item[consumption:] The average fuel consumption of all cars of this model
+type.
+
+\end{Matts}
+
+\begin{Mprops}
+
+\item[un1:] Each \nexp{car model} has a distinct name.
+\end{Mprops}
+\end{Mnamedesc}
+
+%\subsubsection{Entity owner}
+\subsubsection{owner}
+
+\begin{Mnamedesc}{owner}
+\begin{Mdesctext}
+    An owner of a \nexp{car}. Owners are categorized into \nexp{named owner}
+and \nexp{group}.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY owner
+  ABSTRACT SUPERTYPE OF (ONEOF(named_owner,
+                               group));
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+%\subsubsection{Entity named\_owner}
+\subsubsection{named\_owner}
+
+\begin{Mnamedesc}{named_owner}
+\begin{Mdesctext}
+    An \nexp{owner} who has a name. These are categorized into
+\nexp{manufacturer}, \nexp{garage} and \nexp{person}.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY named_owner
+  ABSTRACT SUPERTYPE OF (ONEOF(manufacturer,
+                               garage,
+                               person))
+  SUBTYPE OF (owner);
+  called : name;
+UNIQUE
+  un1 : called;
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+
+\begin{Matts}
+
+\item[called:] The name of the \nexp{owner}.
+\end{Matts}
+
+\begin{Mprops}
+
+\item[un1:] Owner's names are unique.
+\end{Mprops}
+\end{Mnamedesc}
+
+%\subsubsection{Entity manufacturer}
+\subsubsection{manufacturer}
+
+\begin{Mnamedesc}{manufacturer}
+\begin{Mdesctext}
+    A type of named car owner. Manufacturers may also manufacture cars.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY manufacturer
+  SUBTYPE OF (named_owner);
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+%\subsubsection{Entity garage}
+\subsubsection{garage}
+
+\begin{Mnamedesc}{garage}
+\begin{Mdesctext}
+    A type of named car owner.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY garage
+  SUBTYPE OF (named_owner);
+DERIVE
+  no_of_mnfs : INTEGER := dealer_for_mnfs(SELF);
+WHERE
+  wr1 : {1 <= no_of_mnfs <= 3};
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+
+\begin{Matts}
+
+\item[no\_of\_mnfs:] The number of different manufacturers of the cars owned by
+the \nexp{garage}.
+\end{Matts}
+
+\begin{Mprops}
+
+\item[wr1:] At any particular time, a \nexp{garage} shall not own cars made by
+more than three manufacturers.
+\end{Mprops}
+\end{Mnamedesc}
+
+%\subsubsection{Entity person}
+\subsubsection{person}
+
+
+\begin{Mnamedesc}{person}
+\begin{Mdesctext}
+    A type of named car owner.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY person
+  SUBTYPE OF (named_owner);
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+%\subsubsection{Entity group}
+\subsubsection{group}
+
+\begin{Mnamedesc}{group}
+\begin{Mdesctext}
+    A type of car owner consisting of a group of people.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY group
+  SUBTYPE OF (owner);
+  members : SET [1:?] OF person;
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+
+\begin{Matts}
+
+\item[members:] The people who form the \nexp{group}.
+\end{Matts}
+\end{Mnamedesc}
+
+\subsection{Function and procedure definitions}
+
+%\subsubsection{Function dealer\_for\_mnfs}
+\subsubsection{dealer\_for\_mnfs}
+
+\begin{Mnamedesc}{dealer_for_mnfs}
+\begin{Mdesctext}
+    This function calculates the total number of distinct manufacturers of cars
+owned by a \nexp{garage}.
+\end{Mdesctext}
+
+\begin{Ipars}
+
+\item[dealer:] An instance of a \nexp{garage}.
+
+\item[RESULT:] The number of distinct manufacturers of the cars owned by the
+\nexp{garage}.
+\end{Ipars}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+FUNCTION dealer_for_mnfs(dealer : garage) : INTEGER;
+  LOCAL
+    cars : SET OF car := [];
+    transfers : SET OF transfer := [];
+    makers : SET OF manufacturer := [];
+  END_LOCAL;
+  transfers := USEDIN(dealer, 'TRANSFER.NEW');
+  REPEAT i := 1 TO SIZEOF(transfers);
+    cars := cars + transfers[i].item;
+  END_REPEAT;
+  transfers := USEDIN(dealer, 'TRANSFER.PRIOR');
+  REPEAT i := 1 TO SIZEOF(transfers);
+    cars := cars - transfers[i].item;
+  END_REPEAT;
+  REPEAT i := 1 TO SIZEOF(cars);
+    makers := makers + cars[i].model_type.made_by;
+  END_REPEAT;
+  RETURN (SIZEOF(makers));
+END_FUNCTION;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+%\subsubsection{Function mnfg\_average\_consumption}
+\subsubsection{mnfg\_average\_consumption}
+
+\begin{Mnamedesc}{mnfg_average_consumption}
+\begin{Mdesctext}
+    This function calculates the average fuel consumption in a given year
+of all the cars made by a particular manufacturer.
+\end{Mdesctext}
+
+\begin{Ipars}
+
+\item[mnfg:] A \nexp{manufacturer}.
+
+\item[when:] An INTEGER representing a particular year.
+
+\item[RESULT:] A REAL giving the average fuel consumption of the manufacturer's
+cars during a particular year.
+\end{Ipars}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+FUNCTION mnfg_average_consumption(mnfg : manufacturer;
+                                  when : INTEGER) : REAL;
+  (* returns the average fuel consumption of the given 
+     manufacturer's cars produced in the given year *) 
+  LOCAL
+    models : SET OF car_model := [];
+    cars   : SET OF car := [];
+    num    : INTEGER := 0;
+    tot    : INTEGER := 0;
+    fuel   : REAL := 0;
+    result : REAL := 0.0;
+  END_LOCAL;
+     -- set of mnfg's models
+  models := USEDIN(mnfg, 'MODEL.MADE_BY'); 
+  REPEAT i := 1 TO SIZEOF(models);
+     -- cars of particular model year
+    cars := QUERY(temp <* USEDIN(models[i], 'CAR.MODEL_TYPE')
+            | temp.production_year = when);                                 
+    num := SIZEOF(cars);
+    fuel := fuel + num*models[i].consumption;
+    tot := tot + num;
+  END_REPEAT;
+  IF tot > 0.0 THEN
+    result := fuel/tot;
+  END_IF;
+  RETURN (result);
+END_FUNCTION;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+\subsection{Entity classification structure}
+
+The following indented listing shows the entity classification structure.
+Entities in upper case characters are defined in this schema. Entities in
+lower case characters are defined in other schemas.
+
+\begin{small} 
+\begin{verbatim}
+CAR
+    DESTROYED_CAR
+CAR_MODEL
+OWNER
+    GROUP
+    NAMED_OWNER
+        GARAGE
+        MANUFACTURER
+        PERSON
+TRANSFER
+\end{verbatim} 
+\end{small}
+
+\begin{small} 
+\begin{verbatim}
+*)
+END_SCHEMA;  -- end of support schema
+(*
+\end{verbatim} 
+\end{small}
+
+\section{Calendar schema}
+
+\begin{Mnamedesc}{calendar}
+\begin{Mdesctext}
+This schema contains definitions related to dates and other calendrical items.
+
+%\input{/rdrc/design/pwilson/Pbooks/Ebook/Bkfigs/cargcal}
+%%%%%%%%%%%%%%%%
+% cargcal.tex  BOOK EXPRESS-G calender schema  fig:cargcal
+\begin{figure}[tbp]
+\center
+\setlength{\unitlength}{1mm}
+\begin{picture}(85,22)
+%\begin{picture}(110,160)\input{gridmm}
+\thicklines
+
+\put(0,10){\begin{picture}(20,10)
+  \put(0,0){\framebox(20,10){*date}}
+  \end{picture}}
+
+\put(60,13){\begin{picture}(24,4)
+  \put(0,0){\framebox(24,4){INTEGER}}
+  \put(22,0){\line(0,1){4}}
+  \end{picture}}
+
+\put(60,0){\begin{picture}(24,4)
+  \put(0,0){\dashbox{1}(24,4){months}}
+  \multiput(22,0.5)(0,2){2}{\line(0,1){1}}
+  \end{picture}}
+
+% date/months
+\put(10,0){\begin{picture}(50,10)
+  \put(0,2){\line(0,1){8}}
+  \put(0,2){\line(1,0){48}}
+  \put(49,2){\circle{2}}
+  \put(25,3){\makebox(0,0)[b]{month}}
+  \end{picture}}
+
+% date/integer
+\put(20,10){\begin{picture}(40,12)
+  \multiput(0,2.5)(0,5){2}{\line(1,0){30}}
+  \put(30,2.5){\line(0,1){5}}
+  \put(30,5){\line(1,0){8}}
+  \put(39,5){\circle{2}}
+  \put(15,1.5){\makebox(0,0)[t]{*year}}
+  \put(15,8.5){\makebox(0,0)[b]{*day}}
+  \end{picture}}
+
+\end{picture}
+\setlength{\unitlength}{1pt}
+\caption{Complete entity-level model of Calendar schema (Page 1 of 1).}
+\label{fig:cargcal}
+\end{figure}
+
+
+    Figure~\ref{fig:cargcal} is an \ExpressG\ model showing the contents
+of this schema.
+
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+SCHEMA calendar;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+\subsection{Type definitions}
+
+%\subsubsection{Type months}
+\subsubsection{months}
+
+\begin{Mnamedesc}{months}
+\begin{Mdesctext}
+    An enumeration of the months of the year. \nexp{January} is the first month
+in a year and \nexp{December} is the last month in a year.
+
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+TYPE months = ENUMERATION OF
+    (January, February, March,
+     April,   May,      June,
+     July,    August,   September,
+     October, November, December);
+END_TYPE;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+\subsection{Entity definitions}
+
+%\subsubsection{Entity date}
+\subsubsection{date}
+
+\begin{Mnamedesc}{date}
+\begin{Mdesctext}
+    A \nexp{date} AD in the Gregorian calendar.
+\end{Mdesctext}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+ENTITY date;
+  day   : INTEGER;
+  month : months;
+  year  : INTEGER;
+WHERE
+  days_ok : {1 <= day <= 31};
+  year_ok : year > 0;
+  date_ok : valid_date(SELF);
+END_ENTITY;
+(*
+\end{verbatim}
+\end{Mexp}
+
+\begin{Matts}
+
+\item[day:] The day of the \nexp{month}.
+
+\item[month:] The month of the \nexp{year}
+
+\item[year:] The year.
+\end{Matts}
+
+\begin{Mprops}
+
+\item[days\_ok:] The \nexp{day} shall be numbered between 1 and 31 inclusive.
+
+\item[year\_ok:] The year shall be greater than zero.
+
+\item[date\_ok:] The combination of \nexp{day}, \nexp{month} and \nexp{year}
+shall form a valid date, taking into account the differing numbers of days in
+particular months, and also the effect of leap years.
+
+\end{Mprops}
+
+\end{Mnamedesc}
+
+\subsection{Function and procedure definitions}
+
+%\subsubsection{Function valid\_date}
+\subsubsection{valid\_date}
+
+\begin{Mnamedesc}{valid_date}
+\begin{Mdesctext}
+This function checks a \nexp{date} for valid day, month, year combinations.
+\end{Mdesctext}
+
+\begin{Ipars}
+
+\item[par:] A \nexp{date}.
+
+\item[RESULT:] A Boolean. TRUE if the \nexp{date} has a valid day, month, year
+combination, FALSE otherwise.
+\end{Ipars}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+FUNCTION valid_date (par : date) : BOOLEAN;
+  (* returns FALSE if its input is not a valid date *)
+  CASE par.month OF
+    April     : RETURN (par.day <= 30);
+    June      : RETURN (par.day <= 30);
+    September : RETURN (par.day <= 30);
+    November  : RETURN (par.day <= 30);
+    February  : IF (leap_year(par.year)) THEN
+                  RETURN (par.day <= 29);
+                ELSE
+                  RETURN (par.day <= 28);
+                END_IF;
+    OTHERWISE : RETURN (TRUE);
+  END_CASE;
+END_FUNCTION;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+%\subsubsection{Function leap\_year}
+\subsubsection{leap\_year}
+
+\begin{Mnamedesc}{leap_year}
+\begin{Mdesctext}
+    This function checks whether a given integer could represent a leap year.
+\end{Mdesctext}
+
+\begin{Ipars}
+
+\item[year:] An INTEGER.
+
+\item[RESULT:] A Boolean. TRUE if \nexp{year} is a leap year, otherwise FALSE.
+\end{Ipars}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+FUNCTION leap_year(year : INTEGER) : BOOLEAN;
+  (* returns TRUE if its input is a leap year *)
+  IF ((((year MOD 4) = 0) AND ((year MOD 100) <> 0)) OR
+      ((year MOD 400) = 0)) THEN
+    RETURN (TRUE);
+  ELSE
+    RETURN (FALSE);
+  END_IF;
+END_FUNCTION;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+%\subsubsection{Function current\_date}
+\subsubsection{current\_date}
+
+\begin{Mnamedesc}{current_date}
+\begin{Mdesctext}
+    This function returns the current date.
+\end{Mdesctext}
+
+\begin{Ipars}
+
+\item[RESULT:] The current \nexp{date}.
+\end{Ipars}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+FUNCTION current_date : date;
+  (* This function returns the date when it is called. 
+     Typically, it will be implemented via a system provided 
+     procedure within the information base *) 
+END_FUNCTION;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+%\subsubsection{Function days\_between}
+\subsubsection{days\_between}
+
+\begin{Mnamedesc}{days_between}
+
+\begin{Mdesctext}
+
+This function returns the number of days between any two \nexp{date}s.
+
+\end{Mdesctext}
+
+\begin{Ipars}
+
+\item[d1:] A \nexp{date}.
+
+\item[d2:] A \nexp{date}.
+
+\item[RESULT:] An Integer. The number of days between the two input
+\nexp{dates}. If \nexp{d1} is earlier than \nexp{d2} a positive integer is
+returned; if \nexp{d1} is later than \nexp{d2} a negative integer is returned;
+otherwise zero is returned.
+
+\end{Ipars}
+
+\begin{Mexp}
+\begin{verbatim}
+*)
+FUNCTION days_between(d1, d2 : date) : INTEGER;
+  (* returns the number of days between two input dates. If d1 
+     is earlier than d2, a positive number is returned. *) 
+END_FUNCTION;
+(*
+\end{verbatim}
+\end{Mexp}
+\end{Mnamedesc}
+
+\subsection{Entity classification structure}
+
+The following indented listing shows the entity classification structure.
+Entities in upper case characters are defined in this schema. Entities in
+lower case characters are defined in other schemas.
+
+\begin{small} 
+\begin{verbatim}
+DATE
+\end{verbatim} 
+\end{small}
+
+\begin{small} 
+\begin{verbatim}
+*)
+END_SCHEMA; -- end of calendar schema
+(*
+\end{verbatim} 
+\end{small}
+
+\end{document}

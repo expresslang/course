@@ -1,0 +1,89 @@
+% plevel4.tex     fig:level4  STEP Level 4 Architecture
+%%\begin{figure}[htp]
+\setlength{\unitlength}{0.2in}
+\begin{picture}(28,21)
+%\input{grid02}
+\thicklines
+
+\put(0,9){\begin{picture}(4,3)
+  \put(0,0){\framebox(4,3){}}
+  \put(2,2){\makebox(0,0){CAX}}
+  \put(2,1){\makebox(0,0){System}}
+  \end{picture}}
+
+\put(15.5,8.5){\begin{picture}(5,4)
+  \put(0,0){\framebox(5,4){}}
+  \put(0.05,0.05){\framebox(5,4){}}
+  \put(0.1,0.1){\framebox(5,4){}}
+  \put(2.5,3){\makebox(0,0){KBMS I/F}}
+%  \put(2.5,2){\makebox(0,0){Traversals}}
+  \put(2.5,1){\makebox(0,0){Read/Write}}
+  \end{picture}}
+
+\put(24,9){\begin{picture}(4,3)
+  \put(2,1.5){\oval(4,2)}
+  \put(2,1.5){\oval(3.95,1.95)}
+  \put(2,1.5){\oval(3.9,1.9)}
+  \put(2,1.5){\makebox(0,0){Data File}}
+  \end{picture}}
+
+
+  \put(15.5,0){\begin{picture}(5,6)
+    \put(0,0){\begin{picture}(5,1)
+      \bezier{50}(0,1)(0,0)(2.5,0)
+      \bezier{50}(2.5,0)(5,0)(5,1)
+      \end{picture}}
+    \put(0,4){\begin{picture}(5,2)
+      \bezier{50}(0,1)(0,0)(2.5,0)
+      \bezier{50}(2.5,0)(5,0)(5,1)
+      \bezier{50}(5,1)(5,2)(2.5,2)
+      \bezier{50}(2.5,2)(0,2)(0,1)
+      \end{picture}}
+    \multiput(0,1)(5,0){2}{\line(0,1){4}}
+    \put(2.5,3){\makebox(0,0){Data}}
+    \put(2.5,2){\makebox(0,0){Rules}}
+    \put(2.5,1){\makebox(0,0){Behaviour}}
+    \end{picture}}
+
+%         CAX to Puts
+\put(10,10.5){\begin{picture}(6,1)
+  \put(0,0){\vector(-1,0){6}}
+  \put(0,0){\vector(1,0){5.5}}
+  \end{picture}}
+
+%         Puts to file
+\put(22,10.5){\begin{picture}(2,1)
+  \put(0,0){\vector(-1,0){1.5}}
+  \put(0,0){\vector(1,0){2}}
+  \end{picture}}
+
+%         Puts to DB
+\put(18,7){\begin{picture}(1,2)
+  \put(0,0){\vector(0,1){1.5}}
+  \put(0,0){\vector(0,-1){2}}
+  \end{picture}}
+
+
+\put(18,15){\begin{picture}(8,2)
+  \put(0,0){\framebox(8,2){EXPRESS Schema}}
+  \put(0.05,0.05){\framebox(8,2){}}
+  \put(0.1,0.1){\framebox(8,2){}}
+  % to File
+  \multiput(7,0)(0,-1){4}{\line(0,-1){0.5}}
+  % to DB
+  \multiput(1,0)(0,-1){3}{\line(0,-1){0.5}}
+  \end{picture}}
+
+\put(7,19){\makebox(0,0){{\bf PRIVATE}}}
+\put(22,19){\makebox(0,0){{\bf STANDARD}}}
+\multiput(14,7)(0,1){14}{\line(0,1){0.5}}
+
+\end{picture}
+\setlength{\unitlength}{1pt}
+%%\caption{STEP Level 4 Implementation (Knowledgebase Exchange).}
+%%\label{fig:level4}
+%%\end{figure}
+
+\endinput
+
+

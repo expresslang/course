@@ -1,0 +1,460 @@
+% xkw.sty   % based on Ebook/Text/xkw.mac
+
+\typeout{xkw.sty 2004/03/02}
+
+%% next are the Express and Express-I reserved words 
+
+\newcommand{\ixf}[1]{{#1}} 
+
+\newcommand{\acolon}{\texttt{\symbol{58}}\index{(058@\texttt{\symbol{58}}}} 
+
+\newcommand{\ahat}{\texttt{\symbol{94}}\index{(094@\texttt{\symbol{94}}}} 
+
+\newcommand{\ampersand}{\texttt{\symbol{38}}\index{(038@\texttt{\symbol{38}}}} 
+
+\newcommand{\assign}{\texttt{\symbol{58}\symbol{61}}\index{(058061@\texttt{
+  \symbol{58}\symbol{61}}}} 
+
+\newcommand{\atilde}{\texttt{\symbol{126}}\index{(126@\texttt{\symbol{126}}}} 
+
+\newcommand{\beginembed}{\texttt{\symbol{40}\symbol{42}}\index{(040042@\texttt{
+  \symbol{40}\symbol{42}}}} 
+
+\newcommand{\begintail}{\texttt{\symbol{45}\symbol{45}}\index{(045045@\texttt{
+  \symbol{45}\symbol{45}}}} 
+
+\newcommand{\bkslash}{\texttt{\symbol{92}}\index{(092@\texttt{\symbol{92}}}} 
+
+\newcommand{\comma}{\texttt{\symbol{44}}\index{(044@\texttt{\symbol{44}}}} 
+
+\newcommand{\concat}{\texttt{\symbol{124}\symbol{124}}\index{(124124@\texttt{
+  \symbol{124}\symbol{124}}}} 
+
+\newcommand{\diffop}{\texttt{\symbol{45}}\index{(045@\texttt{
+  \symbol{45}}!difference}} 
+
+\newcommand{\divop}{\texttt{\symbol{47}}\index{(047@\texttt{\symbol{47}}}} 
+
+\newcommand{\dollar}{\texttt{\symbol{36}}\index{(036@\texttt{\symbol{36}}}} 
+
+\newcommand{\doneembed}{\texttt{\symbol{42}\symbol{41}}\index{(042041@\texttt{
+  \symbol{42}\symbol{41}}}} 
+
+\newcommand{\dtic}{\texttt{\symbol{34}}\index{(034@\texttt{\symbol{34}}}} 
+
+\newcommand{\eqop}{\texttt{\symbol{61}}\index{(061@\texttt{\symbol{61}}}} 
+
+\newcommand{\exclaim}{\texttt{\symbol{33}}\index{(033@\texttt{\symbol{33}}}} 
+
+\newcommand{\exponent}{\texttt{\symbol{42}\symbol{42}}\index{(042042@\texttt{
+  \symbol{42}\symbol{42}}}} 
+
+\newcommand{\geop}{\texttt{\symbol{62}\symbol{61}}\index{(062061@\texttt{
+  \symbol{62}\symbol{61}}!greater than/equal}} 
+
+\newcommand{\gtop}{\texttt{\symbol{62}}\index{(062@\texttt{\symbol{62}}}} 
+
+\newcommand{\hash}{\texttt{\symbol{35}}\index{(035@\texttt{\symbol{35}}}} 
+
+\newcommand{\ieqop}{\texttt{
+  \symbol{58}\symbol{61}\symbol{58}}\index{(058061058@\texttt{
+  \symbol{58}\symbol{61}\symbol{58}}}} 
+
+\newcommand{\ineop}{\texttt{
+  \symbol{58}\symbol{60}\symbol{62}\symbol{58}}\index{(058060062058@\texttt{
+  \symbol{58}\symbol{60}\symbol{62}\symbol{58}}}} 
+
+\newcommand{\intrsectop}{\texttt{\symbol{42}}\index{(042@\texttt{
+  \symbol{42}}!intersection}} 
+
+\newcommand{\lbracket}{\texttt{\symbol{91}}\index{(091@\texttt{\symbol{91}}}} 
+
+\newcommand{\lcurl}{\texttt{\symbol{123}}\index{(123@\texttt{\symbol{123}}}} 
+
+\newcommand{\leop}{\texttt{\symbol{60}\symbol{61}}\index{(060061@\texttt{
+  \symbol{60}\symbol{61}}!less than/equal}} 
+
+\newcommand{\lparen}{\texttt{\symbol{40}}\index{(040@\texttt{\symbol{40}}}} 
+
+\newcommand{\ltic}{\texttt{\symbol{96}}\index{(096@\texttt{\symbol{96}}}} 
+
+\newcommand{\ltop}{\texttt{\symbol{60}}\index{(060@\texttt{\symbol{60}}}} 
+
+\newcommand{\minusop}{\texttt{\symbol{45}}\index{(045@\texttt{
+  \symbol{45}}!subtract}} 
+
+\newcommand{\mulop}{\texttt{\symbol{42}}\index{(042@\texttt{\symbol{42}}!multiply}} 
+
+\newcommand{\neop}{\texttt{\symbol{60}\symbol{62}}\index{(060062@\texttt{
+  \symbol{60}\symbol{62}}}} 
+
+\newcommand{\percent}{\texttt{\symbol{37}}\index{(037@\texttt{\symbol{37}}}} 
+
+\newcommand{\period}{\texttt{\symbol{46}}\index{(046@\texttt{\symbol{46}}}} 
+
+\newcommand{\plusop}{\texttt{\symbol{43}}\index{(043@\texttt{\symbol{43}}!addition}} 
+
+\newcommand{\question}{\texttt{\symbol{63}}\index{(063@\texttt{\symbol{63}}}} 
+
+\newcommand{\rbracket}{\texttt{\symbol{93}}\index{(093@\texttt{\symbol{93}}}} 
+
+\newcommand{\rcurl}{\texttt{\symbol{125}}\index{(125@\texttt{\symbol{125}}}} 
+
+\newcommand{\rparen}{\texttt{\symbol{41}}\index{(041@\texttt{\symbol{41}}}} 
+
+\newcommand{\rtic}{\texttt{\symbol{39}}\index{(039@\texttt{\symbol{39}}}} 
+
+\newcommand{\semicolon}{\texttt{\symbol{59}}\index{(059@\texttt{\symbol{59}}}} 
+
+\newcommand{\strcatop}{\texttt{\symbol{43}}\index{(043@\texttt{\symbol{43}}!string 
+  concatenate}} 
+
+\newcommand{\substop}{\texttt{\symbol{60}\symbol{61}}\index{(060061@\texttt{
+  \symbol{60}\symbol{61}}!subset}} 
+
+\newcommand{\supstop}{\texttt{\symbol{62}\symbol{61}}\index{(062061@\texttt{
+  \symbol{62}\symbol{61}}!superset}} 
+
+\newcommand{\take}{\texttt{\symbol{60}\symbol{42}}\index{(060042@\texttt{
+  \symbol{60}\symbol{42}}}} 
+
+\newcommand{\unionop}{\texttt{\symbol{43}}\index{(043@\texttt{\symbol{43}}!union}} 
+
+\newcommand{\uscore}{\texttt{\symbol{95}}} 
+
+\newcommand{\vbar}{\texttt{\symbol{124}}\index{(124@\texttt{\symbol{124}}}} 
+
+\newcommand{\zabs}{\texttt{Abs}\index{abs@\ixf{\texttt{Abs}}}} 
+
+\newcommand{\zabstract}{\texttt{Abstract}\index{abstract@\ixf{\texttt{Abstract}}}} 
+
+\newcommand{\zacos}{\texttt{ACos}\index{acos@\ixf{\texttt{ACos}}}} 
+
+\newcommand{\zaggregate}{\texttt{Aggregate}\index{aggregate@\ixf{\texttt{
+  Aggregate}}}} 
+
+\newcommand{\zalias}{\texttt{Alias}\index{alias@\ixf{\texttt{Alias}}}} 
+
+\newcommand{\zand}{\texttt{And}\index{and@\ixf{\texttt{And}}}} 
+
+\newcommand{\zandor}{\texttt{AndOr}\index{andor@\ixf{\texttt{AndOr}}}} 
+
+\newcommand{\zarray}{\texttt{Array}\index{array@\ixf{\texttt{Array}}}} 
+
+\newcommand{\zas}{\texttt{As}\index{as@\ixf{\texttt{As}}}} 
+
+\newcommand{\zasin}{\texttt{ASin}\index{asin@\ixf{\texttt{ASin}}}} 
+
+\newcommand{\zatan}{\texttt{ATan}\index{atan@\ixf{\texttt{ATan}}}} 
+
+\newcommand{\zbag}{\texttt{Bag}\index{bag@\ixf{\texttt{Bag}}}} 
+
+\newcommand{\zbegin}{\texttt{Begin}\index{begin@\ixf{\texttt{Begin}}}} 
+
+\newcommand{\zbinary}{\texttt{Binary}\index{binary@\ixf{\texttt{Binary}}}} 
+
+\newcommand{\zblength}{\texttt{BLength}\index{blength@\ixf{\texttt{BLength}}}} 
+
+\newcommand{\zboolean}{\texttt{Boolean}\index{boolean@\ixf{\texttt{Boolean}}}} 
+
+\newcommand{\zby}{\texttt{By}\index{by@\ixf{\texttt{By}}}} 
+
+\newcommand{\zcall}{\texttt{Call}\index{call@\ixf{\texttt{Call}}}} 
+
+\newcommand{\zcase}{\texttt{Case}\index{case@\ixf{\texttt{Case}}}} 
+
+\newcommand{\zconstant}{\texttt{Constant}\index{constant@\ixf{\texttt{Constant}}}} 
+
+\newcommand{\zconste}{\texttt{Const\symbol{95}E}\index{conste@\ixf{\texttt{
+  Const\symbol{95}E}}}} 
+
+\newcommand{\zcontext}{\texttt{Context}\index{context@\ixf{\texttt{Context}}}} 
+
+\newcommand{\zcos}{\texttt{Cos}\index{cos@\ixf{\texttt{Cos}}}} 
+
+\newcommand{\zcriteria}{\texttt{Criteria}\index{criteria@\ixf{\texttt{Criteria}}}} 
+
+\newcommand{\zderive}{\texttt{Derive}\index{derive@\ixf{\texttt{Derive}}}} 
+
+\newcommand{\zdiv}{\texttt{Div}\index{div@\ixf{\texttt{Div}}}} 
+
+\newcommand{\zelse}{\texttt{Else}\index{else@\ixf{\texttt{Else}}}} 
+
+\newcommand{\zend}{\texttt{End}\index{end@\ixf{\texttt{End}}}} 
+
+\newcommand{\zendalias}{\texttt{End\symbol{95}Alias}\index{endalias@\ixf{\texttt{
+  End\symbol{95}Alias}}}} 
+
+\newcommand{\zendcall}{\texttt{End\symbol{95}Call}\index{endcall@\ixf{\texttt{
+  End\symbol{95}Call}}}} 
+
+\newcommand{\zendcase}{\texttt{End\symbol{95}Case}\index{endcase@\ixf{\texttt{
+  End\symbol{95}Case}}}} 
+
+\newcommand{\zendconstant}{\texttt{
+  End\symbol{95}Constant}\index{endconstant@\ixf{\texttt{
+  End\symbol{95}Constant}}}} 
+
+\newcommand{\zendcontext}{\texttt{
+  End\symbol{95}Context}\index{endcontext@\ixf{\texttt{End\symbol{95}Context}}}} 
+
+\newcommand{\zendcriteria}{\texttt{
+  End\symbol{95}Criteria}\index{endcriteria@\ixf{\texttt{
+  End\symbol{95}Criteria}}}} 
+
+\newcommand{\zendentity}{\texttt{End\symbol{95}Entity}\index{endentity@\ixf{\texttt{
+  End\symbol{95}Entity}}}} 
+
+\newcommand{\zendfunction}{\texttt{
+  End\symbol{95}Function}\index{endfunction@\ixf{\texttt{
+  End\symbol{95}Function}}}} 
+
+\newcommand{\zendif}{\texttt{End\symbol{95}If}\index{endif@\ixf{\texttt{
+  End\symbol{95}If}}}} 
+
+\newcommand{\zendlocal}{\texttt{End\symbol{95}Local}\index{endlocal@\ixf{\texttt{
+  End\symbol{95}Local}}}} 
+
+\newcommand{\zendmodel}{\texttt{End\symbol{95}Model}\index{endmodel@\ixf{\texttt{
+  End\symbol{95}Model}}}} 
+
+\newcommand{\zendnotes}{\texttt{End\symbol{95}Notes}\index{endnotes@\ixf{\texttt{
+  End\symbol{95}Notes}}}} 
+
+\newcommand{\zendobjective}{\texttt{
+  End\symbol{95}Objective}\index{endobjective@\ixf{\texttt{
+  End\symbol{95}Objective}}}} 
+
+\newcommand{\zendparameter}{\texttt{
+  End\symbol{95}Parameter}\index{endparameter@\ixf{\texttt{
+  End\symbol{95}Parameter}}}} 
+
+\newcommand{\zendprocedure}{\texttt{
+  End\symbol{95}Procedure}\index{endprocedure@\ixf{\texttt{
+  End\symbol{95}Procedure}}}} 
+
+\newcommand{\zendpurpose}{\texttt{
+  End\symbol{95}Purpose}\index{endpurpose@\ixf{\texttt{End\symbol{95}Purpose}}}} 
+
+\newcommand{\zendrealization}{\texttt{
+  End\symbol{95}Realization}\index{endrealization@\ixf{\texttt{
+  End\symbol{95}Realization}}}} 
+
+\newcommand{\zendreferences}{\texttt{
+  End\symbol{95}References}\index{endreferences@\ixf{\texttt{
+  End\symbol{95}References}}}} 
+
+\newcommand{\zendrepeat}{\texttt{End\symbol{95}Repeat}\index{endrepeat@\ixf{\texttt{
+  End\symbol{95}Repeat}}}} 
+
+\newcommand{\zendrule}{\texttt{End\symbol{95}Rule}\index{endrule@\ixf{\texttt{
+  End\symbol{95}Rule}}}} 
+
+\newcommand{\zendschema}{\texttt{End\symbol{95}Schema}\index{endschema@\ixf{\texttt{
+  End\symbol{95}Schema}}}} 
+
+\newcommand{\zendschemadata}{\texttt{
+  End\symbol{95}Schema\symbol{95}Data}\index{endschemadata@\ixf{\texttt{
+  End\symbol{95}Schema\symbol{95}Data}}}} 
+
+\newcommand{\zendtestcase}{\texttt{
+  End\symbol{95}Test\symbol{95}Case}\index{endtestcase@\ixf{\texttt{
+  End\symbol{95}Test\symbol{95}Case}}}} 
+
+\newcommand{\zendtype}{\texttt{End\symbol{95}Type}\index{endtype@\ixf{\texttt{
+  End\symbol{95}Type}}}} 
+
+\newcommand{\zentity}{\texttt{Entity}\index{entity@\ixf{\texttt{Entity}}}} 
+
+\newcommand{\zenumeration}{\texttt{Enumeration}\index{enumeration@\ixf{\texttt{
+  Enumeration}}}} 
+
+\newcommand{\zescape}{\texttt{Escape}\index{escape@\ixf{\texttt{Escape}}}} 
+
+\newcommand{\zexists}{\texttt{Exists}\index{exists@\ixf{\texttt{Exists}}}} 
+
+\newcommand{\zexp}{\texttt{Exp}\index{exp@\ixf{\texttt{Exp}}}} 
+
+\newcommand{\zfalse}{\texttt{False}\index{false@\ixf{\texttt{False}}}} 
+
+\newcommand{\zfixed}{\texttt{Fixed}\index{fixed@\ixf{\texttt{Fixed}}}} 
+
+\newcommand{\zfor}{\texttt{For}\index{for@\ixf{\texttt{For}}}} 
+
+\newcommand{\zformat}{\texttt{Format}\index{format@\ixf{\texttt{Format}}}} 
+
+\newcommand{\zfrom}{\texttt{From}\index{from@\ixf{\texttt{From}}}} 
+
+\newcommand{\zfunction}{\texttt{Function}\index{function@\ixf{\texttt{Function}}}} 
+
+\newcommand{\zgeneric}{\texttt{Generic}\index{generic@\ixf{\texttt{Generic}}}} 
+
+\newcommand{\zhibound}{\texttt{HiBound}\index{hibound@\ixf{\texttt{HiBound}}}} 
+
+\newcommand{\zhiindex}{\texttt{HiIndex}\index{hiindex@\ixf{\texttt{HiIndex}}}} 
+
+\newcommand{\zif}{\texttt{If}\index{if@\ixf{\texttt{If}}}} 
+
+\newcommand{\zimport}{\texttt{Import}\index{import@\ixf{\texttt{Import}}}} 
+
+\newcommand{\zin}{\texttt{In}\index{in@\ixf{\texttt{In}}}} 
+
+\newcommand{\zinsert}{\texttt{Insert}\index{insert@\ixf{\texttt{Insert}}}} 
+
+\newcommand{\zinteger}{\texttt{Integer}\index{integer@\ixf{\texttt{Integer}}}} 
+
+\newcommand{\zinverse}{\texttt{Inverse}\index{inverse@\ixf{\texttt{Inverse}}}} 
+
+\newcommand{\zlength}{\texttt{Length}\index{length@\ixf{\texttt{Length}}}} 
+
+\newcommand{\zlike}{\texttt{Like}\index{like@\ixf{\texttt{Like}}}} 
+
+\newcommand{\zlist}{\texttt{List}\index{list@\ixf{\texttt{List}}}} 
+
+\newcommand{\zlobound}{\texttt{LoBound}\index{lobound@\ixf{\texttt{LoBound}}}} 
+
+\newcommand{\zlocal}{\texttt{Local}\index{local@\ixf{\texttt{Local}}}} 
+
+\newcommand{\zlog}{\texttt{Log}\index{log@\ixf{\texttt{Log}}}} 
+
+\newcommand{\zlogten}{\texttt{Log10}\index{log10@\ixf{\texttt{Log10}}}} 
+
+\newcommand{\zlogtwo}{\texttt{Log2}\index{log2@\ixf{\texttt{Log2}}}} 
+
+\newcommand{\zlogical}{\texttt{Logical}\index{logical@\ixf{\texttt{Logical}}}} 
+
+\newcommand{\zloindex}{\texttt{LoIndex}\index{loindex@\ixf{\texttt{LoIndex}}}} 
+
+\newcommand{\zmod}{\texttt{Mod}\index{mod@\ixf{\texttt{Mod}}}} 
+
+\newcommand{\zmodel}{\texttt{Model}\index{model@\ixf{\texttt{Model}}}} 
+
+\newcommand{\znot}{\texttt{Not}\index{not@\ixf{\texttt{Not}}}} 
+
+\newcommand{\znotes}{\texttt{Notes}\index{notes@\ixf{\texttt{Notes}}}} 
+
+\newcommand{\znumber}{\texttt{Number}\index{number@\ixf{\texttt{Number}}}} 
+
+\newcommand{\znvl}{\texttt{NVL}\index{nvl@\ixf{\texttt{NVL}}}} 
+
+\newcommand{\zobjective}{\texttt{Objective}\index{objective@\ixf{\texttt{
+  Objective}}}} 
+
+\newcommand{\zodd}{\texttt{Odd}\index{odd@\ixf{\texttt{Odd}}}} 
+
+\newcommand{\zof}{\texttt{Of}\index{of@\ixf{\texttt{Of}}}} 
+
+\newcommand{\zoneof}{\texttt{OneOf}\index{oneof@\ixf{\texttt{OneOf}}}} 
+
+\newcommand{\zoptional}{\texttt{Optional}\index{optional@\ixf{\texttt{Optional}}}} 
+
+\newcommand{\zor}{\texttt{Or}\index{or@\ixf{\texttt{Or}}}} 
+
+\newcommand{\zotherwise}{\texttt{Otherwise}\index{otherwise@\ixf{\texttt{
+  Otherwise}}}} 
+
+\newcommand{\zparameter}{\texttt{Parameter}\index{parameter@\ixf{\texttt{
+  Parameter}}}} 
+
+\newcommand{\zpi}{\texttt{Pi}\index{pi@\ixf{\texttt{Pi}}}} 
+
+\newcommand{\zprocedure}{\texttt{Procedure}\index{procedure@\ixf{\texttt{
+  Procedure}}}} 
+
+\newcommand{\zpurpose}{\texttt{Purpose}\index{purpose@\ixf{\texttt{Purpose}}}} 
+
+\newcommand{\zquery}{\texttt{Query}\index{query@\ixf{\texttt{Query}}}} 
+
+\newcommand{\zreal}{\texttt{Real}\index{real@\ixf{\texttt{Real}}}} 
+
+\newcommand{\zrealization}{\texttt{Realization}\index{realization@\ixf{\texttt{
+  Realization}}}} 
+
+\newcommand{\zreference}{\texttt{Reference}\index{reference@\ixf{\texttt{
+  Reference}}}} 
+
+\newcommand{\zreferences}{\texttt{References}\index{references@\ixf{\texttt{
+  References}}}} 
+
+\newcommand{\zremove}{\texttt{Remove}\index{remove@\ixf{\texttt{Remove}}}} 
+
+\newcommand{\zrepeat}{\texttt{Repeat}\index{repeat@\ixf{\texttt{Repeat}}}} 
+
+\newcommand{\zreturn}{\texttt{Return}\index{return@\ixf{\texttt{Return}}}} 
+
+\newcommand{\zrolesof}{\texttt{RolesOf}\index{rolesof@\ixf{\texttt{RolesOf}}}} 
+
+\newcommand{\zrule}{\texttt{Rule}\index{rule@\ixf{\texttt{Rule}}}} 
+
+\newcommand{\zschema}{\texttt{Schema}\index{schema@\ixf{\texttt{Schema}}}} 
+
+\newcommand{\zschemadata}{\texttt{
+  Schema\symbol{95}Data}\index{schemadata@\ixf{\texttt{Schema\symbol{95}Data}}}} 
+
+\newcommand{\zselect}{\texttt{Select}\index{select@\ixf{\texttt{Select}}}} 
+
+\newcommand{\zself}{\texttt{Self}\index{self@\ixf{\texttt{Self}}}} 
+
+\newcommand{\zset}{\texttt{Set}\index{set@\ixf{\texttt{Set}}}} 
+
+\newcommand{\zsin}{\texttt{Sin}\index{sin@\ixf{\texttt{Sin}}}} 
+
+\newcommand{\zsizeof}{\texttt{SizeOf}\index{sizeof@\ixf{\texttt{SizeOf}}}} 
+
+\newcommand{\zskip}{\texttt{Skip}\index{skip@\ixf{\texttt{Skip}}}} 
+
+\newcommand{\zsqrt}{\texttt{Sqrt}\index{sqrt@\ixf{\texttt{Sqrt}}}} 
+
+\newcommand{\zstring}{\texttt{String}\index{string@\ixf{\texttt{String}}}} 
+
+\newcommand{\zsubof}{\texttt{SubOf}\index{subof@\ixf{\texttt{SubOf}}}} 
+
+\newcommand{\zsubtype}{\texttt{Subtype}\index{subtype@\ixf{\texttt{Subtype}}}} 
+
+\newcommand{\zsupertype}{\texttt{Supertype}\index{supertype@\ixf{\texttt{
+  Supertype}}}} 
+
+\newcommand{\zsupof}{\texttt{SupOf}\index{supof@\ixf{\texttt{SupOf}}}} 
+
+\newcommand{\ztan}{\texttt{Tan}\index{tan@\ixf{\texttt{Tan}}}} 
+
+\newcommand{\ztestcase}{\texttt{Test\symbol{95}Case}\index{testcase@\ixf{\texttt{
+  Test\symbol{95}Case}}}} 
+
+\newcommand{\zthen}{\texttt{Then}\index{then@\ixf{\texttt{Then}}}} 
+
+\newcommand{\zto}{\texttt{To}\index{to@\ixf{\texttt{To}}}} 
+
+\newcommand{\ztrue}{\texttt{True}\index{true@\ixf{\texttt{True}}}} 
+
+\newcommand{\ztype}{\texttt{Type}\index{type@\ixf{\texttt{Type}}}} 
+
+\newcommand{\ztypeof}{\texttt{TypeOf}\index{typeof@\ixf{\texttt{TypeOf}}}} 
+
+\newcommand{\zunique}{\texttt{Unique}\index{unique@\ixf{\texttt{Unique}}}} 
+
+\newcommand{\zunknown}{\texttt{Unknown}\index{unknown@\ixf{\texttt{Unknown}}}} 
+
+\newcommand{\zuntil}{\texttt{Until}\index{until@\ixf{\texttt{Until}}}} 
+
+\newcommand{\zuse}{\texttt{Use}\index{use@\ixf{\texttt{Use}}}} 
+
+\newcommand{\zusedin}{\texttt{UsedIn}\index{usedin@\ixf{\texttt{UsedIn}}}} 
+
+\newcommand{\zusing}{\texttt{Using}\index{using@\ixf{\texttt{Using}}}} 
+
+\newcommand{\zvalue}{\texttt{Value}\index{value@\ixf{\texttt{Value}}}} 
+
+\newcommand{\zvar}{\texttt{Var}\index{var@\ixf{\texttt{Var}}}} 
+
+\newcommand{\zwhere}{\texttt{Where}\index{where@\ixf{\texttt{Where}}}} 
+
+\newcommand{\zwhile}{\texttt{While}\index{while@\ixf{\texttt{While}}}} 
+
+\newcommand{\zwith}{\texttt{With}\index{with@\ixf{\texttt{With}}}} 
+
+\newcommand{\zxor}{\texttt{XOr}\index{xor@\ixf{\texttt{XOr}}}} 
+
+\endinput
+
+

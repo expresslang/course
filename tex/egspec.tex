@@ -1,0 +1,238 @@
+% egspec.tex    % ISO TR 9007 model statement
+%               % based on Ebook/mmodel.tex
+% Created by Peter R Wilson, 1992 -- 2004
+
+%\documentclass[article]{memoir}
+\documentclass{article}
+\usepackage{ifpdf}
+
+\ifpdf
+  \pdfoutput=1
+\fi
+
+
+%\addtolength{\textheight}{4\onelineskip}
+%\maxsecnumdepth{part}
+
+\title{Example model statement \\
+       Car Registration Authority}
+\author{Peter Wilson}
+\date{}
+
+\raggedbottom
+\begin{document}
+
+\maketitle
+\tableofcontents
+\clearpage
+
+
+%\chapter{Introduction}
+\section{Introduction}
+
+
+   The model statement, which is given in sections~\ref{scope} 
+and~\ref{description}, has been taken from ISO TR9007 \textit{Information
+processing systems --- Concepts and terminology for the conceptual
+schema and the information base}, 1987. This contains several renditions
+of the model using different kinds or representations including
+Entity-Relationship, A NIAM-like approach, and a formulation based on
+predicate logic.
+
+
+%\chapter{Scope} \label{scope}
+\section{Scope} \label{scope}
+
+The scope of the model to be described has to do with the registration of cars
+and is limited to the scope of interest of the Registration Authority. The
+Registration Authority exists for the purpose of:
+
+\begin{itemize}
+
+\item Knowing who is or was the registered owner of a car at any time from
+construction to destruction of the car.
+
+\item To monitor certain laws, for example regarding fuel consumption of cars
+and their transfer of ownership.
+
+\end{itemize}
+
+%\chapter{Description} \label{description}
+\section{Description} \label{description}
+
+\subsection{Manufacturers of cars}
+
+There are a number of manufacturers, each with one unique name. Manufacturers
+may start operation, with the permission of the Registration Authority (which
+permission cannot be withdrawn). No more than five manufacturers may be in
+operation at any time. A manufacturer may cease to operate provided he owns no
+cars, in which case permission to operate lapses.
+
+\subsection{Cars}
+
+A car is of a particular model and is given a serial number by its
+manufacturer that is unique among the cars made by that manufacturer. The
+manufacturer is registered as owner of the car as soon as practicable. At this
+time it is given one registration number, unique for all cars and for all
+time. The year of production is also recorded. During the month of January
+only, a car can be declared to have been produced in the previous year.
+Eventually a car is destroyed and the date of destruction is registered. The
+history of the car must be kept until the end of the second calendar year
+following its destruction.
+
+\subsection{Car models}
+
+A model of car has one universally unique name. Cars of each model are made by
+only one manufacturer. New models may be introduced without limit. All cars of
+one model are recorded as having the same fuel consumption.
+
+\subsection{Fuel consumption}
+
+Fuel consumption is the number of liters of hydrocarbon fuel per 100
+kilometers, which will be between 4 and 25 liters. The fuel consumption
+averaged over all registered cars produced by a particular manufacturer in a
+particular year is required not to exceed a maximum value, which is the same
+for each manufacturer and may change from year to year. At the end of each
+January an appropriate message is sent by the Registration Authority to each
+manufacturer which has failed to meet this requirement.
+
+\subsection{Garages}
+
+There are a number of garages\footnote{Dealerships in American English.}, each
+one with a unique name. New garages may start trading. Garages may own cars,
+but at any time the cars they own must have originated from no more than three
+manufacturers (which three is unimportant, and may vary with time). A garage
+cannot cease to trade as long as it owns cars.
+
+\subsection{Persons}
+
+There are a number of persons who can own one or more cars. Each person has
+one unique name. Only those persons are of interest who own, or have at some
+time owned, a car still known to the Registration Authority.
+
+\subsection{Car ownership}
+
+At any one time a car may be owned by either its manufacturer, or a trading
+garage, or a person or a group of persons. If a car is owned by a group of
+persons, each is regarded as an owner.
+
+\subsection{Transfer of ownership}
+
+Ownership of a car is transferred by registration of the actual transfer,
+including the date. A manufacturer can only transfer to garages, and cannot be
+a transferee. A garage can transfer only to people. After destruction of the
+car it cannot be transferred anymore. Earlier transfer though still can be
+recorded.
+
+\end{document}
+
+\clearpage
+\chapter{Further exercises}
+
+\begin{enumerate}
+\item Do the following:
+  \begin{enumerate}
+  \item Write an information model that describes the logical content of 
+        a report. Assume that a report consists of a title and one or 
+        more authors, together with the publication date. It may have 
+        an abstract and may have a table of
+        contents. The body of the report consists of at least two sections.
+        Further divisions of the report are subsections and sub-subsections.
+        Figures and tables may also be included within any sub-subsection, or
+        higher level partitions. The report may have a bibliography.
+  \item Write an information model that describes a book. A book is similar 
+        to a report with the following exceptions. A book may consist of 
+        two or more parts, each of which must contain two or more chapters. 
+        Each chapter contains at least two sections. There is always a table 
+        of contents and there is never an abstract, although it may have 
+        a preface which serves the same purpose. A book may have an index.
+  \item Does the above description apply to all books?
+  \item Create an information model that supports both reports and books. 
+        Include anything extra that you feel is necessary that is missing 
+        from the above descriptions.
+  \end{enumerate}
+
+\item Write an information model corresponding to the following description.
+
+    An international company has a number of ongoing development projects. 
+A project has a unique name and is located in a specific city. There are 
+a number of suppliers to the company. The suppliers have names and may have
+several branches, each in a different city. Suppliers with identical names 
+do not have branches in the same city. A supplier may supply one or more 
+different kinds of parts to the company. A part is identified by a catalogue 
+number, and also has a short description. Projects purchase parts from 
+the nearest location which stocks the part. The company keeps a record 
+of the purchase orders (i.e., part, supplier, and quantity) of each project.
+
+\item Write an information model corresponding to the following description.
+
+    A University is organised into academic, research and administrative 
+departments. Administrative staff may work in any kind of department, but 
+neither academic staff nor research staff work in the administrative 
+departments. Academic staff teach courses and may do research work. 
+Research staff are limited to research work only. Administrative staff 
+neither teach nor do research. All undergraduate and some graduate 
+students attend courses. There is a fee for each course, the amount of 
+which differs according to the course. Students are graded on each course 
+they attend, with a grade having a value between 0 and 100. It is a 
+tradition, however, of the University that no student has ever been 
+graded at either 0 or 100. Some undergraduate students may be employed 
+part-time to assist the administrative staff, but only if their grade 
+is 75 or more. All staff get paid a salary, the amount of which depends
+on their position. Graduate students do research. They may teach not more than
+two courses, and are paid at a fixed rate per course. No person under the age
+of 18 may be paid, and the retirement age is 65. 
+
+\item  Write an information model about the delivery of items 
+according to the following description.
+
+    The currency of Fluidistan is the G. This is divided into the 
+smaller p and z units, where G1 = 8p and 1p = 16z. The amount 190z, 
+for example, is written as G1-7-12. Linear measures in Fluidistan are 
+the inch and foot, where 1 foot equals 12 inches. The weight measures 
+are the pound and ounce, where 1 pound is 16 ounces.
+
+    The government of Fluidistan operate a mail delivery service for 
+certain kinds of item. There are also private delivery services which 
+will accept any kind of item. The following are the regulations governing 
+the Fluidistan mail service.
+\begin{description}
+\item[Post Cards:] The card rate is 1p~3z. To qualify for the card rate 
+a postcard must be of a uniform thickness and no thinner than 0.007 inches. 
+It must be no larger than 4.25 by 6 inches and no smaller than 3.5 by 5 inches.
+
+\item[Letters:] The letter rate is 1p~13z for letters weighing one ounce 
+or less. The rate increases by 1p~6z for each additional ounce or part 
+thereof. An item weighing more than 11 ounces cannot be sent at the 
+letter rate. Letters less than one ounce are non-standard if the length 
+is greater than 11.5 inches or the height is greater than 6.125 inches 
+or the thickness is greater than 0.25 inches or the length to height 
+ratio is not between 1.3 and 2.5 inclusive. Non-standard letters are 
+subject to a surcharge of 10z in addition to the standard rate.
+
+\item[Parcels:] The parcel rate is G2-4-2 for items not exceeding two 
+pounds in weight. The rate increases by by 2p~11z for each additional 
+pound or part thereof, provided the weight is not greater than ten pounds. 
+Above ten pounds the rate increases by 2p~8z for each additional pound 
+or part thereof. Note: Parcels weighing less than fifteen pounds and 
+whose length plus girth exceeds seven feet are chargeable at the 
+fifteen pound rate.
+
+\item[Size Standards:] Items whose thickness is less than 0.007 inches 
+are not accepted for delivery. Items less than 0.25 inches in thickness 
+must be rectangular in shape and at least 3.5 inches high and at 
+least 5 inches long. Items weighing more than 70 pounds are not accepted 
+for delivery.
+
+\item[Environmental:] Neither hazardous materials nor live or dead animals
+ will be accepted for delivery. All items, except cards, must be enclosed 
+in some wrapping. Items enclosed in environmentally sound and recycleable 
+wrapping are entitled to a discount of ten percent of the applicable rate; 
+if this results in a fraction of a z, the rate is rounded up to the 
+nearest z.
+
+\end{description}
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,30 @@
+% egs.sty    Macros
+\typeout{egs.sty 2004/03/02}
+
+\newenvironment{Mnamedesc}[1]{}{}
+\newenvironment{Mdesctext}{}{}
+
+\newenvironment{Mexp}{\subsubsection*{EXPRESS specification:}\begin{small}
+  \begin{inset}}{\end{inset}\end{small}}
+
+\newcommand{\inset}{\list{}{}\item[]} \let\endinset\endlist
+
+\newcommand*{\Express}{\textsc{express}}
+\newcommand*{\ExpressG}{\textsc{express-g}}
+
+\newcommand*{\nexp}[1]{\texttt{#1}}
+
+\newenvironment{Matts}{\subsubsection*{Attribute definitions}
+                       \begin{description}}{\end{description}}
+
+\newenvironment{Mprops}{\subsubsection*{Propositions}
+                       \begin{description}}{\end{description}}
+
+\newenvironment{Ipars}{\subsubsection*{Parameters}
+                       \begin{description}}{\end{description}}
+
+\newcommand*{\Q}[1]{`#1'}
+
+
+\endinput
+

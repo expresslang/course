@@ -1,0 +1,707 @@
+% egcarsg.tex   % Example EXPRESS-G car registration model
+%               % based on Ebook/Text/acarsg.tex
+% Craeted by Peter R Wilson, 1992 -- 2004
+
+%\documentclass[article]{memoir}
+\documentclass{article}
+\usepackage{ifpdf}
+
+\ifpdf
+  \pdfoutput=1
+\fi
+
+\usepackage{egs}
+\usepackage{xkw}
+
+%\maxsecnumdepth{subsubsection}
+%\maxtocdepth{subsubsection}
+
+\title{EXPRESS-G example model \\ Car Registration Authority}
+\author{Peter Wilson}
+\date{}
+
+%\renewcommand{\thesection}{\arabic{section}}
+\raggedbottom
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\listoffigures
+\clearpage
+
+% \chapter{Model Example in EXPRESS-G}  \label{anx:gmodel}
+
+\makeatletter \@topnum\z@ \makeatother
+\section{Introduction}
+
+This document contains a complete \ExpressG\ representation of the 
+Car Registration Authority example model. There are details which cannot
+be expressed using the \ExpressG\ iconic language but which can be described
+using the \Express\ lexical language.
+
+    An \Express\ model is a primary representation and an \ExpressG\ model
+is a secondary representation.
+
+\section{Model overview}
+
+The model consists of three schemas, as shown in Figure~\ref{fig:cargschema}.
+
+%\input{(pdes.pdes01.ebook.bkfig)cargschema}
+% cargschema.tex  BOOK  EXPRESS-G car schemas  fig:cargschema
+\begin{figure}[htp]
+\center
+\setlength{\unitlength}{1mm}
+\begin{picture}(107,55)
+%\begin{picture}(110,160)\input{gridmm}
+\thicklines
+
+\put(40,40){\begin{picture}(40,12)
+  \put(0,0){\framebox(40,12){}}
+  \put(0,6){\framebox(40,6){registration\_authority}}
+  \end{picture}}
+
+\put(15,0){\begin{picture}(30,12)
+  \put(0,0){\framebox(30,12){}}
+  \put(0,6){\framebox(30,6){auxiliary}}
+  \end{picture}}
+
+\put(75,0){\begin{picture}(30,12)
+  \put(0,0){\framebox(30,12){}}
+  \put(0,6){\framebox(30,6){calendar}}
+  \end{picture}}
+
+% auxiliary/registration
+\put(30,12){\begin{picture}(10,40)
+  \put(0,1){\circle{2}}
+  \multiput(0,2)(0,4){8}{\line(0,1){2}}
+  \multiput(0,32)(4,0){3}{\line(1,0){2}}
+  \end{picture}}
+\put(0,22){\begin{picture}(20,12)
+  \put(0,0){fuel\_consumption}
+  \put(0,3){manufacturer}
+  \put(0,6){transfer}
+  \put(0,9){car}
+  \end{picture}}
+\put(0,20){\vector(1,0){30}}
+
+% registration/calendar
+\put(80,12){\begin{picture}(10,40)
+  \multiput(0,32)(4,0){3}{\line(1,0){2}}
+  \multiput(10,2)(0,4){8}{\line(0,1){2}}
+  \put(10,1){\circle{2}}
+  \end{picture}}
+
+% auxiliary/calendar
+\put(45,6){\begin{picture}(30,10)
+  \multiput(0,0)(4,0){7}{\line(1,0){2}}
+  \put(29,0){\circle{2}}
+  \end{picture}}
+\put(55,20){\vector(0,-1){14}}
+\put(57,15){months}
+\put(57,18){date}
+
+\end{picture}
+\setlength{\unitlength}{1pt}
+\caption{Complete schema-level model for Registration Authority example
+         (Page 1 of 1).}
+\label{fig:cargschema}
+\end{figure}
+
+The schema \nexp{registration\_authority} is the primary schema. It references
+the noted items from the \nexp{auxiliary} schema; some functions, rules or
+procedures may also be referenced from this schema as well, but the diagram
+cannot show these. This schema also references one or more items from the
+\nexp{calendar} schema. These may be rules, functions or procedures but again
+the diagram cannot show these; alternatively, the entire schema may be
+referenced.
+
+The \nexp{auxiliary} schema references at least two items from the
+\nexp{calendar} schema. Rules, functions and procedures may also be
+referenced, but this cannot be discerned via \ExpressG.
+
+The \nexp{calendar} schema is self-contained as it neither uses nor references
+any other schema.
+
+An entity-level model for the \nexp{registration\_authority} schema is given
+in Figure~\ref{fig:cargreg}. The entity-level model for the \nexp{auxiliary}
+schema is displayed in Figures~\ref{fig:cargaux1} and~\ref{fig:cargaux2}. The
+internals of the \nexp{calendar} schema are shown in Figure~\ref{fig:cargcal}.
+
+\clearpage
+
+%\chapter{The registration authority schema}
+\section{The registration authority schema}
+
+Figure~\ref{fig:cargreg} shows the \nexp{registration\_authority} schema and 
+the entities and types in it.
+
+%\input{(pdes.pdes01.ebook.bkfig)cargreg}
+% cargreg.tex  BOOK  EXPRESS-G of Reg_auth schema  fig:cargreg
+\begin{figure}[htp]
+\center
+\setlength{\unitlength}{1mm}
+\begin{picture}(110,110)
+%\begin{picture}(110,160)\input{gridmm}
+\thicklines
+
+%  history
+\put(5,80){\begin{picture}(100,30)
+
+  \put(0,14){\begin{picture}(20,10)
+    \put(0,0){\framebox(20,10){*history}}
+    \end{picture}}
+
+  \put(70,20){\begin{picture}(30,8)
+    \put(0,0){\dashbox{2}(30,8){auxiliary.car}}
+    \put(15,4){\oval(30,4)}
+    \end{picture}}
+
+  \put(70,10){\begin{picture}(30,8)
+    \put(0,0){\dashbox{2}(30,8){auxiliary.transfer}}
+    \put(15,4){\oval(30,4)}
+    \end{picture}}
+
+  \put(76,0){\begin{picture}(24,4)
+    \put(0,0){\framebox(24,4){BOOLEAN}}
+    \put(22,0){\line(0,1){4}}
+    \end{picture}}
+
+  % history/car and transfer
+  \put(20,14){\begin{picture}(50,10)
+    \multiput(0,2.5)(0,5){2}{\line(1,0){48}}
+    \multiput(49,2.5)(0,5){2}{\circle{2}}
+    \put(25,8.5){\makebox(0,0)[b]{*item}}
+    \put(25,1.5){\makebox(0,0)[t]{*transfers L(0:?)}}
+    \end{picture}}
+
+  % history/boolean
+  \put(0,0){\begin{picture}(76,14)
+    \put(10,2){\line(0,1){12}}
+    \put(10,2){\line(1,0){64}}
+    \put(75,2){\circle{2}}
+    \put(48,3){\makebox(0,0)[b]{(DER) to\_be\_deleted}}
+    \end{picture}}
+
+  \end{picture}}  % end history
+
+% send message
+\put(0,0){\begin{picture}(110,100)
+
+  \put(0,19){\begin{picture}(30,10)
+    \put(0,0){\framebox(30,10){send\_message}}
+    \end{picture}}
+
+  \put(65,60){\begin{picture}(40,8)
+    \put(0,0){\dashbox{2}(40,8){auxiliary.manufacturer}}
+    \put(20,4){\oval(40,4)}
+    \end{picture}}
+
+  \put(60,40){\begin{picture}(50,10)
+    \put(0,0){\framebox(50,10){*authorized\_manufacturer}}
+    \end{picture}}
+
+  \put(86,22){\begin{picture}(24,4)
+    \put(0,0){\framebox(24,4){INTEGER}}
+    \put(22,0){\line(0,1){4}}
+    \end{picture}}
+
+  \put(60,0){\begin{picture}(50,8)
+    \put(0,0){\dashbox{2}(50,8){auxiliary.fuel\_consumption}}
+    \put(25,4){\oval(50,4)}
+    \end{picture}}
+
+  % message/integer
+  \put(30,19){\begin{picture}(56,10)
+    \put(0,5){\line(1,0){54}}
+    \put(55,5){\circle{2}}
+    \put(28,6){\makebox(0,0)[b]{year}}
+    \end{picture}}
+
+  % message/consumption
+  \put(0,0){\begin{picture}(60,19)
+    \put(15,4){\line(0,1){15}}
+    \put(15,4){\line(1,0){43}}
+    \put(59,4){\circle{2}}
+    \put(37.5,5){\makebox(0,0)[b]{max\_consumption}}
+    \end{picture}}
+
+  % message/manufacturer
+  \put(0,29){\begin{picture}(60,20)
+    \put(20,16){\line(0,-1){16}}
+    \put(20,16){\line(1,0){38}}
+    \put(59,16){\circle{2}}
+    \put(40,17){\makebox(0,0)[b]{makers}}
+    \end{picture}}
+
+  % mnfs/auth
+  \put(60,50){\begin{picture}(50,10)
+    \put(25,1){\circle{2}}
+    \multiput(24.75,2)(0.25,0){3}{\line(0,1){8}}
+    \end{picture}}
+
+  % message/mnfs
+  \put(0,29){\begin{picture}(60,40)
+    \put(10,35){\line(0,-1){35}}
+    \put(10,35){\line(1,0){53}}
+    \put(64,35){\circle{2}}
+    \put(37.5,36){\makebox(0,0)[b]{(DER) excessives}}
+    \end{picture}}
+
+  \end{picture}}  % end send message
+
+\end{picture}
+\setlength{\unitlength}{1pt}
+\caption{Complete entity-level model of the Registration Authority schema
+         (Page 1 of 1).}
+\label{fig:cargreg}
+\end{figure}
+
+There are three entities altogether, namely \nexp{send\_message},
+\nexp{history} and \nexp{authorized\_manufacturer}. There are constraints on
+the two latter entities. The entity \nexp{authorized\_manufacturer} is a
+subtype of the entity \nexp{manufacturer} which is defined in the
+\nexp{auxiliary} schema.
+
+There are no types defined within the schema.
+
+\clearpage
+
+%\chapter{The auxiliary schema}
+\section{The auxiliary schema}
+
+The nexp{auxiliary} schema contains too many items to be displayed on a single
+page. Figures~\ref{fig:cargaux1} and~\ref{fig:cargaux2} show the entities and
+types that are contained in the schema.
+
+%\input{(pdes.pdes01.ebook.bkfig)cargaux1}
+% cargaux1.tex  BOOK  EXPRESS-G of Auxiliary (1) schema  fig:cargaux1
+\begin{figure}[htp]
+\center
+\setlength{\unitlength}{1mm}
+\begin{picture}(110,110)
+%\begin{picture}(110,160)\input{gridmm}
+\thicklines
+
+% ident #
+\put(10,0){\begin{picture}(90,4)
+
+  \put(0,0){\begin{picture}(15,4)
+    \put(7.5,2){\oval(15,4)}
+    \put(7.5,2){\makebox(0,0){1,3 (2)}}
+    \end{picture}}
+
+  \put(25,0){\dashbox{1}(30,4){identification\_no}}
+
+  \put(65,0){\begin{picture}(24,4)
+    \put(0,0){\framebox(24,4){STRING}}
+    \put(22,0){\line(0,1){4}}
+    \end{picture}}
+
+  % ref/id #
+  \put(15,2){\line(1,0){8}}
+  \put(24,2){\circle{2}}
+
+  % no/string
+  \put(55,2){\line(1,0){8}}
+  \put(64,2){\circle{2}}
+
+  \end{picture}} % end ident #
+
+%  car model
+\put(0,20){\begin{picture}(110,45)
+
+  \put(50,0){\begin{picture}(30,4)
+    \put(15,2){\oval(30,4)}
+    \put(15,2){\makebox(0,0){2,2 manufacturer}}
+    \end{picture}}
+
+  \put(0,10){\framebox(20,10){car\_model}}
+
+  \put(50,10){\dashbox{1}(30,4){*fuel\_consumption}}
+
+  \put(86,10){\begin{picture}(24,4)
+    \put(0,0){\framebox(24,4){REAL}}
+    \put(22,0){\line(0,1){4}}
+    \end{picture}}
+
+  \put(70,16){\dashbox{1}(10,4){name}}
+
+  \put(86,16){\begin{picture}(24,4)
+    \put(0,0){\framebox(24,4){STRING}}
+    \put(22,0){\line(0,1){4}}
+    \end{picture}}
+
+  % ref into model
+  \put(2.5,30){\begin{picture}(15,4)
+    \put(7.5,2){\oval(15,4)}
+    \put(7.5,2){\makebox(0,0){1,1 (2)}}
+    \put(7.5,0){\line(0,-1){8}}
+    \put(7.5,-9){\circle{2}}
+    \end{picture}}
+
+  % ref into name
+  \put(67.5,30){\begin{picture}(15,4)
+    \put(7.5,2){\oval(15,4)}
+    \put(7.5,2){\makebox(0,0){1,2 (2)}}
+    \put(7.5,0){\line(0,-1){8}}
+    \put(7.5,-9){\circle{2}}
+    \end{picture}}
+
+  % model/mnfr
+  \put(0,0){\begin{picture}(50,10)
+    \put(10,2){\line(0,1){8}}
+    \put(10,2){\line(1,0){40}}
+    \put(30,3){\makebox(0,0)[b]{made\_by}}
+    \end{picture}}
+
+  % model/fuel/real
+  \put(20,10){\begin{picture}(70,10)
+    \put(0,2){\line(1,0){28}}
+    \put(29,2){\circle{2}}
+    \put(15,1){\makebox(0,0)[t]{consumption}}
+    \put(60,2){\line(1,0){4}}
+    \put(65,2){\circle{2}}
+    \end{picture}}
+
+  % model/name/string
+  \put(20,10){\begin{picture}(70,10)
+    \put(0,8){\line(1,0){48}}
+    \put(49,8){\circle{2}}
+    \put(15,9){\makebox(0,0)[b]{*called}}
+    \put(60,8){\line(1,0){4}}
+    \put(65,8){\circle{2}}
+    \end{picture}}
+
+  \end{picture}} % end car model
+
+% transfer
+\put(5,80){\begin{picture}(100,30)
+
+  \put(70,0){\begin{picture}(30,8)
+    \put(0,0){\dashbox{2}(30,8){calendar.date}}
+    \put(15,4){\oval(30,4)}
+    \end{picture}}
+
+  \put(0,10){\framebox(20,10){transfer}}
+
+  \put(70,13){\begin{picture}(20,4)
+    \put(10,2){\oval(20,4)}
+    \put(10,2){\makebox(0,0){2,1 owner}}
+    \end{picture}}
+
+  \put(70,23){\begin{picture}(20,4)
+    \put(10,2){\oval(20,4)}
+    \put(10,2){\makebox(0,0){2,3 car}}
+    \end{picture}}
+
+  % transfer/date
+  \put(0,0){\begin{picture}(70,10)
+    \put(10,4){\line(0,1){6}}
+    \put(10,4){\line(1,0){60}}
+    \put(40,3){\makebox(0,0)[t]{on}}
+    \end{picture}}
+
+  % transfer/owner
+  \put(20,10){\begin{picture}(50,10)
+    \multiput(0,2)(0,6){2}{\line(1,0){40}}
+    \put(40,2){\line(0,1){6}}
+    \put(40,5){\line(1,0){10}}
+    \put(20,1){\makebox(0,0)[t]{*prior}}
+    \put(20,9){\makebox(0,0)[b]{*new}}
+    \end{picture}}
+
+  % transfer/car
+  \put(0,20){\begin{picture}(70,10)
+    \put(10,5){\line(0,-1){5}}
+    \put(10,5){\line(1,0){60}}
+    \put(40,6){\makebox(0,0)[b]{*item}}
+    \end{picture}}
+
+  \end{picture}}  % end transfer
+
+\end{picture}
+\setlength{\unitlength}{1pt}
+\caption{Complete entity-level model of the Auxiliary schema
+         (Page 1 of 2).}
+\label{fig:cargaux1}
+\end{figure}
+
+%\input{(pdes.pdes01.ebook.bkfig)cargaux2}
+% cargaux2.tex  BOOK  EXPRESS-G of Auxiliary (2) schema  fig:cargaux2
+\begin{figure}[htp]
+\center
+\setlength{\unitlength}{1mm}
+\begin{picture}(110,160)
+%\begin{picture}(110,160)\input{gridmm}
+\thicklines
+
+% Owner tree
+\put(0,0){\begin{picture}(110,100)
+
+  % Integer/garage
+  \put(38,0){\begin{picture}(24,15)
+    \put(0,0){\framebox(24,4){INTEGER}}
+    \put(22,0){\line(0,1){4}}
+    \put(12,6){\line(0,1){9}}
+    \put(12,5){\circle{2}}
+    \put(13,11){(DER)}
+    \put(13,8){no\_of\_mnfs}
+    \end{picture}}
+
+  % ref into mnf
+  \put(7.5,0){\begin{picture}(15,15)
+    \put(7.5,2){\oval(15,4)}
+    \put(7.5,2){\makebox(0,0){2,2 (1)}}
+    \put(7.5,4){\line(0,1){11}}
+    \end{picture}}
+
+  \put(0,15){\framebox(30,10){manufacturer}}
+
+  \put(40,15){\framebox(20,10){garage}}
+
+  \put(70,15){\framebox(20,10){person}}
+
+  \put(25,40){\framebox(40,10){(ABS) named\_owner}}
+
+  \put(30,65){\framebox(30,10){(ABS) owner}}
+
+  \put(80,55){\framebox(20,10){group}}
+
+  % owner/name ref
+  \put(65,40){\begin{picture}(40,10)
+    \put(15,3){\begin{picture}(20,4)
+      \put(10,2){\oval(20,4)}
+      \put(10,2){\makebox(0,0){1,2 name}}
+      \end{picture}}
+    \put(0,5){\line(1,0){15}}
+    \put(7.5,6){\makebox(0,0)[b]{*called}}
+    \end{picture}}
+
+  % named subtypes connections
+  \put(20,25){\begin{picture}(70,15)
+    \multiput(0,0)(30,0){3}{\begin{picture}(1,10)
+      \put(0,1){\circle{2}}
+      \multiput(-0.25,2)(0.25,0){3}{\line(0,1){8}}
+      \end{picture}}
+    \multiput(0,9.75)(0,0.25){3}{\line(1,0){60}}
+    \multiput(24.75,10)(0.25,0){3}{\line(0,1){5}}
+    \put(26,11){1}
+    \end{picture}}
+
+  % owner/named/group subtype connections
+  \put(45,50){\begin{picture}(40,15)
+    \put(0,1){\circle{2}}
+    \multiput(-0.25,2)(0.25,0){3}{\line(0,1){13}}
+    \multiput(0,9.75)(0,0.25){3}{\line(1,0){33}}
+    \put(34,10){\circle{2}}
+    \put(1,11){1}
+    \end{picture}}
+
+  % group/person connection
+  \put(90,15){\begin{picture}(15,50)
+    \put(1,5){\circle{2}}
+    \put(15,5){\line(-1,0){13}}
+    \put(15,5){\line(0,1){40}}
+    \put(15,45){\line(-1,0){5}}
+    \put(14,22){\makebox(0,0)[br]{members}}
+    \put(14,20){\makebox(0,0)[tr]{S(1:?)}}
+
+    \end{picture}}
+
+%    \multiput(24.75,2)(0.25,0){3}{\line(0,1){8}}
+
+  \end{picture}} % end owner tree
+
+%  car tree
+  \put(0,90){\begin{picture}(70,110)
+
+    \put(0,10){\framebox(30,28){car}}
+
+    % destroyed car and sub
+    \put(0,60){\begin{picture}(30,10)
+      \put(0,0){\framebox(30,10){destroyed\_car}}
+      \multiput(19.75,-2)(0.25,0){3}{\line(0,-1){20}}
+      \put(20,-1){\circle{2}}
+      \end{picture}}
+
+    \put(70,61){\begin{picture}(30,8)
+      \put(0,0){\dashbox{2}(30,8){calendar.date}}
+      \put(15,4){\oval(30,4)}
+      \end{picture}}
+
+    \put(80,0){\begin{picture}(30,4)
+      \put(15,2){\oval(30,4)}
+      \put(15,2){\makebox(0,0){1,1 car\_model}}
+      \end{picture}}
+
+    \put(70,16){\begin{picture}(40,4)
+      \put(20,2){\oval(40,4)}
+      \put(20,2){\makebox(0,0){1,3 identification\_no}}
+      \end{picture}}
+
+    \put(86,28){\begin{picture}(24,4)
+      \put(0,0){\framebox(24,4){INTEGER}}
+      \put(22,0){\line(0,1){4}}
+      \end{picture}}
+
+    % ref into car
+    \put(0,38){\begin{picture}(15,15)
+      \put(7.5,12){\oval(15,4)}
+      \put(7.5,12){\makebox(0,0){2,3 (1)}}
+      \put(7.5,10){\line(0,-1){10}}
+      \end{picture}}
+
+    % car/model
+    \put(0,0){\begin{picture}(80,10)
+      \put(20,2){\line(0,1){8}}
+      \put(20,2){\line(1,0){60}}
+      \put(50,3){\makebox(0,0)[b]{model\_type}}
+      \end{picture}}
+
+    % car/id
+    \put(30,10){\begin{picture}(60,20)
+      \multiput(0,2)(0,12){2}{\line(1,0){60}}
+      \multiput(60,2)(0,8){2}{\line(0,1){4}}
+      \put(20,3){\makebox(0,0)[b]{*registration\_no}}
+      \put(20,13){\makebox(0,0)[t]{*mnfg\_no}}
+      \end{picture}}
+
+    % car/integer
+    \put(30,10){\begin{picture}(60,28)
+      \put(0,20){\line(1,0){54}}
+      \put(55,20){\circle{2}}
+      \put(20,21){\makebox(0,0)[b]{*production\_year}}
+      \end{picture}}
+
+    % destroyed/date
+    \put(30,60){\begin{picture}(40,10)
+      \put(0,5){\line(1,0){40}}
+      \put(20,6){\makebox(0,0)[b]{*destroyed\_on}}
+      \end{picture}}
+
+    % car/date
+    \put(30,10){\begin{picture}(50,60)
+      \put(0,26){\line(1,0){50}}
+      \put(50,26){\line(0,1){25}}
+      \put(20,27){\makebox(0,0)[b]{*production\_date}}
+      \end{picture}}
+
+    \end{picture}} % end car tree
+
+  % car/manufacturer
+  \put(0,25){\begin{picture}(30,75)
+     \put(10,1){\circle{2}}
+     \put(10,2){\line(0,1){73}}
+     \put(11,60){(DER)}
+     \put(11,57){*made\_by}
+     \end{picture}}
+
+\end{picture}
+\setlength{\unitlength}{1pt}
+\caption{Complete entity-level model of the Auxiliary schema
+         (Page 2 of 2).}
+\label{fig:cargaux2}
+\end{figure}
+
+The schema contains the following entities:
+
+\begin{itemize}
+
+\item \nexp{car}
+
+\item \nexp{car\_model}
+
+\item \nexp{destroyed\_car}, which is a subtype of \nexp{car}
+
+\item \nexp{garage}, which is a subtype of \nexp{named\_owner}
+
+\item \nexp{group}, which is a subtype of \nexp{owner}
+
+\item \nexp{manufacturer}, which is a subtype of \nexp{named\_owner}
+
+\item \nexp{named\_owner}, which is an abstract supertype and also a subtype
+of \nexp{owner}. It puts a \zoneof\ constraint on its subtypes.
+
+\item \nexp{owner}, which is an abstract supertype and puts a \zoneof\
+constraint on its subtypes.
+
+\item \nexp{person}, which is a subtype of \nexp{named\_owner}
+
+\item \nexp{transfer}
+
+\end{itemize}
+
+It also contains the following types:
+
+\begin{itemize}
+
+\item \nexp{identification\_no}, a defined data type with a base-type of
+\zstring\
+
+\item \nexp{fuel\_consumption}, a defined data type with a base-type of
+\zreal\
+
+\item \nexp{name}, a defined data type with a base-type of \zstring\
+
+\end{itemize}
+
+\clearpage
+%\chapter{The calendar schema}
+\section{The calendar schema}
+
+Figure~\ref{fig:cargcal} shows the entities and types within the
+\nexp{calendar} schema.
+
+%\input{(pdes.pdes01.ebook.bkfig)cargcal}
+% cargcal.tex  BOOK EXPRESS-G calendar schema  fig:cargcal
+\begin{figure}[htp]
+\center
+\setlength{\unitlength}{1mm}
+\begin{picture}(85,22)
+%\begin{picture}(110,160)\input{gridmm}
+\thicklines
+
+\put(0,10){\begin{picture}(20,10)
+  \put(0,0){\framebox(20,10){*date}}
+  \end{picture}}
+
+\put(60,13){\begin{picture}(24,4)
+  \put(0,0){\framebox(24,4){INTEGER}}
+  \put(22,0){\line(0,1){4}}
+  \end{picture}}
+
+\put(60,0){\begin{picture}(24,4)
+  \put(0,0){\dashbox{1}(24,4){months}}
+  \multiput(22,0.5)(0,2){2}{\line(0,1){1}}
+  \end{picture}}
+
+% date/months
+\put(10,0){\begin{picture}(50,10)
+  \put(0,2){\line(0,1){8}}
+  \put(0,2){\line(1,0){48}}
+  \put(49,2){\circle{2}}
+  \put(25,3){\makebox(0,0)[b]{month}}
+  \end{picture}}
+
+% date/integer
+\put(20,10){\begin{picture}(40,12)
+  \multiput(0,2.5)(0,5){2}{\line(1,0){30}}
+  \put(30,2.5){\line(0,1){5}}
+  \put(30,5){\line(1,0){8}}
+  \put(39,5){\circle{2}}
+  \put(15,1.5){\makebox(0,0)[t]{*year}}
+  \put(15,8.5){\makebox(0,0)[b]{*day}}
+  \end{picture}}
+
+\end{picture}
+\setlength{\unitlength}{1pt}
+\caption{Complete entity-level model of Calendar schema (Page 1 of 1).}
+\label{fig:cargcal}
+\end{figure}
+
+There is one entity called \nexp{date} and one enumeration type called 
+\nexp{months}. 
+
+\end{document}
+
