@@ -7,7 +7,7 @@ sub mpost {
     my $file = $_[0];
     my ($name, $path) =  fileparse( $file );
     pushd( $path );
-    my $return = system "mpost $name" ;
+    my $return = system "mpost -tex=latex $name" ;
     popd();
     return $return;
 }
