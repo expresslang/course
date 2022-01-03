@@ -15,3 +15,8 @@ jobs:
         with:
           cmd: latexmk
           path: tex
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pdfs
+          path: tex/*.pdf
