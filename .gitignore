@@ -1,0 +1,10 @@
+*.log
+*.aux
+*.fdb_latexmk
+*.fls
+*.lof
+*.toc
+*.cut
+
+*.[0-9]
+*.[0-9][0-9]
