@@ -5,11 +5,6 @@
 %\documentclass[article]{memoir}
 \documentclass{article}
 \usepackage{ifpdf}
-
-\ifpdf
-  \pdfoutput=1
-\fi
-
 \usepackage{egs}
 \usepackage{xkw}
 
@@ -35,7 +30,7 @@
 \makeatletter \@topnum\z@ \makeatother
 \section{Introduction}
 
-This document contains a complete \ExpressG\ representation of the 
+This document contains a complete \ExpressG\ representation of the
 Car Registration Authority example model. There are details which cannot
 be expressed using the \ExpressG\ iconic language but which can be described
 using the \Express\ lexical language.
@@ -133,7 +128,7 @@ internals of the \nexp{calendar} schema are shown in Figure~\ref{fig:cargcal}.
 %\chapter{The registration authority schema}
 \section{The registration authority schema}
 
-Figure~\ref{fig:cargreg} shows the \nexp{registration\_authority} schema and 
+Figure~\ref{fig:cargreg} shows the \nexp{registration\_authority} schema and
 the entities and types in it.
 
 %\input{(pdes.pdes01.ebook.bkfig)cargreg}
@@ -700,8 +695,8 @@ Figure~\ref{fig:cargcal} shows the entities and types within the
 \label{fig:cargcal}
 \end{figure}
 
-There is one entity called \nexp{date} and one enumeration type called 
-\nexp{months}. 
+There is one entity called \nexp{date} and one enumeration type called
+\nexp{months}.
 
 \end{document}
 

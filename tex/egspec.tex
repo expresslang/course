@@ -6,11 +6,6 @@
 \documentclass{article}
 \usepackage{ifpdf}
 
-\ifpdf
-  \pdfoutput=1
-\fi
-
-
 %\addtolength{\textheight}{4\onelineskip}
 %\maxsecnumdepth{part}
 
@@ -31,7 +26,7 @@
 \section{Introduction}
 
 
-   The model statement, which is given in sections~\ref{scope} 
+   The model statement, which is given in sections~\ref{scope}
 and~\ref{description}, has been taken from ISO TR9007 \textit{Information
 processing systems --- Concepts and terminology for the conceptual
 schema and the information base}, 1987. This contains several renditions
@@ -132,103 +127,103 @@ recorded.
 \begin{enumerate}
 \item Do the following:
   \begin{enumerate}
-  \item Write an information model that describes the logical content of 
-        a report. Assume that a report consists of a title and one or 
-        more authors, together with the publication date. It may have 
+  \item Write an information model that describes the logical content of
+        a report. Assume that a report consists of a title and one or
+        more authors, together with the publication date. It may have
         an abstract and may have a table of
         contents. The body of the report consists of at least two sections.
         Further divisions of the report are subsections and sub-subsections.
         Figures and tables may also be included within any sub-subsection, or
         higher level partitions. The report may have a bibliography.
-  \item Write an information model that describes a book. A book is similar 
-        to a report with the following exceptions. A book may consist of 
-        two or more parts, each of which must contain two or more chapters. 
-        Each chapter contains at least two sections. There is always a table 
-        of contents and there is never an abstract, although it may have 
+  \item Write an information model that describes a book. A book is similar
+        to a report with the following exceptions. A book may consist of
+        two or more parts, each of which must contain two or more chapters.
+        Each chapter contains at least two sections. There is always a table
+        of contents and there is never an abstract, although it may have
         a preface which serves the same purpose. A book may have an index.
   \item Does the above description apply to all books?
-  \item Create an information model that supports both reports and books. 
-        Include anything extra that you feel is necessary that is missing 
+  \item Create an information model that supports both reports and books.
+        Include anything extra that you feel is necessary that is missing
         from the above descriptions.
   \end{enumerate}
 
 \item Write an information model corresponding to the following description.
 
-    An international company has a number of ongoing development projects. 
-A project has a unique name and is located in a specific city. There are 
+    An international company has a number of ongoing development projects.
+A project has a unique name and is located in a specific city. There are
 a number of suppliers to the company. The suppliers have names and may have
-several branches, each in a different city. Suppliers with identical names 
-do not have branches in the same city. A supplier may supply one or more 
-different kinds of parts to the company. A part is identified by a catalogue 
-number, and also has a short description. Projects purchase parts from 
-the nearest location which stocks the part. The company keeps a record 
+several branches, each in a different city. Suppliers with identical names
+do not have branches in the same city. A supplier may supply one or more
+different kinds of parts to the company. A part is identified by a catalogue
+number, and also has a short description. Projects purchase parts from
+the nearest location which stocks the part. The company keeps a record
 of the purchase orders (i.e., part, supplier, and quantity) of each project.
 
 \item Write an information model corresponding to the following description.
 
-    A University is organised into academic, research and administrative 
-departments. Administrative staff may work in any kind of department, but 
-neither academic staff nor research staff work in the administrative 
-departments. Academic staff teach courses and may do research work. 
-Research staff are limited to research work only. Administrative staff 
-neither teach nor do research. All undergraduate and some graduate 
-students attend courses. There is a fee for each course, the amount of 
-which differs according to the course. Students are graded on each course 
-they attend, with a grade having a value between 0 and 100. It is a 
-tradition, however, of the University that no student has ever been 
-graded at either 0 or 100. Some undergraduate students may be employed 
-part-time to assist the administrative staff, but only if their grade 
+    A University is organised into academic, research and administrative
+departments. Administrative staff may work in any kind of department, but
+neither academic staff nor research staff work in the administrative
+departments. Academic staff teach courses and may do research work.
+Research staff are limited to research work only. Administrative staff
+neither teach nor do research. All undergraduate and some graduate
+students attend courses. There is a fee for each course, the amount of
+which differs according to the course. Students are graded on each course
+they attend, with a grade having a value between 0 and 100. It is a
+tradition, however, of the University that no student has ever been
+graded at either 0 or 100. Some undergraduate students may be employed
+part-time to assist the administrative staff, but only if their grade
 is 75 or more. All staff get paid a salary, the amount of which depends
 on their position. Graduate students do research. They may teach not more than
 two courses, and are paid at a fixed rate per course. No person under the age
-of 18 may be paid, and the retirement age is 65. 
+of 18 may be paid, and the retirement age is 65.
 
-\item  Write an information model about the delivery of items 
+\item  Write an information model about the delivery of items
 according to the following description.
 
-    The currency of Fluidistan is the G. This is divided into the 
-smaller p and z units, where G1 = 8p and 1p = 16z. The amount 190z, 
-for example, is written as G1-7-12. Linear measures in Fluidistan are 
-the inch and foot, where 1 foot equals 12 inches. The weight measures 
+    The currency of Fluidistan is the G. This is divided into the
+smaller p and z units, where G1 = 8p and 1p = 16z. The amount 190z,
+for example, is written as G1-7-12. Linear measures in Fluidistan are
+the inch and foot, where 1 foot equals 12 inches. The weight measures
 are the pound and ounce, where 1 pound is 16 ounces.
 
-    The government of Fluidistan operate a mail delivery service for 
-certain kinds of item. There are also private delivery services which 
-will accept any kind of item. The following are the regulations governing 
+    The government of Fluidistan operate a mail delivery service for
+certain kinds of item. There are also private delivery services which
+will accept any kind of item. The following are the regulations governing
 the Fluidistan mail service.
 \begin{description}
-\item[Post Cards:] The card rate is 1p~3z. To qualify for the card rate 
-a postcard must be of a uniform thickness and no thinner than 0.007 inches. 
+\item[Post Cards:] The card rate is 1p~3z. To qualify for the card rate
+a postcard must be of a uniform thickness and no thinner than 0.007 inches.
 It must be no larger than 4.25 by 6 inches and no smaller than 3.5 by 5 inches.
 
-\item[Letters:] The letter rate is 1p~13z for letters weighing one ounce 
-or less. The rate increases by 1p~6z for each additional ounce or part 
-thereof. An item weighing more than 11 ounces cannot be sent at the 
-letter rate. Letters less than one ounce are non-standard if the length 
-is greater than 11.5 inches or the height is greater than 6.125 inches 
-or the thickness is greater than 0.25 inches or the length to height 
-ratio is not between 1.3 and 2.5 inclusive. Non-standard letters are 
+\item[Letters:] The letter rate is 1p~13z for letters weighing one ounce
+or less. The rate increases by 1p~6z for each additional ounce or part
+thereof. An item weighing more than 11 ounces cannot be sent at the
+letter rate. Letters less than one ounce are non-standard if the length
+is greater than 11.5 inches or the height is greater than 6.125 inches
+or the thickness is greater than 0.25 inches or the length to height
+ratio is not between 1.3 and 2.5 inclusive. Non-standard letters are
 subject to a surcharge of 10z in addition to the standard rate.
 
-\item[Parcels:] The parcel rate is G2-4-2 for items not exceeding two 
-pounds in weight. The rate increases by by 2p~11z for each additional 
-pound or part thereof, provided the weight is not greater than ten pounds. 
-Above ten pounds the rate increases by 2p~8z for each additional pound 
-or part thereof. Note: Parcels weighing less than fifteen pounds and 
-whose length plus girth exceeds seven feet are chargeable at the 
+\item[Parcels:] The parcel rate is G2-4-2 for items not exceeding two
+pounds in weight. The rate increases by by 2p~11z for each additional
+pound or part thereof, provided the weight is not greater than ten pounds.
+Above ten pounds the rate increases by 2p~8z for each additional pound
+or part thereof. Note: Parcels weighing less than fifteen pounds and
+whose length plus girth exceeds seven feet are chargeable at the
 fifteen pound rate.
 
-\item[Size Standards:] Items whose thickness is less than 0.007 inches 
-are not accepted for delivery. Items less than 0.25 inches in thickness 
-must be rectangular in shape and at least 3.5 inches high and at 
-least 5 inches long. Items weighing more than 70 pounds are not accepted 
+\item[Size Standards:] Items whose thickness is less than 0.007 inches
+are not accepted for delivery. Items less than 0.25 inches in thickness
+must be rectangular in shape and at least 3.5 inches high and at
+least 5 inches long. Items weighing more than 70 pounds are not accepted
 for delivery.
 
 \item[Environmental:] Neither hazardous materials nor live or dead animals
- will be accepted for delivery. All items, except cards, must be enclosed 
-in some wrapping. Items enclosed in environmentally sound and recycleable 
-wrapping are entitled to a discount of ten percent of the applicable rate; 
-if this results in a fraction of a z, the rate is rounded up to the 
+ will be accepted for delivery. All items, except cards, must be enclosed
+in some wrapping. Items enclosed in environmentally sound and recycleable
+wrapping are entitled to a discount of ten percent of the applicable rate;
+if this results in a fraction of a z, the rate is rounded up to the
 nearest z.
 
 \end{description}

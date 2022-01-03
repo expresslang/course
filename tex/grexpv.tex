@@ -1,15 +1,10 @@
 % grexpv.tex               EXPRESS-G VIEWGRAPHS
-\documentclass[11pt]{article} 
+\documentclass[11pt]{article}
 \usepackage{vgraph}
 \usepackage{headfoot}
 \usepackage{ifpdf}
-\ifpdf
-  \pdfoutput=1
-  \usepackage[pdftex,final]{graphicx}
-  \DeclareGraphicsRule{*}{mps}{*}{}
-\else
-  \usepackage[final]{graphicx}
-\fi
+\usepackage{graphicx}
+% \DeclareGraphicsRule{*}{mps}{*}{}
 
 %%%%\notestrue
 \notesfalse
@@ -64,17 +59,17 @@ that they had some user experiences to guide them.
 
 \vtitle{EXPRESS-G}
 
-    EXPRESS-G is a graphical subset of EXPRESS lexical language and 
+    EXPRESS-G is a graphical subset of EXPRESS lexical language and
 has evolved from a variety of sources.
 
 \begin{description}
-\item[10/88]: EXPRESSAM (Bruce Lownsbery, Lawrence Livermore Lab) 
+\item[10/88]: EXPRESSAM (Bruce Lownsbery, Lawrence Livermore Lab)
               based on NIAM.
 \item[2/89]: GREXP (Peter Wilson, GE) BLA  (boxes, lines, annotation) with
              multiple levels of abstraction and any amount of text.
-\item[11/89]: ExpressGraph (Curt Parks, NIST \& John Zimmerman, Allied Bendix) 
+\item[11/89]: ExpressGraph (Curt Parks, NIST \& John Zimmerman, Allied Bendix)
               simplified version of EXPRESSAM.
-\item[2/90]: EXPRESS-G (EXPRESS Committee) 
+\item[2/90]: EXPRESS-G (EXPRESS Committee)
 \end{description}
 
 \begin{remarks}
@@ -120,7 +115,7 @@ no training. (Hopefully even non-technical managers would feel comfortable).
     Different levels of abstraction (detail) would be available.
 
     Importantly, it was known that EXPRESS-G models would be published
-in reports on normal sized paper, so there had to be a means of splitting 
+in reports on normal sized paper, so there had to be a means of splitting
 a large diagram across a number of pages.
 
     The icons had to be simple so simple drawing programs could be used
@@ -128,7 +123,7 @@ a large diagram across a number of pages.
 
     It would be useful to be able to develop software to go between
 EXPRESS and EXPRESS-G modeling.
-    
+
 
 \remend
 \end{remarks}
@@ -223,7 +218,7 @@ PAGE 2 OF 2
 \remtitle{Definition Symbols}
 
 These are the symbols for representing the structural elements of EXPRESS,
-principally TYPE, ENTITY and SCHEMA. 
+principally TYPE, ENTITY and SCHEMA.
 
 SUBTYPE\_CONSTRAINT is a late addition.
 
@@ -328,7 +323,7 @@ SCHEMA
 \remintro
 \remtitle{Relationship Symbols}
 
-    Lines are used to indicate relationships between definitions. 
+    Lines are used to indicate relationships between definitions.
 
     The thickness of the line is meant to be indicative of the strength
 of the relationship.

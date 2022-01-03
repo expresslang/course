@@ -6,10 +6,6 @@
 \documentclass{article}
 \usepackage{ifpdf}
 
-\ifpdf
-  \pdfoutput=1
-\fi
-
 \usepackage{egs}
 
 %\maxsecnumdepth{subsubsection}
@@ -38,8 +34,8 @@
 \section{Introduction}
 
  This document contains a complete and documented \Express\ model for the
-Car Registration Authority example; an \ExpressG\ version of the model is also 
-included. 
+Car Registration Authority example; an \ExpressG\ version of the model is also
+included.
 
 \section{Scope}
 
@@ -62,9 +58,9 @@ construction to destruction of the car;
 
 \section{Model overview}
 
-    The model is described using both \Express\ and \ExpressG. The \Express\ 
-definitions are primary and the \ExpressG\ diagrams are to assist in 
-understanding the primary model. If there is any conflict between the 
+    The model is described using both \Express\ and \ExpressG. The \Express\
+definitions are primary and the \ExpressG\ diagrams are to assist in
+understanding the primary model. If there is any conflict between the
 \Express\ and \ExpressG, then the \Express\ takes precedence.
 
 %\input{/rdrc/design/pwilson/Pbooks/Ebook/Bkfigs/cargschema}
@@ -132,10 +128,10 @@ understanding the primary model. If there is any conflict between the
 
 
 
-    The model consists of three schemas, as shown in \fref{fig:cargschema}. 
-The schema \nexp{authority} is the primary schema. It references items from 
-the two ancilliary schemas, namely \nexp{support} and \nexp{calendar}. 
-The \nexp{support} schema also references items from the \nexp{calendar} 
+    The model consists of three schemas, as shown in \fref{fig:cargschema}.
+The schema \nexp{authority} is the primary schema. It references items from
+the two ancilliary schemas, namely \nexp{support} and \nexp{calendar}.
+The \nexp{support} schema also references items from the \nexp{calendar}
 schema.
 
 \section{Authority schema}
@@ -147,8 +143,8 @@ schema.
 This schema is the primary one in the model and is principally concerned
 with the main functions of the Registration Authority.
 
-The schema imports definitions from two sources, namely the \nexp{support} 
-and the \nexp{calendar} schemas. 
+The schema imports definitions from two sources, namely the \nexp{support}
+and the \nexp{calendar} schemas.
 
      Figure~\ref{fig:cargreg} is an \ExpressG\ complete entity-level model
  for this schema.
@@ -414,8 +410,8 @@ and the \nexp{calendar} schemas.
  \item[makers:] The \nexp{authorized manufacturers} operating during the
  \nexp{year}.
 
- \item[excessives:] The \nexp{manufacturers} whose cars exceed the consumption 
- limit. 
+ \item[excessives:] The \nexp{manufacturers} whose cars exceed the consumption
+ limit.
 
  \end{Matts}
 
@@ -526,9 +522,9 @@ and the \nexp{calendar} schemas.
  \begin{verbatim}
  *)
  FUNCTION too_old(par : history) : BOOLEAN;
-   (* The function returns TRUE if the input history is 
-      outdated. That is, if it is of an item that was destroyed 
-      more than 2 years ago. *) 
+   (* The function returns TRUE if the input history is
+      outdated. That is, if it is of an item that was destroyed
+      more than 2 years ago. *)
    IF ('SUPPORT.DESTROYED_CAR' IN par.item) THEN
      IF (current_date.year-par.item.destroyed_on.year >= 2) THEN
        RETURN(TRUE);
@@ -566,8 +562,8 @@ and the \nexp{calendar} schemas.
  \begin{verbatim}
  *)
  FUNCTION exchange_ok(par : LIST OF transfer) : BOOLEAN;
-   (* returns TRUE if the "to owner" in the N'th transfer of a 
-      car is the "from owner" in the N+1'th transfer *) 
+   (* returns TRUE if the "to owner" in the N'th transfer of a
+      car is the "from owner" in the N+1'th transfer *)
    REPEAT i := 1 TO (SIZEOF(par) - 1);
      IF (par[i].new :<>: par[i+1].prior) THEN
        RETURN (FALSE);
@@ -602,7 +598,7 @@ and the \nexp{calendar} schemas.
  \begin{verbatim}
  *)
  FUNCTION single_car(par : history) : BOOLEAN;
-   (* returns TRUE if a history is of a single car *) 
+   (* returns TRUE if a history is of a single car *)
    REPEAT i := 1 TO SIZEOF(par.transfers);
      IF (par.item :<>: par.transfers[i].item) THEN
        RETURN (FALSE);
@@ -621,21 +617,21 @@ and the \nexp{calendar} schemas.
  Entities in upper case characters are defined in this schema. Entities in
  lower case characters are defined in other schemas.
 
- \begin{small} 
+ \begin{small}
  \begin{verbatim}
  HISTORY
  manufacturer (in schema support)
    AUTHORIZED_MANUFACTURER
  SEND_MESSAGE
- \end{verbatim} 
+ \end{verbatim}
  \end{small}
 
- \begin{small} 
+ \begin{small}
  \begin{verbatim}
  *)
  END_SCHEMA;  -- end of authority schema
  (*
- \end{verbatim} 
+ \end{verbatim}
  \end{small}
 
  \section{Support schema}
@@ -645,7 +641,7 @@ and the \nexp{calendar} schemas.
      This schema contains supporting definitions for the primary
  \nexp{authority} schema.
 
-     An \ExpressG\ model of the contents of this schema is given in 
+     An \ExpressG\ model of the contents of this schema is given in
  \fref{fig:cargaux1} and in \fref{fig:cargaux2}.
 
 
@@ -822,12 +818,12 @@ END_TYPE;
     \put(10,2){\oval(20,4)}
     \put(10,2){\makebox(0,0){2,1 owner}}
     \end{picture}}
-  
+
   \put(70,23){\begin{picture}(20,4)
     \put(10,2){\oval(20,4)}
     \put(10,2){\makebox(0,0){2,3 car}}
     \end{picture}}
-  
+
   % transfer/date
   \put(0,0){\begin{picture}(70,10)
     \put(10,4){\line(0,1){6}}
@@ -944,7 +940,7 @@ END_TYPE;
     \multiput(0,0)(30,0){3}{\begin{picture}(1,10)
       \put(0,1){\circle{2}}
       \multiput(-0.25,2)(0.25,0){3}{\line(0,1){8}}
-      \end{picture}} 
+      \end{picture}}
     \multiput(0,9.75)(0,0.25){3}{\line(1,0){60}}
     \multiput(24.75,10)(0.25,0){3}{\line(0,1){5}}
     \put(26,11){1}
@@ -968,7 +964,7 @@ END_TYPE;
     \put(14,22){\makebox(0,0)[br]{members}}
     \put(14,20){\makebox(0,0)[tr]{S[1:?]}}
 
-    \end{picture}}  
+    \end{picture}}
 
 %    \multiput(24.75,2)(0.25,0){3}{\line(0,1){8}}
 
@@ -1032,7 +1028,7 @@ END_TYPE;
     \put(30,10){\begin{picture}(60,28)
       \put(0,20){\line(1,0){54}}
       \put(55,20){\circle{2}}
-      \put(20,21){\makebox(0,0)[b]{*production\_year}} 
+      \put(20,21){\makebox(0,0)[b]{*production\_year}}
       \end{picture}}
 
     % destroyed/date
@@ -1487,8 +1483,8 @@ cars during a particular year.
 *)
 FUNCTION mnfg_average_consumption(mnfg : manufacturer;
                                   when : INTEGER) : REAL;
-  (* returns the average fuel consumption of the given 
-     manufacturer's cars produced in the given year *) 
+  (* returns the average fuel consumption of the given
+     manufacturer's cars produced in the given year *)
   LOCAL
     models : SET OF car_model := [];
     cars   : SET OF car := [];
@@ -1498,11 +1494,11 @@ FUNCTION mnfg_average_consumption(mnfg : manufacturer;
     result : REAL := 0.0;
   END_LOCAL;
      -- set of mnfg's models
-  models := USEDIN(mnfg, 'MODEL.MADE_BY'); 
+  models := USEDIN(mnfg, 'MODEL.MADE_BY');
   REPEAT i := 1 TO SIZEOF(models);
      -- cars of particular model year
     cars := QUERY(temp <* USEDIN(models[i], 'CAR.MODEL_TYPE')
-            | temp.production_year = when);                                 
+            | temp.production_year = when);
     num := SIZEOF(cars);
     fuel := fuel + num*models[i].consumption;
     tot := tot + num;
@@ -1523,7 +1519,7 @@ The following indented listing shows the entity classification structure.
 Entities in upper case characters are defined in this schema. Entities in
 lower case characters are defined in other schemas.
 
-\begin{small} 
+\begin{small}
 \begin{verbatim}
 CAR
     DESTROYED_CAR
@@ -1535,15 +1531,15 @@ OWNER
         MANUFACTURER
         PERSON
 TRANSFER
-\end{verbatim} 
+\end{verbatim}
 \end{small}
 
-\begin{small} 
+\begin{small}
 \begin{verbatim}
 *)
 END_SCHEMA;  -- end of support schema
 (*
-\end{verbatim} 
+\end{verbatim}
 \end{small}
 
 \section{Calendar schema}
@@ -1780,9 +1776,9 @@ END_FUNCTION;
 \begin{verbatim}
 *)
 FUNCTION current_date : date;
-  (* This function returns the date when it is called. 
-     Typically, it will be implemented via a system provided 
-     procedure within the information base *) 
+  (* This function returns the date when it is called.
+     Typically, it will be implemented via a system provided
+     procedure within the information base *)
 END_FUNCTION;
 (*
 \end{verbatim}
@@ -1817,8 +1813,8 @@ otherwise zero is returned.
 \begin{verbatim}
 *)
 FUNCTION days_between(d1, d2 : date) : INTEGER;
-  (* returns the number of days between two input dates. If d1 
-     is earlier than d2, a positive number is returned. *) 
+  (* returns the number of days between two input dates. If d1
+     is earlier than d2, a positive number is returned. *)
 END_FUNCTION;
 (*
 \end{verbatim}
@@ -1831,18 +1827,18 @@ The following indented listing shows the entity classification structure.
 Entities in upper case characters are defined in this schema. Entities in
 lower case characters are defined in other schemas.
 
-\begin{small} 
+\begin{small}
 \begin{verbatim}
 DATE
-\end{verbatim} 
+\end{verbatim}
 \end{small}
 
-\begin{small} 
+\begin{small}
 \begin{verbatim}
 *)
 END_SCHEMA; -- end of calendar schema
 (*
-\end{verbatim} 
+\end{verbatim}
 \end{small}
 
 \end{document}
