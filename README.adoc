@@ -174,7 +174,7 @@ Run `latexmk` within the `tex/` folder. The provided `latexmkrc` should just wor
 Peter Wilson, who created this course in his free time, is the creator of
 EXPRESS-G and EXPRESS-I, and editor for ISO 10303-11 Edition 2.
 
-Peter can be contacted at pandgwilson at earthlink dot net.
+Peter can be contacted at herries dot press at earthlink dot net.
 
 == Copyright and license
 
