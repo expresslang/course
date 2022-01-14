@@ -20,3 +20,10 @@ jobs:
         with:
           name: pdfs
           path: tex/*.pdf
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            tex/*.pdf
