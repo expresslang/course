@@ -2,6 +2,8 @@ name: build_latex
 on:
   push:
     branches: [ main ]
+    tags:
+      - 'v*'
   pull_request:
   workflow_dispatch:
 
