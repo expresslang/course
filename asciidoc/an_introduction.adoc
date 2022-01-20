@@ -1,4 +1,5 @@
 = Information Modeling Using EXPRESS -- An Introduction
+:stem:
 
 == Information?
 
@@ -22,7 +23,7 @@ so they can interoperate.
 
 The model may describe things in general, for example an animal has
 legs, and there can be data corresponding to the model about particular
-things --- my cat Jessie has three legs (but she can still catch birds).
+things -- my cat Jessie has three legs (but she can still catch birds).
 
 
 == Information Model?
@@ -59,11 +60,7 @@ looking at the pair...
 * Even a single word (braces) can be ambiguous.
 * Numerical data (1-3-91) can be ambiguous.
 
-
 There are some exercises about ambiguities.
-
-
-
 
 
 == Why Formal Models?
@@ -77,7 +74,7 @@ There are some exercises about ambiguities.
 UK:: Hold up one's trousers.
 USA:: Adjust one's teeth.
 --
-* The date 1--3--91
+* The date 1-3-91
 +
 --
 UK:: 1st March 1991 (or is it 1891?)
@@ -86,7 +83,6 @@ USA:: 3rd January 1991
 
 
 // remintro
-
 == Information Model
 
 This is a somewhat formal definition, but then we are going to
@@ -96,12 +92,9 @@ It is intended to enable unambiguous communication about a limited
 topic (or range of topics).
 
 
-
-
 == Information Model
 
-
-Purpose:: To identify clearly the objects in a `Universe of Discourse'
+Purpose:: To identify clearly the objects in a '`Universe of Discourse`'
 in order to enable people (and potentially computer systems) to communicate
 precisely about a domain of common interest.
 
@@ -160,18 +153,17 @@ difficulties if you ant to put one in a report.
 == IM Description Methods
 
 An Information Model may be described:
-\begin{description}
+
 Textually:: using a formally defined lexical language. Examples include
 EXPRESS, IISyCL (Integrated Information Systems Constraint Language), VDM
 (Vienna Development Method), etc.
 Graphically:: using an iconic or diagramatic language such as EXPRESS-G,
 IDEF1X, OMT, UML, etc.
-\end{description}
+
 
 NOTE: Supplementing textual models with diagrams can help the reader's
 understanding. Graphical models nearly always require supplemental text for
 completeness.
-
 
 
 // remintro
@@ -190,10 +182,6 @@ Also the languages were basically graphical although there were some
 proprietry lexical adjuncts.
 
 
-
-
-
-
 == EXPRESS Development
 
 EXPRESS developed as an information modeling language to meet the needs
@@ -204,9 +192,8 @@ of product data exchange model definition.
 program (early '80s).
 * PDES reviewed NIAM and IDEF1X. Neither had the power needed.
 * PDES started extending EXPRESS.
-* STEP mandated all `Normative' models to be in EXPRESS.
+* STEP mandated all '`Normative`' models to be in EXPRESS.
 * Language still evolving.
-
 
 
 // remintro
@@ -216,17 +203,14 @@ program (early '80s).
 EXPRESS has been formally approved as an International Standard,
 specifically:
 
-ISO 10303-11 \textit{Industrial automation systems and integration ---
-Product data representation and exchange ---
+ISO 10303-11 _Industrial automation systems and integration --
+Product data representation and exchange --
 Part 11: Description method: The EXPRESS language
-reference manual}
+reference manual_
 
 The first edition was formally approved and published in 1994.
 
 The second edition should be published during 2004.
-
-
-
 
 
 == REVIEWS
@@ -234,82 +218,71 @@ The second edition should be published during 2004.
 The language is subject to ongoing review within STEP and by other users.
 Also international public review as part of ISO standardization:
 
-\begin{description}
 Early 1989:: ISO Draft Proposal ballot
-
 Mid 1991:: ISO Committee Draft ballot
-Oct 1991:: Ballot successful --- Draft International Standard status.
+Oct 1991:: Ballot successful -- Draft International Standard status.
 Mid 1993:: Approved for registration as an International Standard
 (ISO 10303 Part 11).
 End 1994:: Published as International Standard ISO 10303-11:1994.
 End 2003:: Edition 2 approved as an International Standard.
-\end{description}
 
 
 // remintro
 
 == Language Comparison
 
-Most modeling anguages are graphical, which is inherently limiting.
+_Most modeling anguages are graphical, which is inherently limiting._
 
-For data modeling most languages are targeted towards Relational Databases.
-Examples include IDEF1X, Shlaer-Mellor, Extended Entity-Relation.
+_For data modeling most languages are targeted towards Relational Databases.
+Examples include IDEF1X, Shlaer-Mellor, Extended Entity-Relation._
 
-UML is for modeling an Object Oriented program. EXPRESS is for modeling
+_UML is for modeling an Object Oriented program. EXPRESS is for modeling
 data and naturally moved to an OO perspective (it was developed by practising
-engineers as user, not by computer scientists).
+engineers as user, not by computer scientists)._
 
 
+.LANGUAGE COMPARISON
+[cols="^a,^a,^a",options="unnumbered"]
+|===
+| Characteristic | Others     | EXPRESS
+3+| Modeling
+| Form           | Graphics   | Programmatic
+| Flavor         | Relational | OO
+| Objects        |  X         | X
+| Relationships  |  X         | X
+| Attributes     |  X         | X
+| Derived Atts.  |            | X
+| Domain         | Entity     | Entity + Type
+| Sequencing     |            | X
+| Cardinalities  | Limited    | Any
+3+| Constraints
+| Domain         | Limited    | Any
+| Roles          | Limited    | Any
+| Categorization | Limited    | Broad
+3+| Miscellaneous
+| Multi-page     | Some       | X
+| Algorithms     |            | X
+| Scoping        |            | X
+|===
 
-
-
-
-\vtoptitle{LANGUAGE COMPARISON}
-
-\begin{center}
-\begin{tabular}{|l|c|c|} \hline
-Characteristic & Others     & EXPRESS \\ \hline
-\multicolumn{3}{|c|}{Modeling} \\ \hline
-Form           & Graphics   & Programmatic \\
-Flavor         & Relational & OO \\
-Objects        &  X         & X \\
-Relationships  &  X         & X \\
-Attributes     &  X         & X \\
-Derived Atts.  &            & X \\
-Domain         & Entity     & Entity + Type \\
-Sequencing     &            & X \\
-Cardinalities  & Limited    & Any \\  \hline
-\multicolumn{3}{|c|}{Constraints} \\ \hline
-Domain         & Limited    & Any \\
-Roles          & Limited    & Any \\
-Categorization & Limited    & Broad \\ \hline
-\multicolumn{3}{|c|}{Miscellaneous} \\ \hline
-Multi-page     & Some       & X \\
-Algorithms     &            & X \\
-Scoping        &            & X \\ \hline
-\end{tabular}
-\end{center}
 
 
 // remintro
 
 == Graphical Models
 
-Very good for group work --- sketch on blackboard, but soon run
+_Very good for group work -- sketch on blackboard, but soon run
 out of space on the board. I have seen complete models that can
-take up a whole wall even with small print.
+take up a whole wall even with small print._
 
-It's difficult to check a model except by eyeballing it. It's been
+_It's difficult to check a model except by eyeballing it. It's been
 a general experience over several decades of going from flowcharts to
-program code that many details get missed.
+program code that many details get missed._
 
-It is difficult to formally specify a graphical language.
-
-
+_It is difficult to formally specify a graphical language._
 
 
 == Graphical Models
-
 
 * Excellent for group explanations and work.
 * Easy to follow (but can take a lot of wall space).
@@ -318,30 +291,26 @@ It is difficult to formally specify a graphical language.
 * Effectively, not computer processible (What You See Is All You've Got).
 
 
-
 // remintro
 
 == Textual Models
 
-Text languages for modeling can be formally defined, both syntax and much
+_Text languages for modeling can be formally defined, both syntax and much
 of the semantics. This means that they can be made computer processible and so
-can be automatically checked for correctness (syntax) and completeness.
+can be automatically checked for correctness (syntax) and completeness._
 
-They can represent a variety of modeling approaches, from mathematical
-or logical schemes to things more readily understood.
+_They can represent a variety of modeling approaches, from mathematical
+or logical schemes to things more readily understood._
 
-They can include a programming language so constraints can be expressed
-in terms of a process as well as in terms of rules and regulations.
+_They can include a programming language so constraints can be expressed
+in terms of a process as well as in terms of rules and regulations._
 
-They provide opportunities for models to be manipulated, for example
+_They provide opportunities for models to be manipulated, for example
 automatically developing test cases or checking that data conforms to the
-model.
-
-
+model._
 
 
 == Textual Models
-
 
 * Good formal definition or mathematical support.
 * May be non-intuitive (e.g logic based methods).
@@ -351,36 +320,32 @@ model.
 * Potential for automatic implementation (for model simulation and test).
 
 
-
 // remintro
 
 == EXPRESS is
 
-NIAM and IDEF1X are both graphical languages for modeling Relational
-databases.
+_NIAM and IDEF1X are both graphical languages for modeling Relational
+databases._
 
-EXPRESS started as a single lexical language but has since expanded
-into a family of languages.
+_EXPRESS started as a single lexical language but has since expanded
+into a family of languages._
 
-It was developed by a small group (about 4 at any given time) for
+_It was developed by a small group (about 4 at any given time) for
 modeling the kinds of information used in engineering. CAD models, Blueprints,
-Mechanisms, Engineering sign-off, and so on.
+Mechanisms, Engineering sign-off, and so on._
 
-There were releases every quarter to a user group of about 50, who were full
+_There were releases every quarter to a user group of about 50, who were full
 of their own suggestions and merrily changed the language in between times.
 In the first years there were no compilers (the language was changing too
-rapidly) so there were no technical constraints --- every use of the language
-was perfect, no bugs, no complaints!
+rapidly) so there were no technical constraints -- every use of the language
+was perfect, no bugs, no complaints!_
 
-One of the strengths of EXPRESS is that it much of it was developed by the
+_One of the strengths of EXPRESS is that it much of it was developed by the
 end users. That is also probaly its major weakness as its initial coherence
-sank under the weight.
-
-
+sank under the weight._
 
 
 == EXPRESS is:
-
 
 * A language family for representing an information model.
 * Computer processible.
@@ -391,68 +356,51 @@ sank under the weight.
 * Has several aspects (subsets)
 
 
-
 // remintro
 
 == EXPRESS Aspects
 
-The principal elements of EXPRESS are for representing things
+_The principal elements of EXPRESS are for representing things
 and the relationships between things (and as far as EXPRESS is concerned,
 a relationship is a thing). Groups of strongly related things can be
-collected together.
+collected together._
 
-It includes a Pascal-like programming language for specifying complex
-constraints.
+_It includes a Pascal-like programming language for specifying complex
+constraints._
 
-It is a conceptual moeling language, so puts no restrictions on the
-number of characters in a name, and arithmetic is infinitely precise.
+_It is a conceptual moeling language, so puts no restrictions on the
+number of characters in a name, and arithmetic is infinitely precise._
 
-There is a graphical form called EXPRESS-G which is a subset of the lexical
-language.
+_There is a graphical form called EXPRESS-G which is a subset of the lexical
+language._
 
-Another member of the family EXPRESS-I is a lexical language for displaying
-data that correspond to the concepts in EXPRESS.
+_Another member of the family EXPRESS-I is a lexical language for displaying
+data that correspond to the concepts in EXPRESS._
 
-Much more recently the third lexical language EXPRESS-X has been developed
+_Much more recently the third lexical language EXPRESS-X has been developed
 in which you can specify desired changes to an EXPRESS model and then have
 them performed; transformations principally consist of splitting or merging
-things and their relationships.
-
-
+things and their relationships._
 
 
 == EXPRESS Aspects
-
-
-
 
 * Textual language.
 * Modeling of things and relationships (implementation independent).
 * Algorithms for arbitrary constraint specifications.
 * Modeling of implementation dependent data structures.
 * Graphical form as a subset of textual form (EXPRESS-G).
-* An `instantiation' format (EXPRESS-I).
+* An '`instantiation`' format (EXPRESS-I).
 * Transformation specification (EXPRESS-X).
 
 
+// remintro
+== EXPRESS Usage
+
+_EXPRESS is widely used in the Standards community for formal definition
+of data-related concepts._
 
 
-
-
-
-
-
-
-//
-// \remintro
-
-// \remtitle{EXPRESS Usage}
-
-//     EXPRESS is widely used in the Standards community for formal definition
-// of data-related concepts.
-
-//
-//
 
 == EXPRESS Usage
 
@@ -465,7 +413,6 @@ things and their relationships.
 * Geological modeling
 * Genome modeling
 
-
 Other uses are possible, such as using EXPRESS to define the syntax,
 grammer, and semantics of the EXPRESS language.
 
@@ -477,11 +424,11 @@ grammer, and semantics of the EXPRESS language.
 The story starts in the mid 1970's with a small group trying to develop
 an ANSI standard for geometry data. At the end of the 70's McAuto (part
 of McDonnel Douglas) got a contract from CAM-I (Computer Aided Manufacturing
---- International) to develop a standard for data exchange between solid
+-- International) to develop a standard for data exchange between solid
 modeling systems; the result was not well received.
 
 Just after this Boeing (Walt Braithwaite), GE (Phil Kennicott) and
-the then National Bureau of Standards (Roger Nagel) produced IGES ---
+the then National Bureau of Standards (Roger Nagel) produced IGES --
 Initial Graphics Exchange Specification for data exchange between CAD
 (Computer Aided Drawing) systems. This was reluctantly implemented by the
 major CAD vendors and rapidly became the ANSI Y14.6M standard (the last
@@ -503,23 +450,21 @@ the PDDI standard. There was also yet another effort going on in Europe
 called the CAD*I project funded under the ESPRIT program.
 
 IGES was experiencing growing pains and it seemed sensible to make a fresh
-start. Boeing (Kal Brauner and Dave Briggs) proposed PDES --- Product Data
+start. Boeing (Kal Brauner and Dave Briggs) proposed PDES -- Product Data
 Exchange Standard based on the best work from the US. In particular they
 strongly urged that it should have a formal basis.
 
 Somehow the international community got together and demanded just one
-standard --- STEP, Standard for the Exchange of Product Model Data, to be
+standard -- STEP, Standard for the Exchange of Product Model Data, to be
 based on the technical work from the PDES group.
 
 After a while some countries got upset as they felt that it had become a
 US standard (even though most participants were non-US). This dilemma was
-eventually resolved by changing PDES to be --- Product Data Exchange using
+eventually resolved by changing PDES to be -- Product Data Exchange using
 STEP (which some then called Standard for Exchange using PDES).
 
 
-
 // image::images/pstphist[]
-
 
 
 // remintro
@@ -531,13 +476,13 @@ each member of which is a _Part_ of ISO 10303.
 
 The Parts are grouped into _series_.
 
-* Parts in the range 11--19 form the _Description Methods_ series,
+* Parts in the range 11-19 form the _Description Methods_ series,
 which include the EXPRESS family.
-* Parts in the range 21--29 form the _Implemantation Methods_ series
+* Parts in the range 21-29 form the _Implemantation Methods_ series
 defining how to exchange data that corresponds to an EXPRESS model.
-* Parts in the range 31--39 form the _Conformance and Testing_ series
+* Parts in the range 31-39 form the _Conformance and Testing_ series
 defining how to test STEP implementations.
-* Parts in the range 41--99 form the _Resources_ series which define
+* Parts in the range 41-99 form the _Resources_ series which define
 an integrated set of application independent EXPRESS information models
 for product descriptions.
 * Parts in the range 201+ form the _Application Protocol_ (AP) series
@@ -545,10 +490,7 @@ which specify application dependent information models for the purposes
 of data exchange.
 
 
-
-
 // images::images/pstpover[]
-
 
 
 // remintro
@@ -569,14 +511,9 @@ As far as a typical end user is concerned, the IRs are invisible and there
 are APs and exchange levels.
 
 
-
-
-== STEP ARCHITECTURE
-
-
-
+// [%unnumbered]
+// .STEP ARCHITECTURE
 // images::images/pstparch[]
-
 
 
 // remintro
@@ -588,13 +525,9 @@ STEP data file then archive it and/or send it to someone else (to read into
 their CAD system).
 
 
-
-
-== Level 1 Exchange
-
-
-// images::images/plevel1[][hp]
-
+// [%unnumbered]
+// .Level 1 Exchange
+// images::images/plevel1[]
 
 
 // remintro
@@ -607,11 +540,8 @@ can be written to a file for Level 1 use. At the end of the session
 the STEP database is no longer available.
 
 
-
-
-== Level 2 Exchange
-
-
+// [%unnumbered]
+// .Level 2 Exchange
 // images::images/plevel2[][hp]
 
 // remintro
@@ -623,9 +553,8 @@ in a (permanent) shared database. STEP level 1 files can be written and read
 by the database.
 
 
-== LEVEL 3 EXCHANGE
-
-
+// [%unnumbered]
+// .LEVEL 3 EXCHANGE
 // images::images/plevel3[]
 
 
@@ -642,11 +571,8 @@ perhaps move it to another position. The end result in terms of data values
 can be the same but the route is very different.
 
 
-
-
-== Procedural Exchange
-
-
+// [%unnumbered]
+// .Procedural Exchange
 // images::images/pfilproc[]
 
 
@@ -654,7 +580,7 @@ can be the same but the route is very different.
 
 == Level 4 Exchange
 
-This was the vision when STEP started --- intelligent knowledgebases as
+This was the vision when STEP started -- intelligent knowledgebases as
 an exchange mechanism.
 
 The vision has faded.
@@ -663,17 +589,15 @@ The majority of STEP implementations are Level 1 (file exchange).
 Internally, though, they are implemented using a Level 2 or 3 architecture.
 
 
-
-
-== LEVEL 4 EXCHANGE
-
+// [%unnumbered]
+// .LEVEL 4 EXCHANGE
 // images::images/plevel4[]
 
 
 // remintro
 == EXPRESS Primitives
 
-These, plus literals, are the fundamental `things' of the EXPRESS language.
+These, plus literals, are the fundamental '`things`' of the EXPRESS language.
 
 * Numbers, etc., are the most elementary
 * Schema, etc., are the most complex
@@ -683,31 +607,21 @@ These, plus literals, are the fundamental `things' of the EXPRESS language.
 These are later described in detail.
 
 
-
 == EXPRESS Primitives
 
-
 * Number, Integer, Real, Binary, String, Boolean (T/F), Logical (T/F/U)
-
 * Schema, Entity, Rule, Function, Procedure, Type (Defined, Select,
 Enumeration)
-
-* Aggregations --- Array, Set, List, Bag
-
+* Aggregations -- Array, Set, List, Bag
 * Pascal-like procedural language
-
 
 
 // remintro
 == Simple Types
 
-
 * NUMBER is any kind of number with any value.
-
 * REAL is a decimal kind of NUMBER.
-
 * INTEGER is an integer kind of NUMBER and is a kind of REAL number.
-
 
 The numbers have infinite precision and can be as large or small
 as you like.
@@ -715,21 +629,15 @@ as you like.
 The procedural language lets you perform operations on NUMBERs.
 
 
-
-
-
 == Simple Types
 
-* `n : NUMBER` which has 'subtypes'
+* `n : NUMBER` which has '`subtypes`'
 ** `i : INTEGER`
 ** `r : REAL`
 
-
-
-These types may be given a `precision'. E.g `REAL(6)`
+These types may be given a '`precision`'. E.g `REAL(6)`
 
 Various operations such as stem:[+, -, //, ">="], etc. may be applied to these types.
-
 
 
 // remintro
@@ -741,17 +649,13 @@ epressions.
 The procedural language lets you perform operations on logicals.
 
 
-
-
 == Simple Types (cont)
-
 
 * `l : LOGICAL` has values `FALSE`, `UNKNOWN`, and
 `TRUE`, with +
 `FALSE < UNKNOWN < TRUE`.
-* `b : BOOLEAN` is a `subtype' of `LOGICAL` having values of
+* `b : BOOLEAN` is a '`subtype`' of `LOGICAL` having values of
 `FALSE` and `TRUE` only.
-
 
 Comparisons on Booleans and Logicals can be performed (e.g stem:[=, <, "<=", "<>"], etc.)
 
@@ -789,7 +693,6 @@ IF s1[2:3] = 'it' THEN ...
 ----
 
 
-
 // remintro
 == Aggregations
 
@@ -800,8 +703,8 @@ unordered, and fixed or expandible in size, and with or without duplicates.
 == Aggregations
 
 General form is `AGGR [L:H] OF ...` where L and H are the Low and High
-bounds respectively (stem:[H > L]), and containing N elements. Bags, Lists and
-Sets may have an indefinite high bound denoted by '?' character.
+bounds respectively (stem:[H >= L]), and containing N elements. Bags, Lists and
+Sets may have an indefinite high bound denoted by '`?`' character.
 
 ARRAY:: Ordered collection of elements. stem:[N = (H-L+1)].
 BAG:: Unordered collection with possibly duplicate elements.
@@ -815,7 +718,6 @@ NOTE: `LIST [L:H] OF UNIQUE ...` is used for an ordered collection
 with no duplicates.
 
 
-
 // remintro
 == Types
 
@@ -827,14 +729,13 @@ and aggregations. Every TYPE has a name chosen by the user.
 
 User defined extensions to the simple types and aggregations.
 
-Defined:: A `renaming' of a simple type or aggregation. +
+Defined:: A '`renaming`' of a simple type or aggregation. +
 `TYPE volume = REAL; END_TYPE;`
 Select:: A selection among some types. +
 `TYPE choose = SELECT(a,b,c); END_TYPE;`
 Enumeration:: An ordered set of values represented by names. +
 `TYPE enum = ENUMERATION OF (up, down);` +
 `END_TYPE;`
-
 
 
 // remintro
@@ -845,12 +746,10 @@ Enumeration:: An ordered set of values represented by names. +
 *`gender`* is an ENUMERATION because the possiblities (except for some
 pathological cases) are known.
 
-*`hair\_type`* is not a particularly good example, but it does imply
+*`hair_type`* is not a particularly good example, but it does imply
 a limited scope for the model.
 
-*`choose\_thing`* is a selection between two alternatives.
-
-
+*`choose_thing`* is a selection between two alternatives.
 
 
 == TYPE Examples
@@ -878,15 +777,12 @@ END_TYPE;
 ----
 
 
-
 // remintro
 == ENTITY
 
 An ENTITY is a user defined object, representing some thing. It has
 various components which will be described. Every ENTITY has a user-defined
 name.
-
-
 
 
 == ENTITY
@@ -897,8 +793,7 @@ of Discourse.
 The characteristics (properties) of an entity are defined in terms of data
 (attributes) and behaviour (constraints).
 
-An entity may `inherit' properties from another entity.
-
+An entity may '`inherit`' properties from another entity.
 
 
 // remintro
@@ -909,8 +804,6 @@ An attribute consists of a user-defined name and a specification of the
 kind of data.
 
 The kind of data may be a (collection of) simple types, TYPEs or ENTITYs.
-
-
 
 
 == ENTITY Attributes
@@ -933,7 +826,6 @@ The data for calculating a derived attribute must be accessible from
 the entity.
 
 
-
 // remintro
 
 == ENTITY Constraints
@@ -944,8 +836,6 @@ Constraints limit the kind and/or values of the attributes' data.
 
 *WHERE* rules are logical expressions. In this case
 the radius must be positive length.
-
-
 
 
 == ENTITY Constraints
@@ -969,7 +859,6 @@ END_ENTITY;
 A WHERE (domain) rule fails if it evaluates to `FALSE`.
 
 
-
 // remintro
 
 == Example ENTITY
@@ -984,8 +873,6 @@ No two people have the same social security number.
 
 The WHERE rule states that if someone has a spouse then the spouse must
 be of the opposite sex.
-
-
 
 
 == Example ENTITY
@@ -1007,8 +894,6 @@ WHERE
        OR NOT EXISTS(spouse);
 END_ENTITY;
 ----
-
-
 
 
 // remintro
@@ -1044,8 +929,6 @@ END_ENTITY;
 ----
 
 
-
-
 // remintro
 == FUNCTION Example
 
@@ -1054,8 +937,6 @@ These are part of EXPRESS programming language aspects.
 The particular example takes two aggregations and returns either
 TRUE or FALSE depending on whether or not the first is a subset of
 the second (i.e., every member of *`sub`* is also in *`super`*).
-
-
 
 
 == FUNCTION Example
@@ -1083,8 +964,6 @@ END_FUNCTION;
 ----
 
 
-
-
 // remintro
 == Predefined Functions
 
@@ -1093,9 +972,7 @@ EXPRESS includes a variety of predefined functions.
 There is more on these later in the course.
 
 
-
 == Predefined Functions
-
 
 * Mathematical (e.g ABS, SIN, SQRT etc)
 * Aggregation sizes (e.g LOBOUND, HIBOUND, SIZEOF, LENGTH)
@@ -1106,8 +983,6 @@ else SUBS is returned.
 * TYPEOF(V) returns the set of types of V.
 * USEDIN(T; R) takes an entity T and its role R that it plays in other
 entities and returns each entity instance that uses T in role R.
-
-
 
 
 // remintro
@@ -1136,7 +1011,6 @@ END_CONSTANT;
 --
 
 
-
 // remintro
 
 == SCHEMA
@@ -1146,13 +1020,11 @@ The minimum EXPRESS model consists of a single empty SCHEMA.
 TYPE, ENTITY, FUNCTION definitions are contained within a SCHEMA.
 
 
-
 == SCHEMA
-
 
 * A SCHEMA contains the objects, relationships and constraints for a
 particular domain of interest.
-* Schemas provide a mechanism for partitioning the `real world' into
+* Schemas provide a mechanism for partitioning the '`real world`' into
 relevant domains.
 * There must be well defined limits to the domain represented via a Schema
 --- a single Schema should not be used to describe two different
@@ -1165,14 +1037,14 @@ domains of interest.
 A model usually consists of more than one SCHEMA.
 
 From within a SCHEMA you can get at anything in any other SCHEMA
-(there is no way to `hide' something).
+(there is no way to '`hide`' something).
 
 
 == SCHEMA (cont)
 
 * An EXPRESS model may contain more than one Schema.
-* Where multiple Schemas are used there is normally one `main' schema
-and n `subsidiary' schemas.
+* Where multiple Schemas are used there is normally one '`main`' schema
+and n '`subsidiary`' schemas.
 
 [source,expresslang]
 ----
@@ -1185,9 +1057,6 @@ SCHEMA sub1;
   -- types, entities, rules, etc.
 END_SCHEMA;
 ----
-
-\endinput
-
 
 
 // == EXPRESS SUMMARY
@@ -1202,8 +1071,5 @@ END_SCHEMA;
 // * Becoming widely used in the modeling communities.
 // * Software tools appearing.
 // * User Group forming
-
-
-
 
 
