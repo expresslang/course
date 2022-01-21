@@ -1,0 +1,146 @@
+= The EXPRESS-G language
+
+== EXPRESS-G
+
+EXPRESS-G is a graphical subset of EXPRESS lexical language and
+has evolved from a variety of sources.
+
+10/88:: EXPRESSAM (Bruce Lownsbery, Lawrence Livermore Lab)
+based on NIAM.
+2/89:: GREXP (Peter Wilson, GE) BLA  (boxes, lines, annotation) with
+multiple levels of abstraction and any amount of text.
+11/89:: ExpressGraph (Curt Parks, NIST & John Zimmerman, Allied Bendix)
+simplified version of EXPRESSAM.
+2/90:: EXPRESS-G (EXPRESS Committee)
+
+
+== EXPRESS-G
+
+* Drafted by EXPRESS Committee in January 1990
+* A combination of ExpressGraph and GREXP.
+* A _subset_ of EXPRESS.
+* Modeling of Entity, Attribute, Cardinality, Supertype, Type and Schema.
+* Limited levels of abstraction.
+* No ISO ballot issues in mid 1990 (Informative Annex).
+* February 1991 --  Normative Annex to EXPRESS document and
+extended.
+* Same standardization status as EXPRESS.
+
+
+== EXPRESS-G Design Goals
+
+* Subset of EXPRESS.
+* Intuitive understanding of diagrams.
+* Support different levels of abstraction.
+* Mechanism for multi-page models.
+* Minimal graphic capabilities needed.
+* Potential automatic EXPRESS-G display of EXPRESS models.
+
+
+== EXPRESS-G Example Model
+
+// [%unnumbered]
+// .PAGE 1 OF 2
+// image::images/models.1[]
+
+
+// [%unnumbered]
+// .PAGE 2 OF 2
+// image::images/models.2[]
+
+
+== Definition Symbols
+
+// [%unnumbered]
+// .BASE TYPES
+// image::images/symbols.1[]
+
+
+// image::images/symbols.4[]
+
+
+// [%unnumbered]
+// .DEFINED TYPES
+// image::images/symbols.8[]
+
+
+// [%unnumbered]
+// .ENTITY
+// image::images/symbols.9[]
+
+
+// [%unnumbered]
+// .SUBTYPE_CONSTRAINT
+// image::images/symbols.17[]
+
+
+// [%unnumbered]
+// .SCHEMA
+// image::images/symbols.13[]
+
+
+== Relationship Symbols
+
+// [%unnumbered]
+// .LINE STYLES
+// image::images/symbols.14[]
+
+
+== Composition Symbols
+
+// [%unnumbered]
+// .PAGE REFERENCES
+// image::images/symbols.15[]
+
+
+// [%unnumbered]
+// .INTER-SCHEMA REFERENCES
+// image::images/symbols.16[]
+
+
+// [%unnumbered]
+// .A Supertype Tree
+// image::images/models.5[]
+
+
+// [%unnumbered]
+// .Retyping attributes
+// image::images/models.6[]
+
+
+== Partial and Complete Entity Models
+
+// [%unnumbered]
+// .PARTIAL ENTITY LEVEL MODEL
+// image::images/models.3[]
+
+
+// [%unnumbered]
+// .COMPLETE ENTITY LEVEL MODEL
+// image::images/models.4[]
+
+
+== Schema and Entity Models
+
+// [%unnumbered]
+// .SCHEMA LEVEL MODEL
+// image::images/models.8[]
+
+
+// [%unnumbered]
+// .ENTITY LEVEL MODEL
+// image::images/models.7[]
+
+
+// [%unnumbered]
+// .Subtype constraints
+// image::images/models.10[]
+
+
+== Usage
+
+* Graphical display of EXPRESS models.
+* Stand-alone information modeling iconic language.
+* Model display at varying levels of abstraction.
+* Model display at varying levels of granularity.
+
