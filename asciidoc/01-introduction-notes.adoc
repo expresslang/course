@@ -741,15 +741,15 @@ Enumeration:: An ordered set of values represented by names. +
 // remintro
 == TYPE Examples
 
-*`things`* illustrates an aggegration of an aggregation.
+stem:[tt "things"] illustrates an aggegration of an aggregation.
 
-*`gender`* is an ENUMERATION because the possiblities (except for some
+stem:[tt "gender] is an ENUMERATION because the possiblities (except for some
 pathological cases) are known.
 
-*`hair_type`* is not a particularly good example, but it does imply
+stem:[tt "hair_type] is not a particularly good example, but it does imply
 a limited scope for the model.
 
-*`choose_thing`* is a selection between two alternatives.
+stem:[tt "choose_thing] is a selection between two alternatives.
 
 
 == TYPE Examples
@@ -936,7 +936,7 @@ These are part of EXPRESS programming language aspects.
 
 The particular example takes two aggregations and returns either
 TRUE or FALSE depending on whether or not the first is a subset of
-the second (i.e., every member of *`sub`* is also in *`super`*).
+the second (i.e., every member of stem:[tt "sub"] is also in stem:[tt "super"]).
 
 
 == FUNCTION Example
