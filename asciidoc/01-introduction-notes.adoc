@@ -637,7 +637,8 @@ The procedural language lets you perform operations on NUMBERs.
 
 These types may be given a '`precision`'. E.g `REAL(6)`
 
-Various operations such as stem:[+, -, //, ">="], etc. may be applied to these types.
+Various operations such as stem:[+, -, //, ">="], etc. may be
+applied to these types.
 
 
 // remintro
@@ -657,7 +658,8 @@ The procedural language lets you perform operations on logicals.
 * `b : BOOLEAN` is a '`subtype`' of `LOGICAL` having values of
 `FALSE` and `TRUE` only.
 
-Comparisons on Booleans and Logicals can be performed (e.g stem:[=, <, "<=", "<>"], etc.)
+Comparisons on Booleans and Logicals can be performed
+(e.g stem:[=, <, "<=", "<>"], etc.)
 
 Other operations include `NOT`, `AND`, `OR`, `XOR`.
 
@@ -936,7 +938,8 @@ These are part of EXPRESS programming language aspects.
 
 The particular example takes two aggregations and returns either
 TRUE or FALSE depending on whether or not the first is a subset of
-the second (i.e., every member of stem:[tt "sub"] is also in stem:[tt "super"]).
+the second (i.e., every member of stem:[tt "sub"]
+is also in stem:[tt "super"]).
 
 
 == FUNCTION Example

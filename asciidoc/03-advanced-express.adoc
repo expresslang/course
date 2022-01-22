@@ -396,7 +396,8 @@ QUERY( temp <* agg | lexp)
 where `temp` is the name of a temporary variable, `agg` is the
 aggregation, and `lexp` is the logical expression.
 
-For example, assuming that a person's attributes included the age of the person,
+For example, assuming that a person's attributes
+included the age of the person,
 
 [source%unnumbered]
 ----

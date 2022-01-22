@@ -912,7 +912,8 @@ ENTITY node;
 END_ENTITY
 ----
 
-This stem:[tt "node"] entity is '`type recursive`' and not '`self instance recursive`'
+This stem:[tt "node"] entity is '`type recursive`' and not
+'`self instance recursive`'
 but may be '`globally instance recursive`'.
 
 [source%unnumbered]
@@ -1180,7 +1181,8 @@ WHERE
 END_ENTITY;
 ----
 
-Where the function stem:[tt "UsingReps"] returns the set of stem:[tt "rep"] which
+Where the function stem:[tt "UsingReps"] returns the
+set of stem:[tt "rep"] which
 reference a given stem:[tt "ri"] (or stem:[tt "mi"]).
 
 

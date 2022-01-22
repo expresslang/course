@@ -150,12 +150,13 @@ This was introduced in EXPRESS Edition 2.
 It has to be instantiated (e.g., appear in a Part 21 file)
 via a SUBTYPE in which the specific type of each attribute is specified.
 
-The model here says that a stem:[tt "general_approval"] has a stem:[tt "status"]
+The model here says that a stem:[tt "general_approval"]
+has a stem:[tt "status"]
 which is of type stem:[tt "approval_status"] (whatever that is), and
-stem:[tt "approved_items"] (which is a SET of (unnamed) ENTITY). An instantiable
-SUBTYPE would have to replace stem:[tt "GENERIC_ENTITY"] by a named entity,
-say stem:[tt "plan"] (whatever that might be), to have a set of
-approved stem:[tt "plan"]s.
+stem:[tt "approved_items"] (which is a SET of (unnamed) ENTITY).
+An instantiable SUBTYPE would have to replace
+stem:[tt "GENERIC_ENTITY"] by a named entity, say stem:[tt "plan"]
+(whatever that might be), to have a set of approved stem:[tt "plan"]s.
 
 // end notes
 
@@ -689,7 +690,8 @@ QUERY( temp <* agg | lexp)
 where `temp` is the name of a temporary variable, `agg` is the
 aggregation, and `lexp` is the logical expression.
 
-For example, assuming that a person's attributes included the age of the person,
+For example, assuming that a person's
+attributes included the age of the person,
 
 [source%unnumbered]
 ----
@@ -1129,8 +1131,9 @@ stem:[tt "constrained"],
 is second class (every instance of stem:[tt "original"] must also be an
 instance of stem:[tt "constrained"]).
 
-Within SCHEMA stem:[tt "first"], entity stem:[tt "original"] does not know it is
-a SUPERTYPE as stem:[tt "first"] knows nothing about the stem:[tt "second"]
+Within SCHEMA stem:[tt "first"], entity stem:[tt "original"]
+does not know it is a SUPERTYPE as stem:[tt "first"]
+knows nothing about the stem:[tt "second"]
 SCHEMA.
 
 // end notes

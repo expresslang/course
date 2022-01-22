@@ -795,7 +795,8 @@ larger than 4.25 by 6 inches and no smaller than 3.5 by 5 inches.
 
 Letters&colon;:: The letter rate is 1p&nbsp;13z
 for letters weighing one ounce or less.
-The rate increases by 1p&nbsp;6z for each additional ounce or part thereof. An item
+The rate increases by 1p&nbsp;6z for each additional
+ounce or part thereof. An item
 weighing more than 11 ounces cannot be sent
 at the letter rate. Letters less than
 one ounce are non-standard if the length is greater than 11.5 inches or the
@@ -810,7 +811,8 @@ G2-4-2 for items not exceeding two pounds in
 weight. The rate increases by by 2p&nbsp;11z for
 each additional pound or part thereof,
 provided the weight is not greater than ten pounds. Above ten pounds the rate 
-increases by 2p&nbsp;8z for each additional pound or part thereof. Note: Parcels
+increases by 2p&nbsp;8z for each additional
+pound or part thereof. Note: Parcels
 weighing less than fifteen pounds and
 whose length plus girth exceeds seven feet
 are chargeable at the fifteen pound rate.
