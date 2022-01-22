@@ -464,7 +464,7 @@ eventually resolved by changing PDES to be -- Product Data Exchange using
 STEP (which some then called Standard for Exchange using PDES).
 
 
-// image::images/pstphist[]
+image::images/pstphist.svg[]
 
 
 // remintro
@@ -490,7 +490,7 @@ which specify application dependent information models for the purposes
 of data exchange.
 
 
-// images::images/pstpover[]
+// image::images/pstpover[]
 
 
 // remintro
@@ -513,7 +513,7 @@ are APs and exchange levels.
 
 // [%unnumbered]
 // .STEP ARCHITECTURE
-// images::images/pstparch[]
+// image::images/pstparch[]
 
 
 // remintro
@@ -527,7 +527,7 @@ their CAD system).
 
 // [%unnumbered]
 // .Level 1 Exchange
-// images::images/plevel1[]
+// image::images/plevel1[]
 
 
 // remintro
@@ -542,7 +542,7 @@ the STEP database is no longer available.
 
 // [%unnumbered]
 // .Level 2 Exchange
-// images::images/plevel2[][hp]
+// image::images/plevel2[][hp]
 
 // remintro
 
@@ -555,7 +555,7 @@ by the database.
 
 // [%unnumbered]
 // .LEVEL 3 EXCHANGE
-// images::images/plevel3[]
+// image::images/plevel3[]
 
 
 // remintro
@@ -573,7 +573,7 @@ can be the same but the route is very different.
 
 // [%unnumbered]
 // .Procedural Exchange
-// images::images/pfilproc[]
+// image::images/pfilproc[]
 
 
 // remintro
@@ -591,7 +591,7 @@ Internally, though, they are implemented using a Level 2 or 3 architecture.
 
 // [%unnumbered]
 // .LEVEL 4 EXCHANGE
-// images::images/plevel4[]
+// image::images/plevel4[]
 
 
 // remintro
