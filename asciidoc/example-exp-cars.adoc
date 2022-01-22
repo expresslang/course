@@ -1,0 +1,1186 @@
+
+= EXPRESS example model Car Registration Authority
+:author: Peter Wilson
+:toc:
+:stem:
+
+
+== Introduction
+
+This document contains a complete and documented
+[.small]#EXPRESS# model for the
+Car Registration Authority example; an [.small]#EXPRESS-G#
+version of the model is also included.
+
+== Scope
+
+The model has to do with the registration of cars and is limited to the scope
+of interest of the Registration Authority. This Authority exists for the
+purpose of:
+
+* Knowing who is or was the registered owner of a car at any time from
+construction to destruction of the car;
+* To monitor laws regarding the transfer of ownership of cars;
+* To monitor laws regarding the fuel consumption of cars;
+* To monitor laws regarding manufacturers of cars.
+
+
+== Model overview
+
+The model is described using both [.small]#EXPRESS# and
+[.small]#EXPRESS-G#. The [.small]#EXPRESS#
+definitions are primary and the [.small]#EXPRESS-G# diagrams are to assist in
+understanding the primary model. If there is any conflict between the
+[.small]#EXPRESS# and [.small]#EXPRESS-G#, then the
+[.small]#EXPRESS# takes precedence.
+
+// [[fig:cargschema]]
+// .Complete schema-level model for Registration Authority example
+// image::images/cargschema.svg[]
+
+The model consists of three schemas, as shown in
+Figure&nbsp;<<fig:cargschema>>.
+The schema stem:[tt "authority"] is the primary schema.
+It references items from
+the two ancilliary schemas, namely stem:[tt "support"]
+and stem:[tt "calendar"].
+The stem:[tt "support"] schema also references
+items from the stem:[tt "calendar"] schema.
+
+
+== Authority schema
+
+This schema is the primary one in the model and is principally concerned
+with the main functions of the Registration Authority.
+
+The schema imports definitions from two sources, namely the stem:[tt "support"]
+and the stem:[tt "calendar"] schemas.
+
+Figure&nbsp;<<fig:cargreg>> is an [.small]#EXPRESS-G#
+complete entity-level model for this schema.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+SCHEMA authority;
+  REFERENCE FROM support (car,
+        transfer,
+        manufacturer,
+        fuel_consumption,
+        mnfg_average_consumption);
+  REFERENCE FROM calendar (current_date);
+(*
+----
+
+
+=== Entity definitions
+
+=== history
+
+A stem:[tt "history"] records the transfers
+of ownership of a stem:[tt "car"] over its
+lifetime. A stem:[tt "history"] must be kept
+for a certain period after the
+stem:[tt "car"] is destroyed, after which the
+ownership records may be destroyed.
+
+
+// [[fig:cargreg]]
+// .Complete entity-level model of the Authority schema.
+// image::images/cargreg.svg[]
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY history;
+  item : car;
+  transfers : LIST [0:?] OF UNIQUE transfer;
+DERIVE
+  to_be_deleted : BOOLEAN := too_old(SELF);
+UNIQUE
+  un1 : item;
+WHERE
+  one_car  : single_car(SELF);
+  ordering : exchange_ok(transfers);
+END_ENTITY;
+(*
+----
+
+
+*Attribute definitions*
+
+item&colon;:: The stem:[tt "car"] whose ownership history is being tracked.
+
+transfers&colon;:: The ownership stem:[tt "transfer"]
+records of the stem:[tt "item"].
+
+to_be_deleted&colon;:: A flag which indicates
+that this stem:[tt "history"] record
+may be deleted because the stem:[tt "item"]
+has been destroyed (TRUE), or that the
+record shall not be deleted (FALSE).
+
+
+*Propositions*
+
+un1&colon;:: The value of stem:[tt "item"]
+shall be unique across all instances of
+stem:[tt "history"].
+
+one_car&colon;:: Each stem:[tt "transfer"]
+collected in a stem:[tt "history"] shall be
+of the same stem:[tt "car"].
+
+ordering&colon;:: The list of stem:[tt "transfer"]
+shall be in increasing historical
+order.
+
+
+=== authorized_manufacturer
+
+An stem:[tt "authorized manufacturer"] is a
+stem:[tt "manufacturer"] who has been given
+permission by the Registration Authority to make cars.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY authorized_manufacturer
+  SUBTYPE OF (manufacturer);
+END_ENTITY;
+(*
+----
+
+
+=== send_message
+
+In January each year the Registration Authority shall send a message to each
+stem:[tt "manufacturer"] whose cars' average fuel consumption exceeds a certain
+limit, which may vary from year to year.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY send_message;
+  max_consumption : fuel_consumption;
+  year            : INTEGER;
+  makers          : SET [0:?] OF authorized_manufacturer;
+DERIVE
+  excessives : SET [0:?] OF manufacturer := guzzlers(SELF);
+END_ENTITY;
+(*
+----
+
+
+*Attribute definitions*
+
+max_consumption&colon;:: The legal maximum average fuel consumption.
+
+year&colon;:: The year for which the stem:[tt "max consumption"] value applies.
+
+makers&colon;:: The stem:[tt "authorized manufacturers"] operating during the
+stem:[tt "year"].
+
+excessives&colon;:: The stem:[tt "manufacturers"] whose
+cars exceed the consumption limit.
+
+
+=== Rule definitions
+
+=== max_number
+
+No more than five stem:[tt "authorized manufacturers"] are permitted at any one
+time.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+RULE max_number FOR (authorized_manufacturer);
+WHERE
+  max_of_5 : SIZEOF(authorized_manufacturer) <= 5;
+END_RULE;
+(*
+----
+
+
+*Propositions*
+
+max_of_5&colon;:: The rule is violated if there are more than five
+stem:[tt "authorized manufacturers"] at any time.
+
+
+=== Function and procedure definitions
+
+=== guzzlers
+
+This function returns the set of stem:[tt "manufacturers"] whose cars exceed an
+average fuel consumption limit.
+
+
+*Parameters*
+
+par&colon;:: An instance of a stem:[tt "send message"] entity.
+
+RESULT&colon;:: A set of instances of stem:[tt "manufacturer"]
+whose cars' average fuel consumption is excessive.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+FUNCTION guzzlers(par : send_message) : SET OF manufacturer;
+LOCAL
+  result : SET OF manufacturer := [];
+  mnfs   : SET OF manufacturer := par.makers;
+  limit  : fuel_consumption := par.max_consumption;
+  time   : INTEGER := par.year;
+END_LOCAL;
+  REPEAT i := 1 TO SIZEOF(mnfs);
+    IF (mnfg_average_consumption(mnfs[i],time) > limit) THEN
+      result := result + mnfs[i];
+    END_IF;
+  END_REPEAT;
+RETURN(result);
+END_FUNCTION;
+(*
+----
+
+
+=== too_old
+
+This function calculates whether the stem:[tt "car"]
+in a stem:[tt "history"] was destroyed more than two years ago.
+
+
+*Parameters*
+
+par&colon;:: An instance of a stem:[tt "history"].
+
+RESULT&colon;:: A Boolean value. TRUE if the stem:[tt "car"] in the input
+stem:[tt "history"] was destroyed two or more years ago; otherwise FALSE.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+FUNCTION too_old(par : history) : BOOLEAN;
+  (* The function returns TRUE if the input history is
+    outdated. That is, if it is of an item that was destroyed
+    more than 2 years ago. *)
+  IF ('SUPPORT.DESTROYED_CAR' IN par.item) THEN
+    IF (current_date.year-par.item.destroyed_on.year >= 2) THEN
+      RETURN(TRUE);
+    END_IF;
+  END_IF;
+  RETURN(FALSE);
+END_FUNCTION;
+(*
+----
+
+
+=== exchange_ok
+
+This function checks whether or not the stem:[tt "transfers"] in a list are
+ordered.
+
+
+*Parameters*
+
+par:: A list of stem:[tt "transfer"] instances.
+
+RESULT:: A Boolean value. TRUE if the recipient in the stem:[N^{th}] transfer
+is the same as the giver in the stem:[(N+1)^{th}] transfer.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+FUNCTION exchange_ok(par : LIST OF transfer) : BOOLEAN;
+  (* returns TRUE if the "to owner" in the N'th transfer of a
+    car is the "from owner" in the N+1'th transfer *)
+  REPEAT i := 1 TO (SIZEOF(par) - 1);
+    IF (par[i].new :<>: par[i+1].prior) THEN
+      RETURN (FALSE);
+    END_IF;
+  END_REPEAT;
+  RETURN (TRUE);
+END_FUNCTION;
+(*
+----
+
+
+=== single_car
+
+This function checks whether or not the stem:[tt "car"] in a transfer
+stem:[tt "history"] is the same stem:[tt "car"] specified in each individual
+stem:[tt "transfer"].
+
+
+*Parameters*
+
+par&colon;:: A stem:[tt "history"] instance.
+
+RESULT&colon;:: A Boolean value. TRUE if the stem:[tt "history"] and all its
+stem:[tt "transfers"] are of the same stem:[tt "car"], otherwise FALSE.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+FUNCTION single_car(par : history) : BOOLEAN;
+  (* returns TRUE if a history is of a single car *)
+  REPEAT i := 1 TO SIZEOF(par.transfers);
+    IF (par.item :<>: par.transfers[i].item) THEN
+      RETURN (FALSE);
+    END_IF;
+  END_REPEAT;
+  RETURN (TRUE);
+END_FUNCTION;
+(*
+----
+
+
+=== Entity classification structure
+
+The following indented listing shows the entity classification structure.
+Entities in upper case characters are defined in this schema. Entities in
+lower case characters are defined in other schemas.
+
+
+[source%unnumbered]
+----
+HISTORY
+manufacturer (in schema support)
+  AUTHORIZED_MANUFACTURER
+SEND_MESSAGE
+----
+
+
+[source%unnumbered]
+----
+*)
+END_SCHEMA;  -- end of authority schema
+(*
+----
+
+
+== Support schema
+
+This schema contains supporting definitions for the primary
+stem:[tt "authority"] schema.
+
+An [.small]#EXPRESS-G# model of the contents of this schema is given in
+Figure&nbsp;<<fig:cargaux1>> and in Figure&nbsp;<<fig:cargaux2>>.
+
+
+The schema imports definitions from the stem:[tt "calendar"] schema.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+SCHEMA support;
+  REFERENCE FROM calendar (date, months, days_between);
+(*
+----
+
+
+=== Type definitions
+
+==== name
+
+The '`name`' of something. A human interpretable name which may identify some
+object, thing or person, etc. For example, stem:[tt "Widget Company, Inc."].
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+TYPE name = STRING;
+END_TYPE;
+(*
+----
+
+
+==== identification_no
+
+A character string which may be used as the '`identification number`' for a
+particular instance of some object. This is typically a mixture of
+alphanumeric characters and other symbols.
+For example, stem:[tt "D20-736597WP23"].
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+TYPE identification_no = STRING;
+END_TYPE;
+(*
+----
+
+
+// [[fig:cargaux1]]
+// .Complete entity-level model of the Support schema.
+// image::images/cargaux1.svg[]
+
+
+==== fuel_consumption
+
+A measure of the fuel consumption of some powered device.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+TYPE fuel_consumption = REAL;
+WHERE
+  range : {4.0 <= SELF <= 25.0};
+END_TYPE;
+(*
+----
+
+*Propositions*
+
+range&colon;:: The value is limited to lie in the range 4 to 25 inclusive.
+
+
+// [[fig:cargaux2]]
+// .Complete entity-level model of the Support schema.
+// image::images/cargaux2.svg[]
+
+
+=== Entity definitions
+
+==== transfer
+
+A record of a transfer of a stem:[tt "car"] from one owner to a new owner.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY transfer;
+  item  : car;
+  prior : owner;
+  new   : owner;
+  on    : date;
+WHERE
+  wr1 : NOT ('SUPPORT.MANUFACTURER' IN TYPEOF(new));
+  wr2 : (NOT ('SUPPORT.MANUFACTURER' IN TYPEOF(prior))) XOR
+     (('SUPPORT.MANUFACTURER' IN TYPEOF(prior)) AND
+     ('SUPPORT.GARAGE' IN TYPEOF (new)));
+  wr3 : (NOT ('SUPPORT.GARAGE' IN TYPEOF(prior))) XOR
+     (('SUPPORT.GARAGE' IN TYPEOF(prior)) AND
+     (('SUPPORT.PERSON' IN TYPEOF(new)) XOR
+     ('SUPPORT.GROUP' IN TYPEOF(new))));
+  wr4 : (NOT ('SUPPORT.DESTROYED_CAR' IN TYPEOF(item)) XOR
+     (('SUPPORT.DESTROYED_CAR' IN TYPEOF(item)) AND
+     (days_between(on, item\destroyed_car.destroyed_on) > 0)));
+END_ENTITY;
+(*
+----
+
+
+*Attribute definitions*
+
+item&colon;:: The stem:[tt "car"] being transferred.
+
+prior&colon;:: The prior owner of the stem:[tt "item"].
+
+new&colon;:: The new owner of the stem:[tt "item"].
+
+on&colon;:: The stem:[tt "date"] of the stem:[tt "transfer"].
+
+
+*Propositions*
+
+wr1&colon;:: A stem:[tt "car"] cannot be
+transferred to a stem:[tt "manufacturer"].
+
+wr2&colon;:: A stem:[tt "manufacturer"] can
+only transfer a stem:[tt "car"] to a
+stem:[tt "garage"].
+
+wr3&colon;:: A stem:[tt "garage"] can only
+transfer a stem:[tt "car"] to either a
+stem:[tt "person"] of a stem:[tt "group"] of people.
+
+wr4&colon;:: A stem:[tt "car"] which has been destroyed cannot be
+transferred.
+
+
+==== car
+
+A stem:[tt "car"].
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY car;
+  model_type      : car_model;
+  mnfg_no         : identification_no;
+  registration_no : identification_no;
+  production_date : date;
+  production_year : INTEGER;
+DERIVE
+  made_by : manufacturer := model_type.made_by;
+UNIQUE
+  joint  : made_by, mnfg_no;
+  single : registration_no;
+WHERE
+  jan_prod : (production_year = production_date.year) XOR
+             ((production_date.month = months.January) AND
+              (production_year = production_date.year - 1));
+END_ENTITY;
+(*
+----
+
+
+*Attribute definitions*
+
+model_type&colon;:: The stem:[tt "car model"].
+
+mnfg_no&colon;:: An identification number
+of the stem:[tt "car"] assigned by the
+car's manufacturer.
+
+registration_no&colon;:: An identification number
+for the stem:[tt "car"] assigned
+by the Registration Authority.
+
+production_date&colon;:: The date on which the car was produced.
+
+production_year&colon;:: The registered year of
+production of the stem:[tt "car"].
+
+made_by&colon;:: The stem:[tt "manufacturer"] of the stem:[tt "car"].
+
+
+*Propositions*
+
+joint&colon;:: The stem:[tt "mnfg no"] given to
+a stem:[tt "car"] is unique for the given
+car manufacturer.
+
+single&colon;:: Each car is given a unique stem:[tt "registration no"] by the
+Registration Authority.
+
+jan_prod&colon;:: The registered stem:[tt "production year"]
+is the same as the year
+in which the car was produced, except that cars produced in January may be
+registered as having been produced in the previous year.
+
+
+==== destroyed_car
+
+A stem:[tt "car"] may be destroyed, in which case its date of destruction is
+recorded.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY destroyed_car
+  SUBTYPE OF (car);
+  destroyed_on : date;
+WHERE
+  dates_ok : days_between(production_date, destroyed_on) >= 0;
+END_ENTITY;
+(*
+----
+
+
+*Attribute definitions*
+
+destroyed_on&colon;:: The date on which the stem:[tt "car"] was destroyed.
+
+
+*Propositions*
+
+dates_ok&colon;:: A stem:[tt "car"] cannot be destroyed before it
+has been made.
+
+
+==== car_model
+
+A particular type of stem:[tt "car"].
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY car_model;
+  called      : name;
+  made_by     : manufacturer;
+  consumption : fuel_consumption;
+UNIQUE
+  un1 : called;
+END_ENTITY;
+(*
+----
+
+
+*Attribute definitions*
+
+called&colon;:: The name of the model.
+
+made_by&colon;:: The stem:[tt "manufacturer"] of the model.
+
+consumption&colon;:: The average fuel consumption of all cars of this model
+type.
+
+
+*Propositions*
+
+un1&colon;:: Each stem:[tt "car model"] has a distinct name.
+
+
+==== owner
+
+An owner of a stem:[tt "car"]. Owners are categorized
+into stem:[tt "named owner"] and stem:[tt "group"].
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY owner
+  ABSTRACT SUPERTYPE OF (ONEOF(named_owner,
+                               group));
+END_ENTITY;
+(*
+----
+
+
+==== named_owner
+
+An stem:[tt "owner"] who has a name. These are categorized into
+stem:[tt "manufacturer"], stem:[tt "garage"] and stem:[tt "person"].
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY named_owner
+  ABSTRACT SUPERTYPE OF (ONEOF(manufacturer,
+                               garage,
+                               person))
+  SUBTYPE OF (owner);
+  called : name;
+UNIQUE
+  un1 : called;
+END_ENTITY;
+(*
+----
+
+
+*Attribute definitions*
+
+called&colon;:: The name of the stem:[tt "owner"].
+
+
+*Propositions*
+
+un1&colon;:: Owner's names are unique.
+
+
+==== manufacturer
+
+A type of named car owner. Manufacturers may also manufacture cars.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY manufacturer
+  SUBTYPE OF (named_owner);
+END_ENTITY;
+(*
+----
+
+
+==== garage
+
+A type of named car owner.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY garage
+  SUBTYPE OF (named_owner);
+DERIVE
+  no_of_mnfs : INTEGER := dealer_for_mnfs(SELF);
+WHERE
+  wr1 : {1 <= no_of_mnfs <= 3};
+END_ENTITY;
+(*
+----
+
+
+*Attribute definitions*
+
+no_of_mnfs&colon;:: The number of different manufacturers of the cars owned by
+the stem:[tt "garage"].
+
+
+*Propositions*
+
+wr1&colon;:: At any particular time, a stem:[tt "garage"]
+shall not own cars made by more than three manufacturers.
+
+
+==== person
+
+A type of named car owner.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY person
+  SUBTYPE OF (named_owner);
+END_ENTITY;
+(*
+----
+
+
+==== group
+
+A type of car owner consisting of a group of people.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY group
+  SUBTYPE OF (owner);
+  members : SET [1:?] OF person;
+END_ENTITY;
+(*
+----
+
+
+*Attribute definitions*
+
+members&colon;:: The people who form the stem:[tt "group"].
+
+
+=== Function and procedure definitions
+
+==== dealer_for_mnfs
+
+This function calculates the total number of distinct manufacturers of cars
+owned by a stem:[tt "garage"].
+
+
+*Parameters*
+
+dealer&colon;:: An instance of a stem:[tt "garage"].
+
+RESULT&colon;:: The number of distinct manufacturers of the cars owned by the
+stem:[tt "garage"].
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+FUNCTION dealer_for_mnfs(dealer : garage) : INTEGER;
+  LOCAL
+    cars : SET OF car := [];
+    transfers : SET OF transfer := [];
+    makers : SET OF manufacturer := [];
+  END_LOCAL;
+  transfers := USEDIN(dealer, 'TRANSFER.NEW');
+  REPEAT i := 1 TO SIZEOF(transfers);
+    cars := cars + transfers[i].item;
+  END_REPEAT;
+  transfers := USEDIN(dealer, 'TRANSFER.PRIOR');
+  REPEAT i := 1 TO SIZEOF(transfers);
+    cars := cars - transfers[i].item;
+  END_REPEAT;
+  REPEAT i := 1 TO SIZEOF(cars);
+    makers := makers + cars[i].model_type.made_by;
+  END_REPEAT;
+  RETURN (SIZEOF(makers));
+END_FUNCTION;
+(*
+----
+
+
+==== mnfg_average_consumption
+
+This function calculates the average fuel consumption in a given year
+of all the cars made by a particular manufacturer.
+
+
+*Parameters*
+
+mnfg&colon;:: A stem:[tt "manufacturer"].
+
+when&colon;:: An INTEGER representing a particular year.
+
+RESULT&colon;:: A REAL giving the average fuel consumption
+of the manufacturer's cars during a particular year.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+FUNCTION mnfg_average_consumption(mnfg : manufacturer;
+                                  when : INTEGER) : REAL;
+  (* returns the average fuel consumption of the given
+     manufacturer's cars produced in the given year *)
+  LOCAL
+    models : SET OF car_model := [];
+    cars   : SET OF car := [];
+    num    : INTEGER := 0;
+    tot    : INTEGER := 0;
+    fuel   : REAL := 0;
+    result : REAL := 0.0;
+  END_LOCAL;
+     -- set of mnfg's models
+  models := USEDIN(mnfg, 'MODEL.MADE_BY');
+  REPEAT i := 1 TO SIZEOF(models);
+     -- cars of particular model year
+    cars := QUERY(temp <* USEDIN(models[i], 'CAR.MODEL_TYPE')
+            | temp.production_year = when);
+    num := SIZEOF(cars);
+    fuel := fuel + num*models[i].consumption;
+    tot := tot + num;
+  END_REPEAT;
+  IF tot > 0.0 THEN
+    result := fuel/tot;
+  END_IF;
+  RETURN (result);
+END_FUNCTION;
+(*
+----
+
+
+=== Entity classification structure
+
+The following indented listing shows the entity classification structure.
+Entities in upper case characters are defined in this schema. Entities in
+lower case characters are defined in other schemas.
+
+
+[source%unnumbered]
+----
+CAR
+    DESTROYED_CAR
+CAR_MODEL
+OWNER
+    GROUP
+    NAMED_OWNER
+        GARAGE
+        MANUFACTURER
+        PERSON
+TRANSFER
+----
+
+
+[source%unnumbered]
+----
+*)
+END_SCHEMA;  -- end of support schema
+(*
+----
+
+
+== Calendar schema
+
+This schema contains definitions related to dates and other calendrical items.
+
+
+// [[fig:cargcal]]
+// .Complete entity-level model of Calendar schema.
+// image::images/cargcal.svg[]
+
+
+Figure&nbsp;<<fig:cargcal>> is an [.small]#EXPRESS-G#
+model showing the contents of this schema.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+SCHEMA calendar;
+(*
+----
+
+
+=== Type definitions
+
+==== months
+
+An enumeration of the months of the year.
+stem:[tt "January"] is the first month
+in a year and stem:[tt "December"] is the last month in a year.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+TYPE months = ENUMERATION OF
+    (January, February, March,
+     April,   May,      June,
+     July,    August,   September,
+     October, November, December);
+END_TYPE;
+(*
+----
+
+
+=== Entity definitions
+
+==== date
+
+A stem:[tt "date"] AD in the Gregorian calendar.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+ENTITY date;
+  day   : INTEGER;
+  month : months;
+  year  : INTEGER;
+WHERE
+  days_ok : {1 <= day <= 31};
+  year_ok : year > 0;
+  date_ok : valid_date(SELF);
+END_ENTITY;
+(*
+----
+
+
+*Attribute definitions*
+
+day&colon;:: The day of the stem:[tt "month"].
+
+month&colon;:: The month of the stem:[tt "year"]
+
+year&colon;:: The year.
+
+
+*Propositions*
+
+days_ok&colon;:: The stem:[tt "day"] shall be
+numbered between 1 and 31 inclusive.
+
+year_ok&colon;:: The year shall be greater than zero.
+
+date_ok&colon;:: The combination of stem:[tt "day"],
+stem:[tt "month"] and stem:[tt "year"]
+shall form a valid date, taking into account the
+differing numbers of days in
+particular months, and also the effect of leap years.
+
+
+=== Function and procedure definitions
+
+==== valid_date
+
+This function checks a stem:[tt "date"] for valid day,
+month, year combinations.
+
+
+*Parameters*
+
+par&colon;:: A stem:[tt "date"].
+
+RESULT&colon;:: A Boolean. TRUE if the stem:[tt "date"]
+has a valid day, month, year combination, FALSE otherwise.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+FUNCTION valid_date (par : date) : BOOLEAN;
+  (* returns FALSE if its input is not a valid date *)
+  CASE par.month OF
+    April     : RETURN (par.day <= 30);
+    June      : RETURN (par.day <= 30);
+    September : RETURN (par.day <= 30);
+    November  : RETURN (par.day <= 30);
+    February  : IF (leap_year(par.year)) THEN
+                  RETURN (par.day <= 29);
+                ELSE
+                  RETURN (par.day <= 28);
+                END_IF;
+    OTHERWISE : RETURN (TRUE);
+  END_CASE;
+END_FUNCTION;
+(*
+----
+
+
+==== leap_year
+
+This function checks whether a given integer could represent a leap year.
+
+
+*Parameters*
+
+year&colon;:: An INTEGER.
+
+RESULT&colon;:: A Boolean. TRUE if stem:[tt "year"] is a
+leap year, otherwise FALSE.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+FUNCTION leap_year(year : INTEGER) : BOOLEAN;
+  (* returns TRUE if its input is a leap year *)
+  IF ((((year MOD 4) = 0) AND ((year MOD 100) <> 0)) OR
+      ((year MOD 400) = 0)) THEN
+    RETURN (TRUE);
+  ELSE
+    RETURN (FALSE);
+  END_IF;
+END_FUNCTION;
+(*
+----
+
+
+==== current_date
+
+This function returns the current date.
+
+
+*Parameters*
+
+RESULT&colon;:: The current stem:[tt "date"].
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+FUNCTION current_date : date;
+  (* This function returns the date when it is called.
+     Typically, it will be implemented via a system provided
+     procedure within the information base *)
+END_FUNCTION;
+(*
+----
+
+
+==== days_between
+
+This function returns the number of days between any two stem:[tt "date"]s.
+
+
+*Parameters*
+
+d1&colon;:: A stem:[tt "date"].
+
+d2&colon;:: A stem:[tt "date"].
+
+RESULT&colon;:: An Integer. The number of days between the two input
+stem:[tt "dates"]. If stem:[tt "d1"] is earlier
+than stem:[tt "d2"] a positive integer is
+returned; if stem:[tt "d1"] is later than
+stem:[tt "d2"] a negative integer is returned;
+otherwise zero is returned.
+
+
+*EXPRESS specification:*
+
+[source%unnumbered]
+----
+*)
+FUNCTION days_between(d1, d2 : date) : INTEGER;
+  (* returns the number of days between two input dates. If d1
+     is earlier than d2, a positive number is returned. *)
+END_FUNCTION;
+(*
+----
+
+
+=== Entity classification structure
+
+The following indented listing shows the entity classification structure.
+Entities in upper case characters are defined in this schema. Entities in
+lower case characters are defined in other schemas.
+
+
+[source%unnumbered]
+----
+DATE
+----
+
+[source%unnumbered]
+----
+*)
+END_SCHEMA; -- end of calendar schema
+(*
+----
