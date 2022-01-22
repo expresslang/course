@@ -209,36 +209,36 @@ grammer, and semantics of the EXPRESS language.
 // image::images/pstphist[]
 
 
-// images::images/pstpover[]
+// image::images/pstpover[]
 
 
 // [%unnumbered]
 // .STEP ARCHITECTURE
-// images::images/pstparch[]
+// image::images/pstparch[]
 
 
 // [%unnumbered]
 // .Level 1 Exchange
-// images::images/plevel1[]
+// image::images/plevel1[]
 
 
 // [%unnumbered]
 // .Level 2 Exchange
-// images::images/plevel2[][hp]
+// image::images/plevel2[][hp]
 
 // [%unnumbered]
 // .LEVEL 3 EXCHANGE
-// images::images/plevel3[]
+// image::images/plevel3[]
 
 
 // [%unnumbered]
 // .Procedural Exchange
-// images::images/pfilproc[]
+// image::images/pfilproc[]
 
 
 // [%unnumbered]
 // .LEVEL 4 EXCHANGE
-// images::images/plevel4[]
+// image::images/plevel4[]
 
 
 == EXPRESS Primitives
