@@ -565,7 +565,8 @@ ENTITY node;
 END_ENTITY
 ----
 
-This stem:[tt "node"] entity is '`type recursive`' and not '`self instance recursive`'
+This stem:[tt "node"] entity is '`type recursive`'
+and not '`self instance recursive`'
 but may be '`globally instance recursive`'.
 
 [source%unnumbered]

@@ -258,7 +258,8 @@ Enumeration)
 
 These types may be given a '`precision`'. E.g `REAL(6)`
 
-Various operations such as stem:[+, -, //, ">="], etc. may be applied to these types.
+Various operations such as stem:[+, -, //, ">="], etc. may be
+applied to these types.
 
 
 == Simple Types (cont)
@@ -269,7 +270,8 @@ Various operations such as stem:[+, -, //, ">="], etc. may be applied to these t
 * `b : BOOLEAN` is a '`subtype`' of `LOGICAL` having values of
 `FALSE` and `TRUE` only.
 
-Comparisons on Booleans and Logicals can be performed (e.g stem:[=, <, "<=", "<>"], etc.)
+Comparisons on Booleans and Logicals can be performed
+(e.g stem:[=, <, "<=", "<>"], etc.)
 
 Other operations include `NOT`, `AND`, `OR`, `XOR`.
 
