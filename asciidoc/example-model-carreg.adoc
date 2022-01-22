@@ -1,0 +1,106 @@
+= Example model statement Car Registration Authority}
+:author: Peter Wilson
+:toc:
+:stem:
+
+
+
+== Introduction
+
+The model statement, which is given in sections&nbsp;<<scope>>
+and&nbsp;<<description>>, has been taken from ISO TR9007 _Information
+processing systems -- Concepts and terminology for the conceptual
+schema and the information base_, 1987. This contains several renditions
+of the model using different kinds or representations including
+Entity-Relationship, A NIAM-like approach, and a formulation based on
+predicate logic.
+
+
+[[scope]]
+== Scope
+
+The scope of the model to be described has to do with the registration of cars
+and is limited to the scope of interest of the Registration Authority. The
+Registration Authority exists for the purpose of:
+
+* Knowing who is or was the registered owner of a car at any time from
+construction to destruction of the car.
+
+* To monitor certain laws, for example regarding fuel consumption of cars
+and their transfer of ownership.
+
+
+[[description]]
+== Description
+
+=== Manufacturers of cars
+
+There are a number of manufacturers, each with one unique name. Manufacturers
+may start operation, with the permission of the Registration Authority (which
+permission cannot be withdrawn). No more than five manufacturers may be in
+operation at any time. A manufacturer may cease to operate provided he owns no
+cars, in which case permission to operate lapses.
+
+
+=== Cars
+
+A car is of a particular model and is given a serial number by its
+manufacturer that is unique among the cars made by that manufacturer. The
+manufacturer is registered as owner of the car as soon as practicable. At this
+time it is given one registration number, unique for all cars and for all
+time. The year of production is also recorded. During the month of January
+only, a car can be declared to have been produced in the previous year.
+Eventually a car is destroyed and the date of destruction is registered. The
+history of the car must be kept until the end of the second calendar year
+following its destruction.
+
+
+=== Car models
+
+A model of car has one universally unique name. Cars of each model are made by
+only one manufacturer. New models may be introduced without limit. All cars of
+one model are recorded as having the same fuel consumption.
+
+
+=== Fuel consumption
+
+Fuel consumption is the number of liters of hydrocarbon fuel per 100
+kilometers, which will be between 4 and 25 liters. The fuel consumption
+averaged over all registered cars produced by a particular manufacturer in a
+particular year is required not to exceed a maximum value, which is the same
+for each manufacturer and may change from year to year. At the end of each
+January an appropriate message is sent by the Registration Authority to each
+manufacturer which has failed to meet this requirement.
+
+
+=== Garages
+
+There are a number of garages footnote:[Dealerships in American English.], each
+one with a unique name. New garages may start trading. Garages may own cars,
+but at any time the cars they own must have originated from no more than three
+manufacturers (which three is unimportant, and may vary with time). A garage
+cannot cease to trade as long as it owns cars.
+
+
+=== Persons
+
+There are a number of persons who can own one or more cars. Each person has
+one unique name. Only those persons are of interest who own, or have at some
+time owned, a car still known to the Registration Authority.
+
+
+=== Car ownership
+
+At any one time a car may be owned by either its manufacturer, or a trading
+garage, or a person or a group of persons. If a car is owned by a group of
+persons, each is regarded as an owner.
+
+
+=== Transfer of ownership
+
+Ownership of a car is transferred by registration of the actual transfer,
+including the date. A manufacturer can only transfer to garages, and cannot be
+a transferee. A garage can transfer only to people. After destruction of the
+car it cannot be transferred anymore. Earlier transfer though still can be
+recorded.
+

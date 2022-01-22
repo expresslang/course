@@ -1,0 +1,116 @@
+
+= EXPRESS-G example model Car Registration Authority
+:author: Peter Wilson
+:toc:
+:stem:
+
+
+
+== Introduction
+
+This document contains a complete [.small]#EXPRESS-G# representation of the
+Car Registration Authority example model. There are details which cannot
+be expressed using the [.small]#EXPRESS-G# iconic language but which can be described
+using the [.small]#EXPRESS# lexical language.
+
+An [.small]#EXPRESS# model is a primary representation and an [.small]#EXPRESS-G# model
+is a secondary representation.
+
+== Model overview
+
+The model consists of three schemas, as shown in Figure&nbsp;<<fig:cargschema>>.
+
+// This one is written in the same tex file: egcarsg.tex
+// [[fig:cargschema]]
+// .Complete schema-level model for Registration Authority example.
+// image::images/cargschema[]
+
+The schema stem:[tt "registration_authority"] is the primary schema. It references
+the noted items from the stem:[tt "auxiliary"] schema; some functions, rules or
+procedures may also be referenced from this schema as well, but the diagram
+cannot show these. This schema also references one or more items from the
+stem:[tt "calendar"] schema. These may be rules, functions or procedures but again
+the diagram cannot show these; alternatively, the entire schema may be
+referenced.
+
+The stem:[tt "auxiliary"] schema references at least two items from the
+stem:[tt "calendar"] schema. Rules, functions and procedures may also be
+referenced, but this cannot be discerned via [.small]#EXPRESS-G#.
+
+The stem:[tt "calendar"] schema is self-contained as it neither uses nor references
+any other schema.
+
+An entity-level model for the stem:[tt "registration_authority"] schema is given
+in Figure&nbsp;<<fig:cargreg>>. The entity-level model for the stem:[tt "auxiliary"]
+schema is displayed in Figures&nbsp;<<fig:cargaux1>> and&nbsp;<<fig:cargaux2>>. The
+internals of the stem:[tt "calendar"] schema are shown in Figure&nbsp;<<fig:cargcal>>.
+
+
+
+== The registration authority schema
+
+Figure&nbsp;<<fig:cargreg>> shows the stem:[tt "registration_authority"] schema and
+the entities and types in it.
+
+
+// [[fig:cargreg]]
+// .Complete entity-level model of the Registration Authority schema
+// image::images/cargreg.svg[]
+
+
+There are three entities altogether, namely stem:[tt "send_message"],
+stem:[tt "history"] and stem:[tt "authorized_manufacturer"]. There are constraints on
+the two latter entities. The entity stem:[tt "authorized_manufacturer"] is a
+subtype of the entity stem:[tt "manufacturer"] which is defined in the
+stem:[tt "auxiliary"] schema.
+
+There are no types defined within the schema.
+
+
+== The auxiliary schema
+
+The nexp{auxiliary} schema contains too many items to be displayed on a single
+page. Figures&nbsp;<<fig:cargaux1>> and&nbsp;<<fig:cargaux2>> show the entities and
+types that are contained in the schema.
+
+// [[fig:cargaux2]]
+// .Complete entity-level model of the Auxiliary schema
+// image::images/cargaux2.svg[]
+
+The schema contains the following entities:
+
+* stem:[tt "car"]
+* stem:[tt "car_model"]
+* stem:[tt "destroyed_car"], which is a subtype of stem:[tt "car"]
+* stem:[tt "garage"], which is a subtype of stem:[tt "named_owner"]
+* stem:[tt "group"], which is a subtype of stem:[tt "owner"]
+* stem:[tt "manufacturer"], which is a subtype of stem:[tt "named_owner"]
+* stem:[tt "named_owner"], which is an abstract supertype and also a subtype
+of stem:[tt "owner"]. It puts a stem:[tt "OneOf"] constraint on its subtypes.
+* stem:[tt "owner"], which is an abstract supertype and puts a stem:[tt "OneOf"]
+constraint on its subtypes.
+* stem:[tt "person"], which is a subtype of stem:[tt "named_owner"]
+* stem:[tt "transfer"]
+
+
+It also contains the following types:
+
+* stem:[tt "identification_no"], a defined data type with a base-type of
+stem:[tt "String"]
+* stem:[tt "fuel_consumption"], a defined data type with a base-type of
+stem:[tt "Real"]
+* stem:[tt "name"], a defined data type with a base-type of stem:[tt "String"]
+
+
+== The calendar schema
+
+Figure&nbsp;<<fig:cargcal>> shows the entities and types within the
+stem:[tt "calendar"] schema.
+
+// [[fig:cargcal]]
+// .Complete entity-level model of Calendar schema
+// image::images/cargcal.svg[]
+
+There is one entity called stem:[tt "date"] and one enumeration type called
+stem:[tt "months"].
+
