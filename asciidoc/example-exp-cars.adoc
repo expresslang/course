@@ -34,9 +34,9 @@ understanding the primary model. If there is any conflict between the
 [.small]#EXPRESS# and [.small]#EXPRESS-G#, then the
 [.small]#EXPRESS# takes precedence.
 
-// [[fig:cargschema]]
-// .Complete schema-level model for Registration Authority example
-// image::images/cargschema.svg[]
+[[fig:cargschema]]
+.Complete schema-level model for Registration Authority example
+image::images/ex-cargschema.svg[]
 
 The model consists of three schemas, as shown in
 Figure&nbsp;<<fig:cargschema>>.
@@ -88,9 +88,9 @@ stem:[tt "car"] is destroyed, after which the
 ownership records may be destroyed.
 
 
-// [[fig:cargreg]]
-// .Complete entity-level model of the Authority schema.
-// image::images/cargreg.svg[]
+[[fig:cargreg]]
+.Complete entity-level model of the Authority schema.
+image::images/ex-cargreg.svg[]
 
 *EXPRESS specification:*
 
@@ -447,9 +447,9 @@ END_TYPE;
 ----
 
 
-// [[fig:cargaux1]]
-// .Complete entity-level model of the Support schema.
-// image::images/cargaux1.svg[]
+[[fig:cargaux1]]
+.Complete entity-level model of the Support schema.
+image::images/ex-cargaux1.svg[]
 
 
 ==== fuel_consumption
@@ -474,9 +474,9 @@ END_TYPE;
 range&colon;:: The value is limited to lie in the range 4 to 25 inclusive.
 
 
-// [[fig:cargaux2]]
-// .Complete entity-level model of the Support schema.
-// image::images/cargaux2.svg[]
+[[fig:cargaux2]]
+.Complete entity-level model of the Support schema.
+image::images/ex-cargaux2.svg[]
 
 
 === Entity definitions
@@ -948,9 +948,9 @@ END_SCHEMA;  -- end of support schema
 This schema contains definitions related to dates and other calendrical items.
 
 
-// [[fig:cargcal]]
-// .Complete entity-level model of Calendar schema.
-// image::images/cargcal.svg[]
+[[fig:cargcal]]
+.Complete entity-level model of Calendar schema.
+image::images/ex-cargcal.svg[]
 
 
 Figure&nbsp;<<fig:cargcal>> is an [.small]#EXPRESS-G#

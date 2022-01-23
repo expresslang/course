@@ -206,39 +206,39 @@ Other uses are possible, such as using EXPRESS to define the syntax,
 grammer, and semantics of the EXPRESS language.
 
 
-// image::images/pstphist[]
+image::images/01-pstphist.svg[]
 
 
-// image::images/pstpover[]
+image::images/01-pstpover.svg[]
 
 
-// [%unnumbered]
-// .STEP ARCHITECTURE
-// image::images/pstparch[]
+[%unnumbered]
+.STEP ARCHITECTURE
+image::images/01-pstparch.svg[]
 
 
-// [%unnumbered]
-// .Level 1 Exchange
-// image::images/plevel1[]
+[%unnumbered]
+.Level 1 Exchange
+image::images/01-plevel1.svg[]
 
 
-// [%unnumbered]
-// .Level 2 Exchange
-// image::images/plevel2[][hp]
+[%unnumbered]
+.Level 2 Exchange
+image::images/01-plevel2.svg[]
 
-// [%unnumbered]
-// .LEVEL 3 EXCHANGE
-// image::images/plevel3[]
-
-
-// [%unnumbered]
-// .Procedural Exchange
-// image::images/pfilproc[]
+[%unnumbered]
+.LEVEL 3 EXCHANGE
+image::images/01-plevel3.svg[]
 
 
-// [%unnumbered]
-// .LEVEL 4 EXCHANGE
-// image::images/plevel4[]
+[%unnumbered]
+.Procedural Exchange
+image::images/01-pfilproc.svg[]
+
+
+[%unnumbered]
+.LEVEL 4 EXCHANGE
+image::images/01-plevel4.svg[]
 
 
 == EXPRESS Primitives

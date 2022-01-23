@@ -1,6 +1,32 @@
 = Information Modeling Using EXPRESS -- An Introduction
 :stem:
 
+
+// begin notes
+
+NB. NOTES ARE ON EVEN NUMBERED (LEFT HAND) PAGES AND THE PRESENTATION ON
+ODD NUMBERED (RIGHT HAND) PAGES.
+
+== Information?
+
+This first part of the EXPRESS course covers the following topics:
+
+* What is information, why do we need information models, and
+what is an information model?
+* EXPRESS background
+* STEP architecture
+* TYPE
+* ENTITY
+* FUNCTION
+* SCHEMA
+
+We are basically concerned with storing and transmitting information
+in computer systems. In particular information about engineering
+data and processes. 
+
+// end notes
+
+
 == Information?
 
 Definition:: Information is knowledge of ideas, facts and/or processes.
@@ -12,7 +38,8 @@ Definition:: Information is knowledge of ideas, facts and/or processes.
 --
 
 
-// remintro
+// begin notes
+
 == Information Model?
 
 Because we are dealing with computer systems we need a precise
@@ -25,12 +52,14 @@ The model may describe things in general, for example an animal has
 legs, and there can be data corresponding to the model about particular
 things -- my cat Jessie has three legs (but she can still catch birds).
 
+// end notes
+
 
 == Information Model?
 
-Definition:: _An information model is a formal description of types
+Definition:: An information model is a formal description of types
 (classes) of ideas, facts and processes which together form a model of a
-portion of interest of the real world._
+portion of interest of the real world.
 +
 --
 * If a model is written in EXPRESS or any other computer sensible
@@ -44,7 +73,8 @@ independent is a _conceptual_ model.
 --
 
 
-// remintro
+// begin notes
+
 == Why Formal Models?
 
 In everday conversation, and writing, there can be many ambiguities
@@ -61,6 +91,8 @@ looking at the pair...
 * Numerical data (1-3-91) can be ambiguous.
 
 There are some exercises about ambiguities.
+
+// end notes
 
 
 == Why Formal Models?
@@ -82,7 +114,8 @@ USA:: 3rd January 1991
 --
 
 
-// remintro
+// begin notes
+
 == Information Model
 
 This is a somewhat formal definition, but then we are going to
@@ -90,6 +123,8 @@ be spending a lot of time with formal models and modeling.
 
 It is intended to enable unambiguous communication about a limited
 topic (or range of topics).
+
+// end notes
 
 
 == Information Model
@@ -110,7 +145,7 @@ representation of a Universe of Discourse.
 --
 
 
-// remintro
+// begin notes
 
 == IM is NOT
 
@@ -118,6 +153,8 @@ We are interested in computer based/processible information models.
 
 A model uses, or is associated with, various more common computer
 techniques, but it is essentially for human consumption.
+
+// end notes
 
 
 == IM is NOT
@@ -135,7 +172,7 @@ A populated instance of an IM may be maintained using DB or similar
 technologies. IM constraints are often implemented via programatic code.
 
 
-// remintro
+// begin notes
 
 == IM Description Methods
 
@@ -148,6 +185,8 @@ together with some annotations on the diagram.
 
 A graphical model can easily be the size of a wall, which might cause
 difficulties if you ant to put one in a report.
+
+// end notes
 
 
 == IM Description Methods
@@ -166,7 +205,7 @@ understanding. Graphical models nearly always require supplemental text for
 completeness.
 
 
-// remintro
+// begin notes
 
 == EXPRESS Development
 
@@ -180,6 +219,8 @@ Other modeling techniques were reviewed but did not have the power
 that was felt to be needed, in particular constraint specifications.
 Also the languages were basically graphical although there were some
 proprietry lexical adjuncts.
+
+// end notes
 
 
 == EXPRESS Development
@@ -196,7 +237,7 @@ program (early '80s).
 * Language still evolving.
 
 
-// remintro
+// begin notes
 
 == REVIEWS
 
@@ -211,6 +252,8 @@ reference manual_
 The first edition was formally approved and published in 1994.
 
 The second edition should be published during 2004.
+
+// end notes
 
 
 == REVIEWS
@@ -227,18 +270,20 @@ End 1994:: Published as International Standard ISO 10303-11:1994.
 End 2003:: Edition 2 approved as an International Standard.
 
 
-// remintro
+// begin notes
 
 == Language Comparison
 
-_Most modeling anguages are graphical, which is inherently limiting._
+Most modeling anguages are graphical, which is inherently limiting.
 
-_For data modeling most languages are targeted towards Relational Databases.
-Examples include IDEF1X, Shlaer-Mellor, Extended Entity-Relation._
+For data modeling most languages are targeted towards Relational Databases.
+Examples include IDEF1X, Shlaer-Mellor, Extended Entity-Relation.
 
-_UML is for modeling an Object Oriented program. EXPRESS is for modeling
+UML is for modeling an Object Oriented program. EXPRESS is for modeling
 data and naturally moved to an OO perspective (it was developed by practising
-engineers as user, not by computer scientists)._
+engineers as user, not by computer scientists).
+
+// end notes
 
 
 .LANGUAGE COMPARISON
@@ -267,19 +312,21 @@ engineers as user, not by computer scientists)._
 
 
 
-// remintro
+// begin notes
 
 == Graphical Models
 
-_Very good for group work -- sketch on blackboard, but soon run
+Very good for group work -- sketch on blackboard, but soon run
 out of space on the board. I have seen complete models that can
-take up a whole wall even with small print._
+take up a whole wall even with small print.
 
-_It's difficult to check a model except by eyeballing it. It's been
+It's difficult to check a model except by eyeballing it. It's been
 a general experience over several decades of going from flowcharts to
-program code that many details get missed._
+program code that many details get missed.
 
-_It is difficult to formally specify a graphical language._
+It is difficult to formally specify a graphical language.
+
+// end notes
 
 
 == Graphical Models
@@ -291,24 +338,25 @@ _It is difficult to formally specify a graphical language._
 * Effectively, not computer processible (What You See Is All You've Got).
 
 
-// remintro
+// begin notes
 
 == Textual Models
 
-_Text languages for modeling can be formally defined, both syntax and much
+Text languages for modeling can be formally defined, both syntax and much
 of the semantics. This means that they can be made computer processible and so
-can be automatically checked for correctness (syntax) and completeness._
+can be automatically checked for correctness (syntax) and completeness.
 
-_They can represent a variety of modeling approaches, from mathematical
-or logical schemes to things more readily understood._
+They can represent a variety of modeling approaches, from mathematical
+or logical schemes to things more readily understood.
 
-_They can include a programming language so constraints can be expressed
-in terms of a process as well as in terms of rules and regulations._
+They can include a programming language so constraints can be expressed
+in terms of a process as well as in terms of rules and regulations.
 
-_They provide opportunities for models to be manipulated, for example
+They provide opportunities for models to be manipulated, for example
 automatically developing test cases or checking that data conforms to the
-model._
+model.
 
+// end notes
 
 == Textual Models
 
@@ -320,29 +368,31 @@ model._
 * Potential for automatic implementation (for model simulation and test).
 
 
-// remintro
+// begin notes
 
 == EXPRESS is
 
-_NIAM and IDEF1X are both graphical languages for modeling Relational
-databases._
+NIAM and IDEF1X are both graphical languages for modeling Relational
+databases.
 
-_EXPRESS started as a single lexical language but has since expanded
-into a family of languages._
+EXPRESS started as a single lexical language but has since expanded
+into a family of languages.
 
-_It was developed by a small group (about 4 at any given time) for
+It was developed by a small group (about 4 at any given time) for
 modeling the kinds of information used in engineering. CAD models, Blueprints,
-Mechanisms, Engineering sign-off, and so on._
+Mechanisms, Engineering sign-off, and so on.
 
-_There were releases every quarter to a user group of about 50, who were full
+There were releases every quarter to a user group of about 50, who were full
 of their own suggestions and merrily changed the language in between times.
 In the first years there were no compilers (the language was changing too
 rapidly) so there were no technical constraints -- every use of the language
-was perfect, no bugs, no complaints!_
+was perfect, no bugs, no complaints!
 
-_One of the strengths of EXPRESS is that it much of it was developed by the
+One of the strengths of EXPRESS is that it much of it was developed by the
 end users. That is also probaly its major weakness as its initial coherence
-sank under the weight._
+sank under the weight.
+
+// end notes
 
 
 == EXPRESS is:
@@ -356,31 +406,33 @@ sank under the weight._
 * Has several aspects (subsets)
 
 
-// remintro
+// begin notes
 
 == EXPRESS Aspects
 
-_The principal elements of EXPRESS are for representing things
+The principal elements of EXPRESS are for representing things
 and the relationships between things (and as far as EXPRESS is concerned,
 a relationship is a thing). Groups of strongly related things can be
-collected together._
+collected together.
 
-_It includes a Pascal-like programming language for specifying complex
-constraints._
+It includes a Pascal-like programming language for specifying complex
+constraints.
 
-_It is a conceptual moeling language, so puts no restrictions on the
-number of characters in a name, and arithmetic is infinitely precise._
+It is a conceptual moeling language, so puts no restrictions on the
+number of characters in a name, and arithmetic is infinitely precise.
 
-_There is a graphical form called EXPRESS-G which is a subset of the lexical
-language._
+There is a graphical form called EXPRESS-G which is a subset of the lexical
+language.
 
-_Another member of the family EXPRESS-I is a lexical language for displaying
-data that correspond to the concepts in EXPRESS._
+Another member of the family EXPRESS-I is a lexical language for displaying
+data that correspond to the concepts in EXPRESS.
 
-_Much more recently the third lexical language EXPRESS-X has been developed
+Much more recently the third lexical language EXPRESS-X has been developed
 in which you can specify desired changes to an EXPRESS model and then have
 them performed; transformations principally consist of splitting or merging
-things and their relationships._
+things and their relationships.
+
+// end notes
 
 
 == EXPRESS Aspects
@@ -394,12 +446,14 @@ things and their relationships._
 * Transformation specification (EXPRESS-X).
 
 
-// remintro
+// begin notes
+
 == EXPRESS Usage
 
-_EXPRESS is widely used in the Standards community for formal definition
-of data-related concepts._
+EXPRESS is widely used in the Standards community for formal definition
+of data-related concepts.
 
+// end notes
 
 
 == EXPRESS Usage
@@ -417,7 +471,7 @@ Other uses are possible, such as using EXPRESS to define the syntax,
 grammer, and semantics of the EXPRESS language.
 
 
-// remintro
+// begin notes
 
 == STEP History
 
@@ -463,11 +517,14 @@ US standard (even though most participants were non-US). This dilemma was
 eventually resolved by changing PDES to be -- Product Data Exchange using
 STEP (which some then called Standard for Exchange using PDES).
 
+// end notes
 
-image::images/pstphist.svg[]
+
+[%unnumbered]
+image::images/01-pstphist.svg[]
 
 
-// remintro
+// begin notes
 
 == STEP Documents
 
@@ -489,11 +546,13 @@ for product descriptions.
 which specify application dependent information models for the purposes
 of data exchange.
 
+// end notes
 
-// image::images/pstpover[]
+
+image::images/01-pstpover.svg[]
 
 
-// remintro
+// begin notes
 
 == STEP Architecture
 
@@ -510,13 +569,15 @@ consist of a mapping from EXPRESS to a data representation.
 As far as a typical end user is concerned, the IRs are invisible and there
 are APs and exchange levels.
 
-
-// [%unnumbered]
-// .STEP ARCHITECTURE
-// image::images/pstparch[]
+// end notes
 
 
-// remintro
+[%unnumbered]
+.STEP ARCHITECTURE
+image::images/01-pstparch.svg[]
+
+
+// begin notes
 
 == Level 1 Exchange
 
@@ -525,12 +586,12 @@ STEP data file then archive it and/or send it to someone else (to read into
 their CAD system).
 
 
-// [%unnumbered]
-// .Level 1 Exchange
-// image::images/plevel1[]
+[%unnumbered]
+.Level 1 Exchange
+image::images/01-plevel1.svg[]
 
 
-// remintro
+// begin notes
 
 == Level 2 Exchange
 
@@ -539,12 +600,15 @@ Level 2 data exchange is memory-based. Get your CAD system to create a
 can be written to a file for Level 1 use. At the end of the session
 the STEP database is no longer available.
 
+// end notes
 
-// [%unnumbered]
-// .Level 2 Exchange
-// image::images/plevel2[][hp]
 
-// remintro
+[%unnumbered]
+.Level 2 Exchange
+image::images/01-plevel2.svg[]
+
+
+// begin notes
 
 == Level 3 Exchange
 
@@ -552,13 +616,15 @@ Level 3 data exchange is database-based. The STEP data is maintained
 in a (permanent) shared database. STEP level 1 files can be written and read
 by the database.
 
-
-// [%unnumbered]
-// .LEVEL 3 EXCHANGE
-// image::images/plevel3[]
+// end notes
 
 
-// remintro
+[%unnumbered]
+.LEVEL 3 EXCHANGE
+image::images/01-plevel3.svg[]
+
+
+// begin notes
 
 == Procedural Exchange
 
@@ -570,13 +636,15 @@ a hole in it, tell the system to create a block, put a hole in it, and then
 perhaps move it to another position. The end result in terms of data values
 can be the same but the route is very different.
 
-
-// [%unnumbered]
-// .Procedural Exchange
-// image::images/pfilproc[]
+// end notes
 
 
-// remintro
+[%unnumbered]
+.Procedural Exchange
+image::images/01-pfilproc.svg[]
+
+
+// begin notes
 
 == Level 4 Exchange
 
@@ -588,13 +656,16 @@ The vision has faded.
 The majority of STEP implementations are Level 1 (file exchange).
 Internally, though, they are implemented using a Level 2 or 3 architecture.
 
-
-// [%unnumbered]
-// .LEVEL 4 EXCHANGE
-// image::images/plevel4[]
+// end notes
 
 
-// remintro
+[%unnumbered]
+.LEVEL 4 EXCHANGE
+image::images/01-plevel4.svg[]
+
+
+// begin notes
+
 == EXPRESS Primitives
 
 These, plus literals, are the fundamental '`things`' of the EXPRESS language.
@@ -606,6 +677,8 @@ These, plus literals, are the fundamental '`things`' of the EXPRESS language.
 
 These are later described in detail.
 
+// end notes
+
 
 == EXPRESS Primitives
 
@@ -616,7 +689,8 @@ Enumeration)
 * Pascal-like procedural language
 
 
-// remintro
+// begin notes
+
 == Simple Types
 
 * NUMBER is any kind of number with any value.
@@ -627,6 +701,8 @@ The numbers have infinite precision and can be as large or small
 as you like.
 
 The procedural language lets you perform operations on NUMBERs.
+
+// end notes
 
 
 == Simple Types
@@ -641,13 +717,16 @@ Various operations such as stem:[+, -, //, ">="], etc. may be
 applied to these types.
 
 
-// remintro
+// begin notes
+
 == Simple Types (cont)
 
 EXPRESS provides for both 2- and 3-valued logical statements and
 epressions.
 
 The procedural language lets you perform operations on logicals.
+
+// end notes
 
 
 == Simple Types (cont)
@@ -664,7 +743,8 @@ Comparisons on Booleans and Logicals can be performed
 Other operations include `NOT`, `AND`, `OR`, `XOR`.
 
 
-// remintro
+// begin notes
+
 == Simple Types (cont)
 
 A STRING is any sequence of any number of characters. A BINARY
@@ -672,6 +752,8 @@ is a specialisation of a STRING as it is limited to the digits 0 and 1.
 
 The procedural language lets you perform operations (concatenation,
 subsetting and comparison) on strings.
+
+// end notes
 
 
 == Simple Types (cont)
@@ -695,11 +777,14 @@ IF s1[2:3] = 'it' THEN ...
 ----
 
 
-// remintro
+// begin notes
+
 == Aggregations
 
 Aggregations are collections of things. A collection may be ordered or
 unordered, and fixed or expandible in size, and with or without duplicates.
+
+// end notes
 
 
 == Aggregations
@@ -720,11 +805,14 @@ NOTE: `LIST [L:H] OF UNIQUE ...` is used for an ordered collection
 with no duplicates.
 
 
-// remintro
+// begin notes
+
 == Types
 
 A TYPE is a user-defined extension to the EXPRESS-defined simple types
 and aggregations. Every TYPE has a name chosen by the user.
+
+// end notes
 
 
 == Types
@@ -740,18 +828,21 @@ Enumeration:: An ordered set of values represented by names. +
 `END_TYPE;`
 
 
-// remintro
+// begin notes
+
 == TYPE Examples
 
 stem:[tt "things"] illustrates an aggegration of an aggregation.
 
-stem:[tt "gender] is an ENUMERATION because the possiblities (except for some
+stem:[tt "gender"] is an ENUMERATION because the possiblities (except for some
 pathological cases) are known.
 
-stem:[tt "hair_type] is not a particularly good example, but it does imply
+stem:[tt "hair_type"] is not a particularly good example, but it does imply
 a limited scope for the model.
 
-stem:[tt "choose_thing] is a selection between two alternatives.
+stem:[tt "choose_thing"] is a selection between two alternatives.
+
+// end notes
 
 
 == TYPE Examples
@@ -779,12 +870,15 @@ END_TYPE;
 ----
 
 
-// remintro
+// begin notes
+
 == ENTITY
 
 An ENTITY is a user defined object, representing some thing. It has
 various components which will be described. Every ENTITY has a user-defined
 name.
+
+// end notes
 
 
 == ENTITY
@@ -798,7 +892,8 @@ The characteristics (properties) of an entity are defined in terms of data
 An entity may '`inherit`' properties from another entity.
 
 
-// remintro
+// begin notes
+
 == ENTITY Attributes
 
 An attribute is some kind of data element that helps characterize the ENTITY.
@@ -806,6 +901,8 @@ An attribute consists of a user-defined name and a specification of the
 kind of data.
 
 The kind of data may be a (collection of) simple types, TYPEs or ENTITYs.
+
+// end notes
 
 
 == ENTITY Attributes
@@ -828,7 +925,7 @@ The data for calculating a derived attribute must be accessible from
 the entity.
 
 
-// remintro
+// begin notes
 
 == ENTITY Constraints
 
@@ -838,6 +935,8 @@ Constraints limit the kind and/or values of the attributes' data.
 
 *WHERE* rules are logical expressions. In this case
 the radius must be positive length.
+
+// end notes
 
 
 == ENTITY Constraints
@@ -861,7 +960,7 @@ END_ENTITY;
 A WHERE (domain) rule fails if it evaluates to `FALSE`.
 
 
-// remintro
+// begin notes
 
 == Example ENTITY
 
@@ -875,6 +974,8 @@ No two people have the same social security number.
 
 The WHERE rule states that if someone has a spouse then the spouse must
 be of the opposite sex.
+
+// end notes
 
 
 == Example ENTITY
@@ -898,7 +999,8 @@ END_ENTITY;
 ----
 
 
-// remintro
+// begin notes
+
 == Subtyping
 
 A Subtype is a special kind of its supertype(s).
@@ -907,6 +1009,8 @@ Forgetting about Cantor and degrees of infinity
 
 * There are fewer odd numbers than there are natural numbers.
 * There are fewer prime numbers than there are natural numbers.
+
+// end notes
 
 
 == Subtyping
@@ -931,7 +1035,8 @@ END_ENTITY;
 ----
 
 
-// remintro
+// begin notes
+
 == FUNCTION Example
 
 These are part of EXPRESS programming language aspects.
@@ -940,6 +1045,8 @@ The particular example takes two aggregations and returns either
 TRUE or FALSE depending on whether or not the first is a subset of
 the second (i.e., every member of stem:[tt "sub"]
 is also in stem:[tt "super"]).
+
+// end notes
 
 
 == FUNCTION Example
@@ -967,12 +1074,15 @@ END_FUNCTION;
 ----
 
 
-// remintro
+// begin notes
+
 == Predefined Functions
 
 EXPRESS includes a variety of predefined functions.
 
 There is more on these later in the course.
+
+// end notes
 
 
 == Predefined Functions
@@ -988,13 +1098,16 @@ else SUBS is returned.
 entities and returns each entity instance that uses T in role R.
 
 
-// remintro
+// begin notes
+
 == Constants
 
 EXPRESS includes the mathematical constants stem:[Pi] and stem:[e] (to infinite
 precision).
 
 You can also define your own constants, but this is not often done.
+
+// end notes
 
 
 == Constants
@@ -1014,13 +1127,16 @@ END_CONSTANT;
 --
 
 
-// remintro
+// begin notes
+
 
 == SCHEMA
 
 The minimum EXPRESS model consists of a single empty SCHEMA.
 
 TYPE, ENTITY, FUNCTION definitions are contained within a SCHEMA.
+
+// end notes
 
 
 == SCHEMA
@@ -1034,13 +1150,16 @@ relevant domains.
 domains of interest.
 
 
-// remintro
+// begin notes
+
 == SCHEMA (cont)
 
 A model usually consists of more than one SCHEMA.
 
 From within a SCHEMA you can get at anything in any other SCHEMA
 (there is no way to '`hide`' something).
+
+// end notes
 
 
 == SCHEMA (cont)
@@ -1060,19 +1179,4 @@ SCHEMA sub1;
   -- types, entities, rules, etc.
 END_SCHEMA;
 ----
-
-
-// == EXPRESS SUMMARY
-
-// * A powerful OO information modeling language
-// ** Primary form is a computer processible text language.
-// ** EXPRESS-G as a graphical subset.
-// ** EXPRESS-I as an instantiation form (in review).
-// ** Extension to methods is planned.
-// * In ISO standardization process.
-// * Normative STEP information models.
-// * Becoming widely used in the modeling communities.
-// * Software tools appearing.
-// * User Group forming
-
 
