@@ -15,8 +15,7 @@ language but which can be described
 using the [.small]#EXPRESS# lexical language.
 
 An [.small]#EXPRESS# model is a primary representation and
-an [.small]#EXPRESS-G# model
-is a secondary representation.
+an [.small]#EXPRESS-G# model is a secondary representation.
 
 == Model overview
 
@@ -24,7 +23,7 @@ The model consists of three schemas, as shown in
 Figure&nbsp;<<fig:cargschema>>.
 
 [[fig:cargschema]]
-.Complete schema-level model for Registration Authority example.
+.Complete schema-level model for Registration Authority example (Page 1 of 1).
 image::images/ex-cargschema.svg[]
 
 The schema stem:[tt "registration_authority"] is the primary schema.
@@ -63,7 +62,7 @@ the entities and types in it.
 
 
 [[fig:cargreg]]
-.Complete entity-level model of the Registration Authority schema
+.Complete entity-level model of the Registration Authority schema (Page 1 of 1).
 image::images/ex-cargreg.svg[]
 
 
@@ -79,12 +78,16 @@ There are no types defined within the schema.
 
 == The auxiliary schema
 
-The nexp{auxiliary} schema contains too many items to be displayed on a single
+The stem:[tt "auxiliary"] schema contains too many items to be displayed on a single
 page. Figures&nbsp;<<fig:cargaux1>> and&nbsp;<<fig:cargaux2>>
 show the entities and types that are contained in the schema.
 
+[[fig:cargaux1]]
+.Complete entity-level model of the Auxiliary schema (Page 1 of 2).
+image::images/ex-cargaux1.svg[]
+
 [[fig:cargaux2]]
-.Complete entity-level model of the Auxiliary schema
+.Complete entity-level model of the Auxiliary schema (Page 2 of 2).
 image::images/ex-cargaux2.svg[]
 
 The schema contains the following entities:
@@ -119,7 +122,7 @@ Figure&nbsp;<<fig:cargcal>> shows the entities and types within the
 stem:[tt "calendar"] schema.
 
 [[fig:cargcal]]
-.Complete entity-level model of Calendar schema
+.Complete entity-level model of Calendar schema (Page 1 of 1).
 image::images/ex-cargcal.svg[]
 
 There is one entity called stem:[tt "date"] and one enumeration type called

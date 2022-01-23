@@ -272,8 +272,9 @@ END_SCHEMA; -- simple_tree
 // end notes
 
 
+== A Supertype Tree
+
 [%unnumbered]
-.A Supertype Tree
 image::images/02-models-5.svg[]
 
 
@@ -302,8 +303,10 @@ END_ENTIY;
 // end notes
 
 
+
+== Retyping attributes
+
 [%unnumbered]
-.Retyping attributes
 image::images/02-models-6.svg[]
 
 
@@ -454,8 +457,9 @@ ENTITY i SUBTYPE OF (a); END_ENTITY; -- illegal
 // end notes
 
 
+== Subtype constraints
+
 [%unnumbered]
-.Subtype constraints
 image::images/02-models-10.svg[]
 
 

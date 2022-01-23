@@ -1,4 +1,4 @@
-= Example model statement Car Registration Authority}
+= Example model statement Car Registration Authority
 :author: Peter Wilson
 :toc:
 :stem:
