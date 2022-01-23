@@ -121,8 +121,10 @@ END_ENTITY;
 * EXPRESS supports the IS-A relationship via subtyping.
 * Entities S1, S2, ... can be declared to be SUBTYPES of entity E.
 This also effectively declares E to be a SUPERTYPE of S1, S2, etc.
-
++
+--
 That is, S1 is-a E, S2 is-a E, etc. Also, E may-be an S1, E may-be an S2.
+--
 
 * An entity may be both a SUB- and a SUPERTYPE.
 * An entity may be a SUBTYPE of more than one entity.
@@ -221,7 +223,8 @@ instances of the Subtypes x _and_ y.
 SUPERTYPE if it is mentioned by a SUBTYPE.
 * In some cases, a Supertype is not to be instantiated without one of
 its Subtypes. The entity can be constrained to be an ABSTRACT SUPERTYPE.
-
++
+--
 [source%unnumbered]
 ----
 ENTITY mammal
@@ -237,7 +240,7 @@ ENTITY dog
   ...
 END_ENTITY;
 ----
-
+--
 
 == TOTAL_OVER
 

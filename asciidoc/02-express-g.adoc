@@ -96,13 +96,15 @@ image::images/02-symbols-15.svg[]
 image::images/02-symbols-16.svg[]
 
 
+== A Supertype Tree
+
 [%unnumbered]
-.A Supertype Tree
 image::images/02-models-5.svg[]
 
 
+== Retyping attributes
+
 [%unnumbered]
-.Retyping attributes
 image::images/02-models-6.svg[]
 
 
@@ -130,8 +132,9 @@ image::images/02-models-8.svg[]
 image::images/02-models-7.svg[]
 
 
+== Subtype constraints
+
 [%unnumbered]
-.Subtype constraints
 image::images/02-models-10.svg[]
 
 
