@@ -23,10 +23,9 @@ is a secondary representation.
 The model consists of three schemas, as shown in
 Figure&nbsp;<<fig:cargschema>>.
 
-// This one is written in the same tex file: egcarsg.tex
-// [[fig:cargschema]]
-// .Complete schema-level model for Registration Authority example.
-// image::images/cargschema[]
+[[fig:cargschema]]
+.Complete schema-level model for Registration Authority example.
+image::images/ex-cargschema.svg[]
 
 The schema stem:[tt "registration_authority"] is the primary schema.
 It references the noted items from the stem:[tt "auxiliary"] schema;
@@ -63,9 +62,9 @@ stem:[tt "registration_authority"] schema and
 the entities and types in it.
 
 
-// [[fig:cargreg]]
-// .Complete entity-level model of the Registration Authority schema
-// image::images/cargreg.svg[]
+[[fig:cargreg]]
+.Complete entity-level model of the Registration Authority schema
+image::images/ex-cargreg.svg[]
 
 
 There are three entities altogether, namely stem:[tt "send_message"],
@@ -84,9 +83,9 @@ The nexp{auxiliary} schema contains too many items to be displayed on a single
 page. Figures&nbsp;<<fig:cargaux1>> and&nbsp;<<fig:cargaux2>>
 show the entities and types that are contained in the schema.
 
-// [[fig:cargaux2]]
-// .Complete entity-level model of the Auxiliary schema
-// image::images/cargaux2.svg[]
+[[fig:cargaux2]]
+.Complete entity-level model of the Auxiliary schema
+image::images/ex-cargaux2.svg[]
 
 The schema contains the following entities:
 
@@ -119,9 +118,9 @@ stem:[tt "Real"]
 Figure&nbsp;<<fig:cargcal>> shows the entities and types within the
 stem:[tt "calendar"] schema.
 
-// [[fig:cargcal]]
-// .Complete entity-level model of Calendar schema
-// image::images/cargcal.svg[]
+[[fig:cargcal]]
+.Complete entity-level model of Calendar schema
+image::images/ex-cargcal.svg[]
 
 There is one entity called stem:[tt "date"] and one enumeration type called
 stem:[tt "months"].
