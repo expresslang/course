@@ -1,9 +1,6 @@
 
 = EXPRESS-G example model Car Registration Authority
 :author: Peter Wilson
-:toc:
-:stem:
-
 
 
 == Introduction
@@ -20,9 +17,9 @@ an [.small]#EXPRESS-G# model is a secondary representation.
 == Model overview
 
 The model consists of three schemas, as shown in
-Figure&nbsp;<<fig:cargschema>>.
+Figure&nbsp;<<fig_cargschema>>.
 
-[[fig:cargschema]]
+[[fig_cargschema]]
 .Complete schema-level model for Registration Authority example (Page 1 of 1).
 image::images/ex-cargschema.svg[]
 
@@ -45,23 +42,23 @@ as it neither uses nor references any other schema.
 
 An entity-level model for the
 stem:[tt "registration_authority"] schema is given
-in Figure&nbsp;<<fig:cargreg>>. The entity-level
+in Figure&nbsp;<<fig_cargreg>>. The entity-level
 model for the stem:[tt "auxiliary"]
-schema is displayed in Figures&nbsp;<<fig:cargaux1>>
-and&nbsp;<<fig:cargaux2>>. The
+schema is displayed in Figures&nbsp;<<fig_cargaux1>>
+and&nbsp;<<fig_cargaux2>>. The
 internals of the stem:[tt "calendar"] schema are shown
-in Figure&nbsp;<<fig:cargcal>>.
+in Figure&nbsp;<<fig_cargcal>>.
 
 
 
 == The registration authority schema
 
-Figure&nbsp;<<fig:cargreg>> shows the
+Figure&nbsp;<<fig_cargreg>> shows the
 stem:[tt "registration_authority"] schema and
 the entities and types in it.
 
 
-[[fig:cargreg]]
+[[fig_cargreg]]
 .Complete entity-level model of the Registration Authority schema (Page 1 of 1).
 image::images/ex-cargreg.svg[]
 
@@ -79,14 +76,14 @@ There are no types defined within the schema.
 == The auxiliary schema
 
 The stem:[tt "auxiliary"] schema contains too many items to be displayed on a single
-page. Figures&nbsp;<<fig:cargaux1>> and&nbsp;<<fig:cargaux2>>
+page. Figures&nbsp;<<fig_cargaux1>> and&nbsp;<<fig_cargaux2>>
 show the entities and types that are contained in the schema.
 
-[[fig:cargaux1]]
+[[fig_cargaux1]]
 .Complete entity-level model of the Auxiliary schema (Page 1 of 2).
 image::images/ex-cargaux1.svg[]
 
-[[fig:cargaux2]]
+[[fig_cargaux2]]
 .Complete entity-level model of the Auxiliary schema (Page 2 of 2).
 image::images/ex-cargaux2.svg[]
 
@@ -118,10 +115,10 @@ stem:[tt "Real"]
 
 == The calendar schema
 
-Figure&nbsp;<<fig:cargcal>> shows the entities and types within the
+Figure&nbsp;<<fig_cargcal>> shows the entities and types within the
 stem:[tt "calendar"] schema.
 
-[[fig:cargcal]]
+[[fig_cargcal]]
 .Complete entity-level model of Calendar schema (Page 1 of 1).
 image::images/ex-cargcal.svg[]
 

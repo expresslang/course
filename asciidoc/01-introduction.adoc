@@ -1,5 +1,5 @@
 = Information Modeling Using EXPRESS -- An Introduction
-:stem:
+
 
 == Information?
 

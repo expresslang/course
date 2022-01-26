@@ -1,5 +1,4 @@
 = Information Modeling Using EXPRESS -- RULES
-:stem:
 
 
 == THE PRINCIPLES

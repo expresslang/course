@@ -1,5 +1,5 @@
 = Information Modeling Using EXPRESS -- Advanced Concepts
-:stem:
+
 
 // begin notes
 NB. NOTES ARE ON EVEN NUMBERED (LEFT HAND) PAGES AND THE PRESENTATION ON

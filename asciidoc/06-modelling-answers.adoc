@@ -1,6 +1,5 @@
 = Modeling Exercises -- Some Answers
 :author: Peter Wilson
-:toc:
 
 
 == Ambiguities
@@ -181,42 +180,42 @@ and topics by a numerical code.
 The following is a list of the top-level classes
 and the number of subclasses within each of these is given in parentheses.
 
-A&colon;:: General works (10)
-B&colon;:: Philosophy, Psychology, Religion (14)
-C&colon;:: Auxiliary Sciences of History (9)
-D&colon;:: History: General and Old World (19)
-E-F&colon;:: History: Western Hemisphere
-G&colon;:: Geography, Anthropology, Recreation (8)
-H&colon;:: Social Sciences (15)
-J&colon;:: Political Science (10)
-K&colon;:: Law (8)
-L&colon;:: Education (10)
-M&colon;:: Music (2)
-N&colon;:: Fine Arts (7)
-P&colon;:: Language and Literature (18)
-Q&colon;:: Science (11)
-R&colon;:: Medecine (16)
-S&colon;:: Agriculture (5)
-T&colon;:: Technology (16)
-U&colon;:: Military Science (8)
-V&colon;:: Naval Science (9)
-Z&colon;:: Bibliography, Library Science
+A&#58;:: General works (10)
+B&#58;:: Philosophy, Psychology, Religion (14)
+C&#58;:: Auxiliary Sciences of History (9)
+D&#58;:: History: General and Old World (19)
+E-F&#58;:: History: Western Hemisphere
+G&#58;:: Geography, Anthropology, Recreation (8)
+H&#58;:: Social Sciences (15)
+J&#58;:: Political Science (10)
+K&#58;:: Law (8)
+L&#58;:: Education (10)
+M&#58;:: Music (2)
+N&#58;:: Fine Arts (7)
+P&#58;:: Language and Literature (18)
+Q&#58;:: Science (11)
+R&#58;:: Medecine (16)
+S&#58;:: Agriculture (5)
+T&#58;:: Technology (16)
+U&#58;:: Military Science (8)
+V&#58;:: Naval Science (9)
+Z&#58;:: Bibliography, Library Science
 
 
 The classification structure extends several levels deep.
 As an example of a subclass, here is the listing for
 General Works (Class A).
 
-AC&colon;:: Collections
-AE&colon;:: Encyclopedias
-AG&colon;:: Dictionaries
-AI&colon;:: Indexes
-AM&colon;:: Museums
-AN&colon;:: Newspapers
-AP&colon;:: Periodicals
-AS&colon;:: Acadamies and Societies
-AY&colon;:: Yearbooks, Almanacs, Directories
-AZ&colon;:: History of scholarship
+AC&#58;:: Collections
+AE&#58;:: Encyclopedias
+AG&#58;:: Dictionaries
+AI&#58;:: Indexes
+AM&#58;:: Museums
+AN&#58;:: Newspapers
+AP&#58;:: Periodicals
+AS&#58;:: Acadamies and Societies
+AY&#58;:: Yearbooks, Almanacs, Directories
+AZ&#58;:: History of scholarship
 
 
 ==== The Dewey system
@@ -227,31 +226,31 @@ bears his name. At the top level there are ten classes, numbered from
 of ten, sub-subclasses in steps of one, and so on. The top level of 
 this structure is:
 
-000&colon;:: Generalities
-100&colon;:: Philosophy and psychology
-200&colon;:: Religion
-300&colon;:: Social sciences
-400&colon;:: Language
-500&colon;:: Natural sciences and mathematics
-600&colon;:: Technology (Applied sciences)
-700&colon;:: The Arts
-800&colon;:: Literature and rhetoric
-900&colon;:: Geography and history
+000&#58;:: Generalities
+100&#58;:: Philosophy and psychology
+200&#58;:: Religion
+300&#58;:: Social sciences
+400&#58;:: Language
+500&#58;:: Natural sciences and mathematics
+600&#58;:: Technology (Applied sciences)
+700&#58;:: The Arts
+800&#58;:: Literature and rhetoric
+900&#58;:: Geography and history
 
 The system supports several levels of refinement -- a complete listing 
 requiring a a book of itself. In order to provide a comparison with the 
 Library of Congress system the first-level divisions under 
 Generalities (Class 000) are:
 
-010&colon;:: Bibliography
-020&colon;:: Library and information sciences
-030&colon;:: General encyclopedic works
-040&colon;:: (nothing in this sub-class)
-050&colon;:: General series and their indexes
-060&colon;:: General organisations and museology
-070&colon;:: News media, journalism, publishing
-080&colon;:: General collections
-090&colon;:: Manuscripts and rare books
+010&#58;:: Bibliography
+020&#58;:: Library and information sciences
+030&#58;:: General encyclopedic works
+040&#58;:: (nothing in this sub-class)
+050&#58;:: General series and their indexes
+060&#58;:: General organisations and museology
+070&#58;:: News media, journalism, publishing
+080&#58;:: General collections
+090&#58;:: Manuscripts and rare books
 
 
 === Exercise 2
@@ -788,12 +787,12 @@ item. There are also private delivery services
 which will accept any kind of item.
 The following are the regulations governing the Fluidistan mail service.
 
-Post Cards&colon;:: The card rate is 1p&nbsp;3z
+Post Cards&#58;:: The card rate is 1p&nbsp;3z
 To qualify for the card rate a postcard
 must be of a uniform thickness and no thinner than 0.007 inches. It must be no
 larger than 4.25 by 6 inches and no smaller than 3.5 by 5 inches.
 
-Letters&colon;:: The letter rate is 1p&nbsp;13z
+Letters&#58;:: The letter rate is 1p&nbsp;13z
 for letters weighing one ounce or less.
 The rate increases by 1p&nbsp;6z for each additional
 ounce or part thereof. An item
@@ -806,7 +805,7 @@ or the length to height ratio is not
 between 1.3 and 2.5 inclusive. Non-standard
 letters are subject to a surcharge of 10z in addition to the standard rate.
 
-Parcels&colon;:: The parcel rate is
+Parcels&#58;:: The parcel rate is
 G2-4-2 for items not exceeding two pounds in 
 weight. The rate increases by by 2p&nbsp;11z for
 each additional pound or part thereof,
@@ -817,13 +816,13 @@ weighing less than fifteen pounds and
 whose length plus girth exceeds seven feet
 are chargeable at the fifteen pound rate.
 
-Size Standards&colon;:: Items whose thickness is less than 0.007 inches are not
+Size Standards&#58;:: Items whose thickness is less than 0.007 inches are not
 accepted for delivery. Items less than 0.25
 inches in thickness must be rectangular
 in shape and at least 3.5 inches high and at least 5 inches long. Items
 weighing more than 70 pounds are not accepted for delivery.
 
-Environmental&colon;:: Neither hazardous materials nor live or dead animals
+Environmental&#58;:: Neither hazardous materials nor live or dead animals
 will be accepted for delivery. All 
 items, except cards, must be enclosed in some wrapping. Items enclosed in
 environmentally sound and recycleable

@@ -1,8 +1,6 @@
 = Modeling exercises
 :author: Peter Wilson
 :date: 1992-2004
-:toc:
-:stem:
 
 
 == Ambiguities
@@ -73,7 +71,7 @@ pedals to the rear wheel, and also if you consider that a wheel has a
 hub, spokes, a rim and a tire?
 
 
-[[chap:regular]]
+[[chap_regular]]
 == Regular models
 
 . Do the following:
@@ -135,7 +133,7 @@ two courses, and are paid at a fixed rate per course. No person under the age
 of 18 may be paid, and the retirement age is 65. 
 --
 
-. [[ex:fluid]] Write an information model about the delivery of items 
+. [[ex_fluid]] Write an information model about the delivery of items 
 according to the following description.
 +
 --
@@ -151,11 +149,11 @@ will accept any kind of item. The following are the regulations governing
 the Fluidistan mail service.
 
 
-Post Cards&colon;:: The card rate is 1p&nbsp;3z. To qualify for the card rate 
+Post Cards&#58;:: The card rate is 1p&nbsp;3z. To qualify for the card rate 
 a postcard must be of a uniform thickness and no thinner than 0.007 inches. 
 It must be no larger than 4.25 by 6 inches and no smaller than 3.5 by 5 inches.
 
-Letters&colon;:: The letter rate is 1p&nbsp;13z for letters weighing one ounce 
+Letters&#58;:: The letter rate is 1p&nbsp;13z for letters weighing one ounce 
 or less. The rate increases by 1p&nbsp;6z for each additional ounce or part 
 thereof. An item weighing more than 11 ounces cannot be sent at the 
 letter rate. Letters less than one ounce are non-standard if the length 
@@ -164,7 +162,7 @@ or the thickness is greater than 0.25 inches or the length to height
 ratio is not between 1.3 and 2.5 inclusive. Non-standard letters are 
 subject to a surcharge of 10z in addition to the standard rate.
 
-Parcels&colon;:: The parcel rate is G2-4-2 for items not exceeding two 
+Parcels&#58;:: The parcel rate is G2-4-2 for items not exceeding two 
 pounds in weight. The rate increases by by 2p&nbsp;11z for each additional 
 pound or part thereof, provided the weight is not greater than ten pounds. 
 Above ten pounds the rate increases by 2p&nbsp;8z for each additional pound 
@@ -172,13 +170,13 @@ or part thereof. Note: Parcels weighing less than fifteen pounds and
 whose length plus girth exceeds seven feet are chargeable at the 
 fifteen pound rate.
 
-Size Standards&colon;:: Items whose thickness is less than 0.007 inches 
+Size Standards&#58;:: Items whose thickness is less than 0.007 inches 
 are not accepted for delivery. Items less than 0.25 inches in thickness 
 must be rectangular in shape and at least 3.5 inches high and at 
 least 5 inches long. Items weighing more than 70 pounds are not accepted 
 for delivery.
 
-Environmental&colon;:: Neither hazardous materials nor live or dead animals
+Environmental&#58;:: Neither hazardous materials nor live or dead animals
 will be accepted for delivery. All items, except cards, must be enclosed 
 in some wrapping. Items enclosed in environmentally sound and recycleable 
 wrapping are entitled to a discount of ten percent of the applicable rate; 
@@ -186,7 +184,7 @@ if this results in a fraction of a z, the rate is rounded up to the
 nearest z.
 --
 
-. [[ex:bmd]] Create an information model for the following.
+. [[ex_bmd]] Create an information model for the following.
 +
 --
 The BMD authority is responsible for recording births, marriages, divorces
@@ -258,14 +256,14 @@ The moment of inertia, stem:[I], of the beam cross-section is given by
 
 [stem%unnumbered]
 ++++
-I = frac{bh^{3}}{12}
+I = {bh^{3}}/{12}
 ++++
 
 and the maximum stress at any beam cross-section is given by
 
 [stem%unnumbered]
 ++++
-s = frac{Mh}{2I}
+s = {Mh}/{2I}
 ++++
 
 where stem:[M] is the bending moment.
@@ -276,28 +274,28 @@ the maximum  bending moment is
 
 [stem%unnumbered]
 ++++
-M = frac{Wl}{8}
+M = {Wl}/{8}
 ++++
 
 while for a point load stem:[W] at the center of the beam it is
 
 [stem%unnumbered]
 ++++
-M = frac{Wl}{4}
+M = {Wl}/{4}
 ++++
 
 The maximum deflection of a uniformly loaded beam is
 
 [stem%unnumbered]
 ++++
-y = frac{5Wl^{3}}{384EI}
+y = {5Wl^{3}}/{384EI}
 ++++
 
 and for a center loaded beam is
 
 [stem%unnumbered]
 ++++
-y = frac{Wl^{3}}{48EI}
+y = {Wl^{3}}/{48EI}
 ++++
 
 Bending moments, deflections and stresses are additive with respect to 
@@ -311,7 +309,7 @@ bending moments for the uniform load case and the point load case.
 . In order to respond to increasing budget deficits and voter antipathy
 to increased taxes, it has been decided to combine the Car Registration
 Authority (see the example model) and the BMD Authority 
-(see exercise&nbsp;<<ex:bmd>> in &sect;<<chap:regular>>).
+(see exercise&nbsp;<<ex_bmd>> in &sect;<<chap_regular>>).
 Integrate the two information models to represent
 the combined Authority.
 
@@ -323,8 +321,8 @@ for delivering cards and letters, while the third will be responsible
 for parcel delivery.
 +
 --
-Starting with the model resulting from exercise&nbsp;<<ex:fluid>>
-in &sect;<<chap:regular>>, produce two models, 
+Starting with the model resulting from exercise&nbsp;<<ex_fluid>>
+in &sect;<<chap_regular>>, produce two models, 
 one for the letter and card branch and the other for
 the parcel branch. Try and minimise changes to the starting model 
 and also try and minimise the overall amount of work to produce
