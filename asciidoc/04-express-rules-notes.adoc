@@ -1,5 +1,5 @@
 = Information Modeling Using EXPRESS -- RULES
-:stem:
+
 
 // begin notes
 

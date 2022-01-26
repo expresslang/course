@@ -1168,7 +1168,7 @@ From within a SCHEMA you can get at anything in any other SCHEMA
 * Where multiple Schemas are used there is normally one '`main`' schema
 and n '`subsidiary`' schemas.
 
-[source,expresslang]
+[source%unnumbered,expresslang]
 ----
 SCHEMA main;
   REFERENCE FROM sub1 ...
